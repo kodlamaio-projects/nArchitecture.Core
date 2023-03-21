@@ -47,6 +47,11 @@ To get a local copy up and running follow these simple steps.
    git submodule add https://github.com/kodlamaio-projects/DotNetCore.CorePackages.git src/corePackages
    ```
 
+- Run the following command to update this module
+  ```sh
+   git submodule update --remote src/corePackages
+   ```
+
 ## 🚀 Usage
 
 1. Check this [nArchitecture.RentACar](https://github.com/kodlamaio-projects/DotNetCore.CorePackages) repository
