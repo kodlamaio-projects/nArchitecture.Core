@@ -1,26 +1,26 @@
 <p align="center">
-  <a href="https://github.com/kodlamaio-projects/DotNetCore.CorePackages/graphs/contributors"><img src="https://img.shields.io/github/contributors/kodlamaio-projects/DotNetCore.CorePackages.svg?style=for-the-badge"></a>
-  <a href="https://github.com/kodlamaio-projects/DotNetCore.CorePackages/network/members"><img src="https://img.shields.io/github/forks/kodlamaio-projects/DotNetCore.CorePackages.svg?style=for-the-badge"></a>
-  <a href="https://github.com/kodlamaio-projects/DotNetCore.CorePackages/stargazers"><img src="https://img.shields.io/github/stars/kodlamaio-projects/DotNetCore.CorePackages.svg?style=for-the-badge"></a>
-  <a href="https://github.com/kodlamaio-projects/DotNetCore.CorePackages/issues"><img src="https://img.shields.io/github/issues/kodlamaio-projects/DotNetCore.CorePackages.svg?style=for-the-badge"></a>
-  <a href="https://github.com/kodlamaio-projects/DotNetCore.CorePackages/blob/master/LICENSE"><img src="https://img.shields.io/github/license/kodlamaio-projects/DotNetCore.CorePackages.svg?style=for-the-badge"></a>
+  <a href="https://github.com/kodlamaio-projects/nArchitecture.Core/graphs/contributors"><img src="https://img.shields.io/github/contributors/kodlamaio-projects/nArchitecture.Core.svg?style=for-the-badge"></a>
+  <a href="https://github.com/kodlamaio-projects/nArchitecture.Core/network/members"><img src="https://img.shields.io/github/forks/kodlamaio-projects/nArchitecture.Core.svg?style=for-the-badge"></a>
+  <a href="https://github.com/kodlamaio-projects/nArchitecture.Core/stargazers"><img src="https://img.shields.io/github/stars/kodlamaio-projects/nArchitecture.Core.svg?style=for-the-badge"></a>
+  <a href="https://github.com/kodlamaio-projects/nArchitecture.Core/issues"><img src="https://img.shields.io/github/issues/kodlamaio-projects/nArchitecture.Core.svg?style=for-the-badge"></a>
+  <a href="https://github.com/kodlamaio-projects/nArchitecture.Core/blob/master/LICENSE"><img src="https://img.shields.io/github/license/kodlamaio-projects/nArchitecture.Core.svg?style=for-the-badge"></a>
 </p><br />
 
 <p align="center">
-  <a href="https://github.com/kodlamaio-projects/DotNetCore.CorePackages"><img src="https://user-images.githubusercontent.com/53148314/194872467-827dc967-acee-4bca-88a2-59ed5695bebf.png" height="125"></a>
+  <a href="https://github.com/kodlamaio-projects/nArchitecture.Core"><img src="https://user-images.githubusercontent.com/53148314/194872467-827dc967-acee-4bca-88a2-59ed5695bebf.png" height="125"></a>
   <h3 align="center">.NetCore Core Packages
 </h3>
   <p align="center">
     <!-- PROJECT_DESCRIPTION -->
     <!-- <br />
-    <a href="https://github.com/kodlamaio-projects/DotNetCore.CorePackages"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/kodlamaio-projects/nArchitecture.Core"><strong>Explore the docs »</strong></a>
     <br /> -->
     <!-- <br />
-    <a href="https://github.com/kodlamaio-projects/DotNetCore.CorePackages">View Demo</a>
+    <a href="https://github.com/kodlamaio-projects/nArchitecture.Core">View Demo</a>
     · -->
-    <a href="https://github.com/kodlamaio-projects/DotNetCore.CorePackages/issues">Report Bug</a>
+    <a href="https://github.com/kodlamaio-projects/nArchitecture.Core/issues">Report Bug</a>
     ·
-    <a href="https://github.com/kodlamaio-projects/DotNetCore.CorePackages/issues">Request Feature</a>
+    <a href="https://github.com/kodlamaio-projects/nArchitecture.Core/issues">Request Feature</a>
   </p>
 </p>
 
@@ -44,7 +44,7 @@ To get a local copy up and running follow these simple steps.
 
 1. Add submodule to your backend project repository
    ```sh
-   git submodule add https://github.com/kodlamaio-projects/DotNetCore.CorePackages.git src/corePackages
+   git submodule add https://github.com/kodlamaio-projects/nArchitecture.Core.git src/corePackages
    ```
 
 - Run the following command to update this module
@@ -54,7 +54,7 @@ To get a local copy up and running follow these simple steps.
 
 ## 🚀 Usage
 
-1. Check this [nArchitecture.RentACar](https://github.com/kodlamaio-projects/DotNetCore.CorePackages) repository
+1. Check this [nArchitecture.RentACar](https://github.com/kodlamaio-projects/nArchitecture.Core) repository
 
 ### Analysis
 
@@ -68,7 +68,7 @@ To get a local copy up and running follow these simple steps.
 
 ## 🚧 Roadmap
 
-See the [open issues](https://github.com/kodlamaio-projects/DotNetCore.CorePackages/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/kodlamaio-projects/nArchitecture.Core/issues) for a list of proposed features (and known issues).
 
 ## 🤝 Contributing
 
@@ -87,7 +87,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 📧 Contact
 
-**Project Link:** [https://github.com/kodlamaio-projects/DotNetCore.CorePackages](https://github.com/kodlamaio-projects/DotNetCore.CorePackages)
+**Project Link:** [https://github.com/kodlamaio-projects/nArchitecture.Core](https://github.com/kodlamaio-projects/nArchitecture.Core)
 
 <!-- ## 🙏 Acknowledgements
 - []() -->
