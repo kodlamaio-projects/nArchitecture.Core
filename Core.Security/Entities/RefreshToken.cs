@@ -2,7 +2,7 @@
 
 namespace Core.Security.Entities;
 
-public class RefreshToken : Entity
+public class RefreshToken : Entity<int>
 {
     public int UserId { get; set; }
     public string Token { get; set; }

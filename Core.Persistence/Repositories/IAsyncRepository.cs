@@ -5,30 +5,30 @@ using Microsoft.EntityFrameworkCore.Query;
 
 namespace Core.Persistence.Repositories;
 
-public interface IAsyncRepository<T> : IQuery<T>
-    where T : Entity
+public interface IAsyncRepository<TEntity, TEntityId> : IQuery<TEntity>
+    where TEntity : Entity<TEntityId>
 {
-    Task<T?> GetAsync(
-        Expression<Func<T, bool>> predicate,
-        Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+    Task<TEntity?> GetAsync(
+        Expression<Func<TEntity, bool>> predicate,
+        Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
         bool enableTracking = true,
         CancellationToken cancellationToken = default
     );
 
-    Task<IPaginate<T>> GetListAsync(
-        Expression<Func<T, bool>>? predicate = null,
-        Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
-        Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+    Task<IPaginate<TEntity>> GetListAsync(
+        Expression<Func<TEntity, bool>>? predicate = null,
+        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+        Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
         int index = 0,
         int size = 10,
         bool enableTracking = true,
         CancellationToken cancellationToken = default
     );
 
-    Task<IPaginate<T>> GetListByDynamicAsync(
+    Task<IPaginate<TEntity>> GetListByDynamicAsync(
         DynamicQuery dynamic,
-        Expression<Func<T, bool>>? predicate = null,
-        Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+        Expression<Func<TEntity, bool>>? predicate = null,
+        Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
         int index = 0,
         int size = 10,
         bool enableTracking = true,
@@ -36,20 +36,20 @@ public interface IAsyncRepository<T> : IQuery<T>
     );
 
     Task<bool> AnyAsync(
-        Expression<Func<T, bool>>? predicate = null,
+        Expression<Func<TEntity, bool>>? predicate = null,
         bool enableTracking = true,
         CancellationToken cancellationToken = default
     );
 
-    Task<T> AddAsync(T entity);
+    Task<TEntity> AddAsync(TEntity entity);
 
-    Task<IList<T>> AddRangeAsync(IList<T> entity);
+    Task<IList<TEntity>> AddRangeAsync(IList<TEntity> entity);
 
-    Task<T> UpdateAsync(T entity);
+    Task<TEntity> UpdateAsync(TEntity entity);
 
-    Task<IList<T>> UpdateRangeAsync(IList<T> entity);
+    Task<IList<TEntity>> UpdateRangeAsync(IList<TEntity> entity);
 
-    Task<T> DeleteAsync(T entity);
+    Task<TEntity> DeleteAsync(TEntity entity);
 
-    Task<IList<T>> DeleteRangeAsync(IList<T> entity);
+    Task<IList<TEntity>> DeleteRangeAsync(IList<TEntity> entity);
 }

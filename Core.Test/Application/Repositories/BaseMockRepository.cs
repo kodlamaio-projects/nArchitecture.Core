@@ -7,12 +7,12 @@ using Moq;
 
 namespace Core.Test.Application.Repositories;
 
-public abstract class BaseMockRepository<TRepository, TEntity, TMappingProfile, TBusinessRules, TFakeData>
-    where TEntity : Entity, new()
-    where TRepository : class, IAsyncRepository<TEntity>, IRepository<TEntity>
+public abstract class BaseMockRepository<TRepository, TEntity, TEntityId, TMappingProfile, TBusinessRules, TFakeData>
+    where TEntity : Entity<TEntityId>, new()
+    where TRepository : class, IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId>
     where TMappingProfile : Profile, new()
     where TBusinessRules : BaseBusinessRules
-    where TFakeData : BaseFakeData<TEntity>, new()
+    where TFakeData : BaseFakeData<TEntity, TEntityId>, new()
 {
     public IMapper Mapper;
     public Mock<TRepository> MockRepository;
@@ -27,7 +27,7 @@ public abstract class BaseMockRepository<TRepository, TEntity, TMappingProfile, 
             });
         Mapper = mapperConfig.CreateMapper();
 
-        MockRepository = MockRepositoryHelper.GetRepository<TRepository, TEntity>(fakeData.Data);
+        MockRepository = MockRepositoryHelper.GetRepository<TRepository, TEntity, TEntityId>(fakeData.Data);
         BusinessRules = (TBusinessRules)Activator.CreateInstance(type: typeof(TBusinessRules), MockRepository.Object);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Core.Security.Entities;
 
-public class EmailAuthenticator : Entity
+public class EmailAuthenticator : Entity<int>
 {
     public int UserId { get; set; }
     public string? ActivationKey { get; set; }
