@@ -43,6 +43,7 @@ public static class MockRepositoryHelper
                         It.IsAny<int>(),
                         It.IsAny<int>(),
                         It.IsAny<bool>(),
+                        It.IsAny<bool>(),
                         It.IsAny<CancellationToken>()
                     )
             )
@@ -53,12 +54,15 @@ public static class MockRepositoryHelper
                     Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
                     int index,
                     int size,
+                    bool withDeleted,
                     bool enableTracking,
                     CancellationToken cancellationToken
                 ) =>
                 {
                     IList<TEntity> list = new List<TEntity>();
 
+                    if (!withDeleted)
+                        list = entityList.Where(e => !e.DeletedDate.HasValue).ToList();
                     if (expression == null)
                         list = entityList;
                     else
@@ -81,6 +85,7 @@ public static class MockRepositoryHelper
                         It.IsAny<Expression<Func<TEntity, bool>>>(),
                         It.IsAny<Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>>(),
                         It.IsAny<bool>(),
+                        It.IsAny<bool>(),
                         It.IsAny<CancellationToken>()
                     )
             )
@@ -88,10 +93,13 @@ public static class MockRepositoryHelper
                 (
                     Expression<Func<TEntity, bool>> expression,
                     Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include,
+                    bool withDeleted,
                     bool enableTracking,
                     CancellationToken cancellationToken
                 ) =>
                 {
+                    if (!withDeleted)
+                        entityList = entityList.Where(e => !e.DeletedDate.HasValue).ToList();
                     TEntity? result = entityList.FirstOrDefault(predicate: expression.Compile());
                     return result;
                 }
@@ -135,11 +143,14 @@ public static class MockRepositoryHelper
         where TRepository : class, IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId>
     {
         mockRepo
-            .Setup(r => r.DeleteAsync(It.IsAny<TEntity>()))
+            .Setup(r => r.DeleteAsync(It.IsAny<TEntity>(), It.IsAny<bool>()))
             .ReturnsAsync(
-                (TEntity entity) =>
+                (TEntity entity, bool permanent) =>
                 {
-                    entityList.Remove(entity);
+                    if (!permanent)
+                        entity.DeletedDate = DateTime.UtcNow;
+                    else
+                        entityList.Remove(entity);
                     return entity;
                 }
             );
