@@ -87,8 +87,8 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
             queryable = queryable.AsNoTracking();
         if (include != null)
             queryable = include(queryable);
-        if (!withDeleted)
-            queryable = queryable.Where(x => !x.DeletedDate.HasValue);
+        if (withDeleted)
+            queryable = queryable.IgnoreQueryFilters();
         if (predicate != null)
             queryable = queryable.Where(predicate);
         if (orderBy != null)
@@ -109,8 +109,8 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
             queryable = queryable.AsNoTracking();
         if (include != null)
             queryable = include(queryable);
-        if (!withDeleted)
-            queryable = queryable.Where(x => !x.DeletedDate.HasValue);
+        if (withDeleted)
+            queryable = queryable.IgnoreQueryFilters();
         return await queryable.FirstOrDefaultAsync(predicate, cancellationToken);
     }
 
@@ -130,8 +130,8 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
             queryable = queryable.AsNoTracking();
         if (include != null)
             queryable = include(queryable);
-        if (!withDeleted)
-            queryable = queryable.Where(x => !x.DeletedDate.HasValue);
+        if (withDeleted)
+            queryable = queryable.IgnoreQueryFilters();
         if (predicate != null)
             queryable = queryable.Where(predicate);
         return await queryable.ToPaginateAsync(index, size, from: 0, cancellationToken);
@@ -147,8 +147,8 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
         IQueryable<TEntity> queryable = Query();
         if (!enableTracking)
             queryable = queryable.AsNoTracking();
-        if (!withDeleted)
-            queryable = queryable.Where(x => !x.DeletedDate.HasValue);
+        if (withDeleted)
+            queryable = queryable.IgnoreQueryFilters();
         if (predicate != null)
             queryable = queryable.Where(predicate);
         return await queryable.AnyAsync(cancellationToken);
@@ -214,8 +214,8 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
             queryable = queryable.AsNoTracking();
         if (include != null)
             queryable = include(queryable);
-        if (!withDeleted)
-            queryable = queryable.Where(x => !x.DeletedDate.HasValue);
+        if (withDeleted)
+            queryable = queryable.IgnoreQueryFilters();
         return queryable.FirstOrDefault(predicate);
     }
 
@@ -234,8 +234,8 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
             queryable = queryable.AsNoTracking();
         if (include != null)
             queryable = include(queryable);
-        if (!withDeleted)
-            queryable = queryable.Where(x => !x.DeletedDate.HasValue);
+        if (withDeleted)
+            queryable = queryable.IgnoreQueryFilters();
         if (predicate != null)
             queryable = queryable.Where(predicate);
         if (orderBy != null)
@@ -258,8 +258,8 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
             queryable = queryable.AsNoTracking();
         if (include != null)
             queryable = include(queryable);
-        if (!withDeleted)
-            queryable = queryable.Where(x => !x.DeletedDate.HasValue);
+        if (withDeleted)
+            queryable = queryable.IgnoreQueryFilters();
         if (predicate != null)
             queryable = queryable.Where(predicate);
         return queryable.ToPaginate(index, size);
@@ -270,8 +270,8 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
         IQueryable<TEntity> queryable = Query();
         if (!enableTracking)
             queryable = queryable.AsNoTracking();
-        if (!withDeleted)
-            queryable = queryable.Where(x => !x.DeletedDate.HasValue);
+        if (withDeleted)
+            queryable = queryable.IgnoreQueryFilters();
         if (predicate != null)
             queryable = queryable.Where(predicate);
         return queryable.Any();
