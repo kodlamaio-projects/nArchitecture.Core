@@ -7,7 +7,6 @@ public class RefreshToken : Entity<int>
     public int UserId { get; set; }
     public string Token { get; set; }
     public DateTime Expires { get; set; }
-    public DateTime Created { get; set; }
     public string CreatedByIp { get; set; }
     public DateTime? Revoked { get; set; }
     public string? RevokedByIp { get; set; }
@@ -27,7 +26,7 @@ public class RefreshToken : Entity<int>
         int id,
         string token,
         DateTime expires,
-        DateTime created,
+        DateTime createdDate,
         string createdByIp,
         DateTime? revoked,
         string revokedByIp,
@@ -38,7 +37,7 @@ public class RefreshToken : Entity<int>
         Id = id;
         Token = token;
         Expires = expires;
-        Created = created;
+        CreatedDate = createdDate;
         CreatedByIp = createdByIp;
         Revoked = revoked;
         RevokedByIp = revokedByIp;

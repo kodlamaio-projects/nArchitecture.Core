@@ -41,7 +41,6 @@ public class JwtHelper : ITokenHelper
                 UserId = user.Id,
                 Token = RandomRefreshToken(),
                 Expires = DateTime.UtcNow.AddDays(7),
-                Created = DateTime.UtcNow,
                 CreatedByIp = ipAddress
             };
 
