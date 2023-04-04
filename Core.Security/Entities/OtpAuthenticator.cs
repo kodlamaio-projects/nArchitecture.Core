@@ -2,7 +2,7 @@
 
 namespace Core.Security.Entities;
 
-public class OtpAuthenticator : Entity
+public class OtpAuthenticator : Entity<int>
 {
     public int UserId { get; set; }
     public byte[] SecretKey { get; set; }

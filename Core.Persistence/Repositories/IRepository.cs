@@ -5,38 +5,38 @@ using Microsoft.EntityFrameworkCore.Query;
 
 namespace Core.Persistence.Repositories;
 
-public interface IRepository<T> : IQuery<T>
-    where T : Entity
+public interface IRepository<TEntity, TEntityId> : IQuery<TEntity>
+    where TEntity : Entity<TEntityId>
 {
-    T? Get(
-        Expression<Func<T, bool>> predicate,
-        Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+    TEntity? Get(
+        Expression<Func<TEntity, bool>> predicate,
+        Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
         bool enableTracking = true
     );
 
-    IPaginate<T> GetList(
-        Expression<Func<T, bool>>? predicate = null,
-        Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
-        Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+    IPaginate<TEntity> GetList(
+        Expression<Func<TEntity, bool>>? predicate = null,
+        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+        Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
         int index = 0,
         int size = 10,
         bool enableTracking = true
     );
 
-    IPaginate<T> GetListByDynamic(
+    IPaginate<TEntity> GetListByDynamic(
         DynamicQuery dynamic,
-        Expression<Func<T, bool>>? predicate = null,
-        Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+        Expression<Func<TEntity, bool>>? predicate = null,
+        Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
         int index = 0,
         int size = 10,
         bool enableTracking = true
     );
 
-    bool Any(Expression<Func<T, bool>>? predicate = null, bool enableTracking = true);
-    T Add(T entity);
-    IList<T> AddRange(IList<T> entities);
-    T Update(T entity);
-    IList<T> UpdateRange(IList<T> entities);
-    T Delete(T entity);
-    IList<T> DeleteRange(IList<T> entity);
+    bool Any(Expression<Func<TEntity, bool>>? predicate = null, bool enableTracking = true);
+    TEntity Add(TEntity entity);
+    IList<TEntity> AddRange(IList<TEntity> entities);
+    TEntity Update(TEntity entity);
+    IList<TEntity> UpdateRange(IList<TEntity> entities);
+    TEntity Delete(TEntity entity);
+    IList<TEntity> DeleteRange(IList<TEntity> entity);
 }
