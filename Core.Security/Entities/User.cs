@@ -15,12 +15,10 @@ public class User : Entity<int>
 
     public virtual ICollection<UserOperationClaim> UserOperationClaims { get; set; }
     public virtual ICollection<RefreshToken> RefreshTokens { get; set; }
+    public virtual ICollection<EmailAuthenticator> EmailAuthenticators { get; set; }
+    public virtual ICollection<OtpAuthenticator> OtpAuthenticators { get; set; }
 
-    public User()
-    {
-        UserOperationClaims = new HashSet<UserOperationClaim>();
-        RefreshTokens = new HashSet<RefreshToken>();
-    }
+    public User() { }
 
     public User(
         int id,
