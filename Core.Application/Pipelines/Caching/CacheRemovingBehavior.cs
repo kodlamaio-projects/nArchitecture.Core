@@ -39,6 +39,8 @@ public class CacheRemovingBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
 
                 await _cache.RemoveAsync(request.CacheGroupKey, cancellationToken);
                 _logger.LogInformation($"Removed Cache -> {request.CacheGroupKey}");
+                await _cache.RemoveAsync(key: $"{request.CacheGroupKey}SlidingExpiration", cancellationToken);
+                _logger.LogInformation($"Removed Cache -> {request.CacheGroupKey}SlidingExpiration");
             }
         }
 

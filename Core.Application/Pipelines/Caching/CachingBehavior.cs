@@ -1,9 +1,9 @@
-﻿using System.Text;
-using System.Text.Json;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System.Text;
+using System.Text.Json;
 
 namespace Core.Application.Pipelines.Caching;
 
@@ -50,7 +50,7 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
     {
         TResponse response = await next();
 
-        TimeSpan? slidingExpiration = request.SlidingExpiration ?? TimeSpan.FromDays(_cacheSettings.SlidingExpiration);
+        TimeSpan slidingExpiration = request.SlidingExpiration ?? TimeSpan.FromDays(_cacheSettings.SlidingExpiration);
         DistributedCacheEntryOptions cacheOptions = new() { SlidingExpiration = slidingExpiration };
 
         byte[] serializeData = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(response));
@@ -58,25 +58,48 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
         _logger.LogInformation($"Added to Cache -> {request.CacheKey}");
 
         if (request.CacheGroupKey != null)
-        {
-            byte[]? cachedGroup = await _cache.GetAsync(request.CacheGroupKey, cancellationToken);
-            HashSet<string> keysInGroup;
-            if (cachedGroup != null)
-            {
-                keysInGroup = JsonSerializer.Deserialize<HashSet<string>>(Encoding.Default.GetString(cachedGroup))!;
-                if (!keysInGroup.Contains(request.CacheKey))
-                    keysInGroup.Add(request.CacheKey);
-            }
-            else
-            {
-                keysInGroup = new HashSet<string>(new[] { request.CacheKey });
-            }
-
-            byte[] serializeGroupData = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(keysInGroup));
-            await _cache.SetAsync(request.CacheGroupKey, serializeGroupData, cacheOptions, cancellationToken);
-            _logger.LogInformation($"Added to Cache -> {request.CacheGroupKey}");
-        }
+            await addCacheKeyToGroup(request, slidingExpiration, cancellationToken);
 
         return response;
+    }
+
+    private async Task addCacheKeyToGroup(TRequest request, TimeSpan slidingExpiration, CancellationToken cancellationToken)
+    {
+        byte[]? cacheGroupCache = await _cache.GetAsync(key: request.CacheGroupKey!, cancellationToken);
+        HashSet<string> cacheKeysInGroup;
+        if (cacheGroupCache != null)
+        {
+            cacheKeysInGroup = JsonSerializer.Deserialize<HashSet<string>>(Encoding.Default.GetString(cacheGroupCache))!;
+            if (!cacheKeysInGroup.Contains(request.CacheKey))
+                cacheKeysInGroup.Add(request.CacheKey);
+        }
+        else
+            cacheKeysInGroup = new HashSet<string>(new[] { request.CacheKey });
+        byte[] newCacheGroupCache = JsonSerializer.SerializeToUtf8Bytes(cacheKeysInGroup);
+
+        byte[]? cacheGroupCacheSlidingExpirationCache = await _cache.GetAsync(
+            key: $"{request.CacheGroupKey}SlidingExpiration",
+            cancellationToken
+        );
+        int? cacheGroupCacheSlidingExpirationValue = null;
+        if (cacheGroupCacheSlidingExpirationCache != null)
+            cacheGroupCacheSlidingExpirationValue = Convert.ToInt32(Encoding.Default.GetString(cacheGroupCacheSlidingExpirationCache));
+        if (cacheGroupCacheSlidingExpirationValue == null || slidingExpiration.TotalSeconds > cacheGroupCacheSlidingExpirationValue)
+            cacheGroupCacheSlidingExpirationValue = Convert.ToInt32(slidingExpiration.TotalSeconds);
+        byte[] serializeCachedGroupSlidingExpirationData = JsonSerializer.SerializeToUtf8Bytes(cacheGroupCacheSlidingExpirationValue);
+
+        DistributedCacheEntryOptions cacheOptions =
+            new() { SlidingExpiration = TimeSpan.FromSeconds(Convert.ToDouble(cacheGroupCacheSlidingExpirationValue)) };
+
+        await _cache.SetAsync(key: request.CacheGroupKey!, newCacheGroupCache, cacheOptions, cancellationToken);
+        _logger.LogInformation($"Added to Cache -> {request.CacheGroupKey}");
+
+        await _cache.SetAsync(
+            key: $"{request.CacheGroupKey}SlidingExpiration",
+            serializeCachedGroupSlidingExpirationData,
+            cacheOptions,
+            cancellationToken
+        );
+        _logger.LogInformation($"Added to Cache -> {request.CacheGroupKey}SlidingExpiration");
     }
 }
