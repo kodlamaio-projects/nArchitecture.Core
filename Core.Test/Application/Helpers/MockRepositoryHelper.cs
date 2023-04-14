@@ -27,6 +27,7 @@ public static class MockRepositoryHelper
         SetupAddAsync<TRepository, TEntity, TEntityId>(mockRepo, entityList);
         SetupUpdateAsync<TRepository, TEntity, TEntityId>(mockRepo, entityList);
         SetupDeleteAsync<TRepository, TEntity, TEntityId>(mockRepo, entityList);
+        SetupAnyAsync<TRepository, TEntity, TEntityId>(mockRepo, entityList);
     }
 
     private static void SetupGetListAsync<TRepository, TEntity, TEntityId>(Mock<TRepository> mockRepo, List<TEntity> entityList)
@@ -152,6 +153,30 @@ public static class MockRepositoryHelper
                     else
                         entityList.Remove(entity);
                     return entity;
+                }
+            );
+    }
+
+    public static void SetupAnyAsync<TRepository, TEntity, TEntityId>(Mock<TRepository> mockRepo, List<TEntity> entityList)
+        where TEntity : Entity<TEntityId>, new()
+        where TRepository : class, IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId>
+    {
+        mockRepo
+            .Setup(
+                s =>
+                    s.AnyAsync(
+                        It.IsAny<Expression<Func<TEntity, bool>>>(),
+                        It.IsAny<bool>(),
+                        It.IsAny<bool>(),
+                        It.IsAny<CancellationToken>()
+                    )
+            )
+            .ReturnsAsync(
+                (Expression<Func<TEntity, bool>> expression, bool withDeleted, bool enableTracking, CancellationToken cancellationToken) =>
+                {
+                    if (!withDeleted)
+                        entityList = entityList.Where(e => !e.DeletedDate.HasValue).ToList();
+                    return entityList.Any(expression.Compile());
                 }
             );
     }
