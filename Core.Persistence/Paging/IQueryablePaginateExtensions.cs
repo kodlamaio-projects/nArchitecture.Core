@@ -38,7 +38,7 @@ public static class IQueryablePaginateExtensions
             throw new ArgumentException($"From: {from} > Index: {index}, must from <= Index");
 
         int count = source.Count();
-        List<T> items = source.Skip((index - from) * size).Take(size).ToList();
+        var items = source.Skip((index - from) * size).Take(size).ToList();
 
         Paginate<T> list =
             new()

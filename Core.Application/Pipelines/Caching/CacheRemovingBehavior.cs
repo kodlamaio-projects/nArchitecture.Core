@@ -1,8 +1,8 @@
-﻿using System.Text;
-using System.Text.Json;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
+using System.Text;
+using System.Text.Json;
 
 namespace Core.Application.Pipelines.Caching;
 
@@ -30,7 +30,7 @@ public class CacheRemovingBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
             byte[]? cachedGroup = await _cache.GetAsync(request.CacheGroupKey, cancellationToken);
             if (cachedGroup != null)
             {
-                var keysInGroup = JsonSerializer.Deserialize<HashSet<string>>(Encoding.Default.GetString(cachedGroup))!;
+                HashSet<string> keysInGroup = JsonSerializer.Deserialize<HashSet<string>>(Encoding.Default.GetString(cachedGroup))!;
                 foreach (string key in keysInGroup)
                 {
                     await _cache.RemoveAsync(key, cancellationToken);

@@ -1,5 +1,5 @@
-﻿using System.Text.Json;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace Core.CrossCuttingConcerns.Exceptions.Extensions;
 

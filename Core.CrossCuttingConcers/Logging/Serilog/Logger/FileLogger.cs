@@ -7,7 +7,7 @@ namespace Core.CrossCuttingConcerns.Logging.Serilog.Logger;
 
 public class FileLogger : LoggerServiceBase
 {
-    private IConfiguration _configuration;
+    private readonly IConfiguration _configuration;
 
     public FileLogger(IConfiguration configuration)
     {

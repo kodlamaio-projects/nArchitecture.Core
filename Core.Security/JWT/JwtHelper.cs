@@ -1,11 +1,11 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using Core.Security.Encryption;
+﻿using Core.Security.Encryption;
 using Core.Security.Entities;
 using Core.Security.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
 
 namespace Core.Security.JWT;
 
@@ -79,7 +79,7 @@ public class JwtHelper : ITokenHelper
     private string RandomRefreshToken()
     {
         byte[] numberByte = new byte[32];
-        using RandomNumberGenerator random = RandomNumberGenerator.Create();
+        using var random = RandomNumberGenerator.Create();
         random.GetBytes(numberByte);
         return Convert.ToBase64String(numberByte);
     }

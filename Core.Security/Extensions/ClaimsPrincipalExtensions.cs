@@ -6,7 +6,7 @@ public static class ClaimsPrincipalExtensions
 {
     public static List<string>? Claims(this ClaimsPrincipal claimsPrincipal, string claimType)
     {
-        List<string>? result = claimsPrincipal?.FindAll(claimType)?.Select(x => x.Value).ToList();
+        var result = claimsPrincipal?.FindAll(claimType)?.Select(x => x.Value).ToList();
         return result;
     }
 

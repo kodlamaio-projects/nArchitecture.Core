@@ -72,7 +72,7 @@ public class MailKitMailService : IMailService
                 AgentOrUserIdentifier = $"@{_mailSettings.DomainName}",
                 QueryMethod = "dns/txt"
             };
-            var headers = new[] { HeaderId.From, HeaderId.Subject, HeaderId.To };
+            HeaderId[] headers = new[] { HeaderId.From, HeaderId.Subject, HeaderId.To };
             _signer.Sign(email, headers);
         }
 

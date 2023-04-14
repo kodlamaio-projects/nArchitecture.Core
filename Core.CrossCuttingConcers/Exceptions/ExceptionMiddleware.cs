@@ -1,8 +1,8 @@
-﻿using System.Text.Json;
-using Core.CrossCuttingConcerns.Exceptions.Handlers;
+﻿using Core.CrossCuttingConcerns.Exceptions.Handlers;
 using Core.CrossCuttingConcerns.Logging;
 using Core.CrossCuttingConcerns.Logging.Serilog;
 using Microsoft.AspNetCore.Http;
+using System.Text.Json;
 
 namespace Core.CrossCuttingConcerns.Exceptions;
 

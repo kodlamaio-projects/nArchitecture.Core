@@ -73,9 +73,7 @@ public class ElasticSearchManager : IElasticSearch
             s => s.Index(Indices.Index(parameters.IndexName)).From(parameters.From).Size(parameters.Size)
         );
 
-        List<ElasticSearchGetModel<T>> list = searchResponse.Hits
-            .Select(x => new ElasticSearchGetModel<T> { ElasticId = x.Id, Item = x.Source })
-            .ToList();
+        var list = searchResponse.Hits.Select(x => new ElasticSearchGetModel<T> { ElasticId = x.Id, Item = x.Source }).ToList();
 
         return list;
     }
@@ -88,9 +86,7 @@ public class ElasticSearchManager : IElasticSearch
             s => s.Index(fieldParameters.IndexName).From(fieldParameters.From).Size(fieldParameters.Size)
         );
 
-        List<ElasticSearchGetModel<T>> list = searchResponse.Hits
-            .Select(x => new ElasticSearchGetModel<T> { ElasticId = x.Id, Item = x.Source })
-            .ToList();
+        var list = searchResponse.Hits.Select(x => new ElasticSearchGetModel<T> { ElasticId = x.Id, Item = x.Source }).ToList();
 
         return list;
     }
@@ -127,9 +123,7 @@ public class ElasticSearchManager : IElasticSearch
                     )
         );
 
-        List<ElasticSearchGetModel<T>> list = searchResponse.Hits
-            .Select(x => new ElasticSearchGetModel<T> { ElasticId = x.Id, Item = x.Source })
-            .ToList();
+        var list = searchResponse.Hits.Select(x => new ElasticSearchGetModel<T> { ElasticId = x.Id, Item = x.Source }).ToList();
 
         return list;
     }
