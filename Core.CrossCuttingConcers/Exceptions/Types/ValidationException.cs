@@ -13,7 +13,7 @@ public class ValidationException : Exception
     private static string BuildErrorMessage(IEnumerable<ValidationExceptionModel> errors)
     {
         IEnumerable<string> arr = errors.Select(
-            x => $"{Environment.NewLine} -- {x.Property}: {string.Join(Environment.NewLine, x.Errors)}"
+            x => $"{Environment.NewLine} -- {x.Property}: {string.Join(Environment.NewLine, values: x.Errors ?? Array.Empty<string>())}"
         );
         return $"Validation failed: {string.Join(string.Empty, arr)}";
     }
