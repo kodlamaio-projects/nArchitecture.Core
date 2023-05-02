@@ -11,9 +11,10 @@ public class RabbitMQLogger : LoggerServiceBase
 {
     public RabbitMQLogger(IConfiguration configuration)
     {
-        RabbitMQConfiguration rabbitMQConfiguration = configuration
-            .GetSection("SeriLogConfigurations:RabbitMQConfiguration")
-            .Get<RabbitMQConfiguration>();
+        const string configurationSection = "SeriLogConfigurations:RabbitMQConfiguration";
+        RabbitMQConfiguration rabbitMQConfiguration =
+            configuration.GetSection(configurationSection).Get<RabbitMQConfiguration>()
+            ?? throw new ArgumentNullException($"\"{configurationSection}\" section cannot found in configuration.");
 
         RabbitMQClientConfiguration config =
             new()

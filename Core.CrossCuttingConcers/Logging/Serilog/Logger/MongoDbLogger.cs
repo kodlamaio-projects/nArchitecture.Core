@@ -9,9 +9,10 @@ public class MongoDbLogger : LoggerServiceBase
 {
     public MongoDbLogger(IConfiguration configuration)
     {
-        MongoDbConfiguration? logConfiguration = configuration
-            .GetSection("SeriLogConfigurations:MongoDbConfiguration")
-            .Get<MongoDbConfiguration>();
+        const string configurationSection = "SeriLogConfigurations:MongoDbConfiguration";
+        MongoDbConfiguration logConfiguration =
+            configuration.GetSection(configurationSection).Get<MongoDbConfiguration>()
+            ?? throw new ArgumentNullException($"\"{configurationSection}\" section cannot found in configuration.");
 
         Logger = new LoggerConfiguration().WriteTo
             .MongoDBBson(cfg =>

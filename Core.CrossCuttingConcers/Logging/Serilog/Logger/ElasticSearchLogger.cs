@@ -10,9 +10,10 @@ public class ElasticSearchLogger : LoggerServiceBase
 {
     public ElasticSearchLogger(IConfiguration configuration)
     {
-        ElasticSearchConfiguration? logConfiguration = configuration
-            .GetSection("SeriLogConfigurations:ElasticSearchConfiguration")
-            .Get<ElasticSearchConfiguration>();
+        const string configurationSection = "SeriLogConfigurations:ElasticSearchConfiguration";
+        ElasticSearchConfiguration logConfiguration =
+            configuration.GetSection(configurationSection).Get<ElasticSearchConfiguration>()
+            ?? throw new ArgumentNullException($"\"{configurationSection}\" section cannot found in configuration.");
 
         Logger = new LoggerConfiguration().WriteTo
             .Elasticsearch(

@@ -28,6 +28,8 @@ public abstract class BaseMockRepository<TRepository, TEntity, TEntityId, TMappi
         Mapper = mapperConfig.CreateMapper();
 
         MockRepository = MockRepositoryHelper.GetRepository<TRepository, TEntity, TEntityId>(fakeData.Data);
-        BusinessRules = (TBusinessRules)Activator.CreateInstance(type: typeof(TBusinessRules), MockRepository.Object);
+        BusinessRules =
+            (TBusinessRules)Activator.CreateInstance(type: typeof(TBusinessRules), MockRepository.Object)!
+            ?? throw new InvalidOperationException($"Cannot create an instance of {typeof(TBusinessRules).FullName}.");
     }
 }

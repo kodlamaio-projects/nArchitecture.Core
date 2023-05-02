@@ -14,7 +14,9 @@ public class MailKitMailService : IMailService
 
     public MailKitMailService(IConfiguration configuration)
     {
-        _mailSettings = configuration.GetSection("MailSettings").Get<MailSettings>();
+        const string configurationSection = "MailSettings";
+        _mailSettings = configuration.GetSection(configurationSection).Get<MailSettings>()
+           ?? throw new ArgumentNullException($"\"{configurationSection}\" section cannot found in configuration.");
         _signer = null;
     }
 

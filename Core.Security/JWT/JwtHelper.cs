@@ -18,7 +18,9 @@ public class JwtHelper : ITokenHelper
     public JwtHelper(IConfiguration configuration)
     {
         Configuration = configuration;
-        _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+        const string configurationSection = "TokenOptions";
+        _tokenOptions = Configuration.GetSection(configurationSection).Get<TokenOptions>()
+            ?? throw new ArgumentNullException($"\"{configurationSection}\" section cannot found in configuration.");
     }
 
     public AccessToken CreateToken(User user, IList<OperationClaim> operationClaims)

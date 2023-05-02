@@ -375,7 +375,7 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
                         continue;
                 }
 
-                foreach (IEntityTimestamps navValueItem in navValue as IEnumerable)
+                foreach (IEntityTimestamps navValueItem in (IEnumerable)navValue)
                     await setEntityAsSoftDeletedAsync(navValueItem);
             }
             else
@@ -425,7 +425,7 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
                         continue;
                 }
 
-                foreach (IEntityTimestamps navValueItem in navValue as IEnumerable)
+                foreach (IEntityTimestamps navValueItem in (IEnumerable)navValue)
                     setEntityAsSoftDeleted(navValueItem);
             }
             else

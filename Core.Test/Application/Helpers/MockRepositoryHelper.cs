@@ -131,7 +131,7 @@ public static class MockRepositoryHelper
             .ReturnsAsync(
                 (TEntity entity) =>
                 {
-                    TEntity? result = entityList.FirstOrDefault(x => x.Id.Equals(entity.Id));
+                    TEntity? result = entityList.FirstOrDefault(x => x.Id!.Equals(entity.Id));
                     if (result != null)
                         result = entity;
                     return result;

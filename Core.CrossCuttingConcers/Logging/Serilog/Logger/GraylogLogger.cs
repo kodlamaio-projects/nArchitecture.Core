@@ -10,9 +10,10 @@ public class GraylogLogger : LoggerServiceBase
 {
     public GraylogLogger(IConfiguration configuration)
     {
-        GraylogConfiguration logConfiguration = configuration
-            .GetSection("SeriLogConfigurations:GraylogConfiguration")
-            .Get<GraylogConfiguration>();
+        const string configurationSection = "SeriLogConfigurations:GraylogConfiguration";
+        GraylogConfiguration logConfiguration =
+            configuration.GetSection(configurationSection).Get<GraylogConfiguration>()
+            ?? throw new ArgumentNullException($"\"{configurationSection}\" section cannot found in configuration.");
 
         Logger = new LoggerConfiguration().WriteTo
             .Graylog(
