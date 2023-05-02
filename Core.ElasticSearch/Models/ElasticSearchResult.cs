@@ -2,17 +2,17 @@
 
 public class ElasticSearchResult : IElasticSearchResult //todo: refactor
 {
-    public ElasticSearchResult(bool success, string message)
-        : this(success)
+    public bool Success { get; }
+    public string? Message { get; }
+
+    public ElasticSearchResult()
     {
-        Message = message;
+        Message = string.Empty;
     }
 
-    public ElasticSearchResult(bool success)
+    public ElasticSearchResult(bool success, string? message = null)
     {
         Success = success;
+        Message = message;
     }
-
-    public bool Success { get; set; }
-    public string Message { get; set; }
 }

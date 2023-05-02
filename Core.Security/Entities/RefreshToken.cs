@@ -14,34 +14,28 @@ public class RefreshToken : Entity<int>
 
     public string? ReasonRevoked { get; set; }
 
-    //public bool IsExpired => DateTime.UtcNow >= Expires;
-    //public bool IsRevoked => Revoked != null;
-    //public bool IsActive => !IsRevoked && !IsExpired;
+    public virtual User User { get; set; } = null!;
 
-    public virtual User User { get; set; }
-
-    public RefreshToken() { }
-
-    public RefreshToken(
-        int id,
-        string token,
-        DateTime expires,
-        DateTime createdDate,
-        string createdByIp,
-        DateTime? revoked,
-        string revokedByIp,
-        string replacedByToken,
-        string reasonRevoked
-    )
+    public RefreshToken()
     {
-        Id = id;
+        Token = string.Empty;
+        CreatedByIp = string.Empty;
+    }
+
+    public RefreshToken(int userId, string token, DateTime expires, string createdByIp)
+    {
+        UserId = userId;
         Token = token;
         Expires = expires;
-        CreatedDate = createdDate;
         CreatedByIp = createdByIp;
-        Revoked = revoked;
-        RevokedByIp = revokedByIp;
-        ReplacedByToken = replacedByToken;
-        ReasonRevoked = reasonRevoked;
+    }
+
+    public RefreshToken(int id, int userId, string token, DateTime expires, string createdByIp)
+        : base(id)
+    {
+        UserId = userId;
+        Token = token;
+        Expires = expires;
+        CreatedByIp = createdByIp;
     }
 }

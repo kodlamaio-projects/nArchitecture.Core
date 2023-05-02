@@ -15,7 +15,12 @@ public class MailSettings
 
     public MailSettings()
     {
-        AuthenticationRequired = false;
+        Server = string.Empty;
+        Port = 0;
+        SenderFullName = string.Empty;
+        SenderEmail = string.Empty;
+        UserName = string.Empty;
+        Password = string.Empty;
     }
 
     public MailSettings(
@@ -25,10 +30,7 @@ public class MailSettings
         string senderEmail,
         string userName,
         string password,
-        bool authenticationRequired = false,
-        string? dkimPrivateKey = null,
-        string? dkimSelector = null,
-        string? domainName = null
+        bool authenticationRequired
     )
     {
         Server = server;
@@ -38,8 +40,5 @@ public class MailSettings
         UserName = userName;
         Password = password;
         AuthenticationRequired = authenticationRequired;
-        DkimPrivateKey = dkimPrivateKey;
-        DkimSelector = dkimSelector;
-        DomainName = domainName;
     }
 }

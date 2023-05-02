@@ -41,7 +41,7 @@ public class ElasticSearchManager : IElasticSearch
         ElasticClient elasticClient = GetElasticClient(indexName);
         BulkResponse? response = await elasticClient.BulkAsync(a => a.Index(indexName).IndexMany(items));
 
-        return new ElasticSearchResult(response.IsValid, message: response.IsValid ? "Success" : response.ServerError.Error.Reason);
+        return new ElasticSearchResult {};
     }
 
     public async Task<IElasticSearchResult> CreateNewIndexAsync(IndexModel indexModel)

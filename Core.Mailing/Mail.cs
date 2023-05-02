@@ -11,28 +11,21 @@ public class Mail
     public List<MailboxAddress> ToList { get; set; }
     public List<MailboxAddress>? CcList { get; set; }
     public List<MailboxAddress>? BccList { get; set; }
-    public string? UnscribeLink { get; set; }
+    public string? UnsubscribeLink { get; set; }
 
-    public Mail() { }
+    public Mail()
+    {
+        Subject = string.Empty;
+        TextBody = string.Empty;
+        HtmlBody = string.Empty;
+        ToList = new List<MailboxAddress>();
+    }
 
-    public Mail(
-        string subject,
-        string textBody,
-        string htmlBody,
-        AttachmentCollection? attachments,
-        List<MailboxAddress> toList,
-        List<MailboxAddress>? ccList = null,
-        List<MailboxAddress>? bccList = null,
-        string? unscribeLink = null
-    )
+    public Mail(string subject, string textBody, string htmlBody, List<MailboxAddress> toList)
     {
         Subject = subject;
         TextBody = textBody;
         HtmlBody = htmlBody;
-        Attachments = attachments;
         ToList = toList;
-        CcList = ccList;
-        BccList = bccList;
-        UnscribeLink = unscribeLink;
     }
 }

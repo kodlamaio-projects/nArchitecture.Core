@@ -53,8 +53,8 @@ public class MailKitMailService : IMailService
             email.Bcc.AddRange(mail.BccList);
 
         email.Subject = mail.Subject;
-        if (mail.UnscribeLink != null)
-            email.Headers.Add(field: "List-Unsubscribe", value: $"<{mail.UnscribeLink}>");
+        if (mail.UnsubscribeLink != null)
+            email.Headers.Add(field: "List-Unsubscribe", value: $"<{mail.UnsubscribeLink}>");
         BodyBuilder bodyBuilder = new() { TextBody = mail.TextBody, HtmlBody = mail.HtmlBody };
 
         if (mail.Attachments != null)

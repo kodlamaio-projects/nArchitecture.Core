@@ -2,6 +2,6 @@
 
 public interface IElasticSearchResult
 {
-    bool Success { get; }
-    string Message { get; }
+    public bool Success { get; }
+    public string? Message { get; }
 }

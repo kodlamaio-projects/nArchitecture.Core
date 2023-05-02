@@ -17,4 +17,14 @@ public abstract class LoggerServiceBase
     public void Debug(string message) => Logger.Debug(message);
 
     public void Error(string message) => Logger.Error(message);
+
+    protected LoggerServiceBase()
+    {
+        Logger = null!;
+    }
+
+    protected LoggerServiceBase(ILogger logger)
+    {
+        Logger = logger;
+    }
 }

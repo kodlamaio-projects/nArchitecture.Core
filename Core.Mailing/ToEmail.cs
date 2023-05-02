@@ -5,7 +5,11 @@ public class ToEmail
     public string Email { get; set; }
     public string FullName { get; set; }
 
-    public ToEmail() { }
+    public ToEmail()
+    {
+        Email = string.Empty;
+        FullName = string.Empty;
+    }
 
     public ToEmail(string email, string fullName)
     {
