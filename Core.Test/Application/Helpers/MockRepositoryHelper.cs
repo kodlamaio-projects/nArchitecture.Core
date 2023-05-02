@@ -127,7 +127,7 @@ public static class MockRepositoryHelper
         where TRepository : class, IAsyncRepository<TEntity, TEntityId2>, IRepository<TEntity, TEntityId2>
     {
         mockRepo
-            .Setup(r => r.UpdateAsync(It.IsAny<TEntity>()))
+            .Setup(r => r.UpdateAsync(It.IsAny<TEntity>()))!
             .ReturnsAsync(
                 (TEntity entity) =>
                 {
