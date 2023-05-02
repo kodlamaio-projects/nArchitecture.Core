@@ -1,8 +1,28 @@
-﻿namespace Core.CrossCuttingConcerns.Exceptions.Types;
+﻿using System.Runtime.Serialization;
+
+namespace Core.CrossCuttingConcerns.Exceptions.Types;
 
 public class ValidationException : Exception
 {
     public IEnumerable<ValidationExceptionModel> Errors { get; }
+
+    public ValidationException()
+        : base()
+    {
+        Errors = Array.Empty<ValidationExceptionModel>();
+    }
+
+    public ValidationException(string? message)
+        : base(message)
+    {
+        Errors = Array.Empty<ValidationExceptionModel>();
+    }
+
+    public ValidationException(string? message, Exception? innerException)
+        : base(message, innerException)
+    {
+        Errors = Array.Empty<ValidationExceptionModel>();
+    }
 
     public ValidationException(IEnumerable<ValidationExceptionModel> errors)
         : base(BuildErrorMessage(errors))
