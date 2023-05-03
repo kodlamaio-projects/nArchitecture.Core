@@ -27,7 +27,7 @@ public class RabbitMQLogger : LoggerServiceBase
                 ExchangeType = rabbitMQConfiguration.ExchangeType,
                 RouteKey = rabbitMQConfiguration.RouteKey
             };
-        rabbitMQConfiguration.Hostnames.ForEach(x => config.Hostnames.Add(x));
+        rabbitMQConfiguration.Hostnames.ForEach(config.Hostnames.Add);
 
         Logger = new LoggerConfiguration().WriteTo
             .RabbitMQ(

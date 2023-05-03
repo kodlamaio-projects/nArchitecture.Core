@@ -93,12 +93,12 @@ public static class IQueryableDynamicFilterExtensions
         {
             if (filter.Operator == "doesnotcontain")
                 where.Append($"(!np({filter.Field}).{comparison}(@{index}))");
-            else if (comparison == "StartsWith" || comparison == "EndsWith" || comparison == "Contains")
+            else if (comparison is "StartsWith" or "EndsWith" or "Contains")
                 where.Append($"(np({filter.Field}).{comparison}(@{index}))");
             else
                 where.Append($"np({filter.Field}) {comparison} @{index}");
         }
-        else if (filter.Operator == "isnull" || filter.Operator == "isnotnull")
+        else if (filter.Operator is "isnull" or "isnotnull")
         {
             where.Append($"np({filter.Field}) {comparison}");
         }

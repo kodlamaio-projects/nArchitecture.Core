@@ -8,21 +8,19 @@ public class TransactionScopeBehavior<TRequest, TResponse> : IPipelineBehavior<T
 {
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
-        using (TransactionScope transactionScope = new(TransactionScopeAsyncFlowOption.Enabled))
+        using TransactionScope transactionScope = new(TransactionScopeAsyncFlowOption.Enabled);
+        TResponse response;
+        try
         {
-            TResponse response;
-            try
-            {
-                response = await next();
-                transactionScope.Complete();
-            }
-            catch (Exception)
-            {
-                transactionScope.Dispose();
-                throw;
-            }
-
-            return response;
+            response = await next();
+            transactionScope.Complete();
         }
+        catch (Exception)
+        {
+            transactionScope.Dispose();
+            throw;
+        }
+
+        return response;
     }
 }

@@ -15,8 +15,9 @@ public class MailKitMailService : IMailService
     public MailKitMailService(IConfiguration configuration)
     {
         const string configurationSection = "MailSettings";
-        _mailSettings = configuration.GetSection(configurationSection).Get<MailSettings>()
-           ?? throw new ArgumentNullException($"\"{configurationSection}\" section cannot found in configuration.");
+        _mailSettings =
+            configuration.GetSection(configurationSection).Get<MailSettings>()
+            ?? throw new ArgumentNullException($"\"{configurationSection}\" section cannot found in configuration.");
         _signer = null;
     }
 
@@ -74,7 +75,7 @@ public class MailKitMailService : IMailService
                 AgentOrUserIdentifier = $"@{_mailSettings.DomainName}",
                 QueryMethod = "dns/txt"
             };
-            HeaderId[] headers = new[] { HeaderId.From, HeaderId.Subject, HeaderId.To };
+            HeaderId[] headers = { HeaderId.From, HeaderId.Subject, HeaderId.To };
             _signer.Sign(email, headers);
         }
 

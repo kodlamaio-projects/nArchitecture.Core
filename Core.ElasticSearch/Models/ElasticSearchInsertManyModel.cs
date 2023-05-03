@@ -11,7 +11,8 @@ public class ElasticSearchInsertManyModel : ElasticSearchModel
         Items = items;
     }
 
-    public ElasticSearchInsertManyModel(Id elasticId, string indexName, object[] items) : base(elasticId, indexName)
+    public ElasticSearchInsertManyModel(Id elasticId, string indexName, object[] items)
+        : base(elasticId, indexName)
     {
         Items = items;
     }

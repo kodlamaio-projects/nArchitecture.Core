@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace Core.CrossCuttingConcerns.Exceptions.Types;
+﻿namespace Core.CrossCuttingConcerns.Exceptions.Types;
 
 public class ValidationException : Exception
 {
