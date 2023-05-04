@@ -13,7 +13,7 @@ public class GraylogLogger : LoggerServiceBase
         const string configurationSection = "SeriLogConfigurations:GraylogConfiguration";
         GraylogConfiguration logConfiguration =
             configuration.GetSection(configurationSection).Get<GraylogConfiguration>()
-            ?? throw new ArgumentNullException($"\"{configurationSection}\" section cannot found in configuration.");
+            ?? throw new NullReferenceException($"\"{configurationSection}\" section cannot found in configuration.");
 
         Logger = new LoggerConfiguration().WriteTo
             .Graylog(

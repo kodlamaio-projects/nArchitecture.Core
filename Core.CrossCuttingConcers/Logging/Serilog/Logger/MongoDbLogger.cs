@@ -12,7 +12,7 @@ public class MongoDbLogger : LoggerServiceBase
         const string configurationSection = "SeriLogConfigurations:MongoDbConfiguration";
         MongoDbConfiguration logConfiguration =
             configuration.GetSection(configurationSection).Get<MongoDbConfiguration>()
-            ?? throw new ArgumentNullException($"\"{configurationSection}\" section cannot found in configuration.");
+            ?? throw new NullReferenceException($"\"{configurationSection}\" section cannot found in configuration.");
 
         Logger = new LoggerConfiguration().WriteTo
             .MongoDBBson(cfg =>

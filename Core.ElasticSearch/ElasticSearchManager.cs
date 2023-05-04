@@ -16,7 +16,7 @@ public class ElasticSearchManager : IElasticSearch
         const string configurationSection = "ElasticSearchConfig";
         ElasticSearchConfig settings =
             configuration.GetSection(configurationSection).Get<ElasticSearchConfig>()
-            ?? throw new ArgumentNullException($"\"{configurationSection}\" section cannot found in configuration.");
+            ?? throw new NullReferenceException($"\"{configurationSection}\" section cannot found in configuration.");
 
         SingleNodeConnectionPool pool = new(new Uri(settings.ConnectionString));
         _connectionSettings = new ConnectionSettings(

@@ -13,7 +13,7 @@ public class ElasticSearchLogger : LoggerServiceBase
         const string configurationSection = "SeriLogConfigurations:ElasticSearchConfiguration";
         ElasticSearchConfiguration logConfiguration =
             configuration.GetSection(configurationSection).Get<ElasticSearchConfiguration>()
-            ?? throw new ArgumentNullException($"\"{configurationSection}\" section cannot found in configuration.");
+            ?? throw new NullReferenceException($"\"{configurationSection}\" section cannot found in configuration.");
 
         Logger = new LoggerConfiguration().WriteTo
             .Elasticsearch(
