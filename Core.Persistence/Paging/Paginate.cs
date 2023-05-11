@@ -5,7 +5,7 @@ public class Paginate<T> : IPaginate<T>
     public Paginate(IEnumerable<T> source, int index, int size, int from)
     {
         if (from > index)
-            throw new ArgumentException($"indexFrom: {from} > pageIndex: {index}, must indexFrom <= pageIndex");
+            throw new ArgumentException($"indexFrom: {from.ToString()} > pageIndex: {index.ToString()}, must indexFrom <= pageIndex");
 
         Index = index;
         Size = size;
@@ -45,7 +45,7 @@ public class Paginate<TSource, TResult> : IPaginate<TResult>
     public Paginate(IEnumerable<TSource> source, Func<IEnumerable<TSource>, IEnumerable<TResult>> converter, int index, int size, int from)
     {
         if (from > index)
-            throw new ArgumentException($"From: {from} > Index: {index}, must From <= Index");
+            throw new ArgumentException($"From: {from.ToString()} > Index: {index.ToString()}, must From <= Index");
 
         Index = index;
         Size = size;

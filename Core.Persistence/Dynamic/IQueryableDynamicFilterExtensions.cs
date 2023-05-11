@@ -92,11 +92,11 @@ public static class IQueryableDynamicFilterExtensions
         if (!string.IsNullOrEmpty(filter.Value))
         {
             if (filter.Operator == "doesnotcontain")
-                where.Append($"(!np({filter.Field}).{comparison}(@{index}))");
+                where.Append($"(!np({filter.Field}).{comparison}(@{index.ToString()}))");
             else if (comparison is "StartsWith" or "EndsWith" or "Contains")
-                where.Append($"(np({filter.Field}).{comparison}(@{index}))");
+                where.Append($"(np({filter.Field}).{comparison}(@{index.ToString()}))");
             else
-                where.Append($"np({filter.Field}) {comparison} @{index}");
+                where.Append($"np({filter.Field}) {comparison} @{index.ToString()}");
         }
         else if (filter.Operator is "isnull" or "isnotnull")
         {
