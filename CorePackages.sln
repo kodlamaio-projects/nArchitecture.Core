@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Application", "Core.Application\Core.Application.csproj", "{0542DF94-63CD-430F-9AF5-AE84D88319BC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.CrossCuttingConcerns", "Core.CrossCuttingConcers\Core.CrossCuttingConcerns.csproj", "{D5B3C51B-75DF-4A33-BCBB-BAF2BF076617}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.CrossCuttingConcerns", "Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj", "{D5B3C51B-75DF-4A33-BCBB-BAF2BF076617}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.ElasticSearch", "Core.ElasticSearch\Core.ElasticSearch.csproj", "{1B0EA46B-8C78-4E44-8171-D9F142356CE8}"
 EndProject
