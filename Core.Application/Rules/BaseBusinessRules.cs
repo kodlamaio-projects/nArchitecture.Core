@@ -1,3 +1,11 @@
-﻿namespace Core.Application.Rules;
+﻿using Core.CrossCuttingConcerns.Exceptions.Types;
 
-public abstract class BaseBusinessRules { }
+namespace Core.Application.Rules;
+
+public abstract class BaseBusinessRules
+{
+    public virtual Task ThrowBusinessException(string message)
+    {
+        throw new BusinessException(message);
+    }
+}
