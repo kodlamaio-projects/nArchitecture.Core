@@ -91,8 +91,10 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
         if (predicate != null)
             queryable = queryable.Where(predicate);
         if (orderBy != null)
-            return await orderBy(queryable).ToPaginateAsync(index, size, from: 0, cancellationToken);
-        return await queryable.ToPaginateAsync(index, size, from: 0, cancellationToken);
+            queryable = orderBy(queryable);
+        if (size != 0)
+            return await queryable.ToPaginateAsync(index, size, from: 0, cancellationToken);
+        return await queryable.ToPaginateAsync(index, queryable.Count(), from: 0, cancellationToken);
     }
 
     public async Task<TEntity?> GetAsync(
@@ -133,7 +135,9 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
             queryable = queryable.IgnoreQueryFilters();
         if (predicate != null)
             queryable = queryable.Where(predicate);
-        return await queryable.ToPaginateAsync(index, size, from: 0, cancellationToken);
+        if (size != 0)
+            return await queryable.ToPaginateAsync(index, size, from: 0, cancellationToken);
+        return await queryable.ToPaginateAsync(index, queryable.Count(), from: 0, cancellationToken);
     }
 
     public async Task<bool> AnyAsync(
@@ -238,8 +242,10 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
         if (predicate != null)
             queryable = queryable.Where(predicate);
         if (orderBy != null)
-            return orderBy(queryable).ToPaginate(index, size);
-        return queryable.ToPaginate(index, size);
+            queryable = orderBy(queryable);
+        if (size != 0)
+            return queryable.ToPaginate(index, size);
+        return queryable.ToPaginate(index, queryable.Count());
     }
 
     public IPaginate<TEntity> GetListByDynamic(
@@ -261,7 +267,9 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
             queryable = queryable.IgnoreQueryFilters();
         if (predicate != null)
             queryable = queryable.Where(predicate);
-        return queryable.ToPaginate(index, size);
+        if (size != 0)
+            return queryable.ToPaginate(index, size);
+        return queryable.ToPaginate(index, queryable.Count());
     }
 
     public bool Any(Expression<Func<TEntity, bool>>? predicate = null, bool withDeleted = false, bool enableTracking = true)
