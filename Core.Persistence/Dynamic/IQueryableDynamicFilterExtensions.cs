@@ -7,6 +7,7 @@ public static class IQueryableDynamicFilterExtensions
 {
     private static readonly string[] _orders = { "asc", "desc" };
     private static readonly string[] _logics = { "and", "or" };
+    private static readonly char[] _mathematicalOperators = { '+', '-', '*', '/', '%' };
 
     private static readonly IDictionary<string, string> _operators = new Dictionary<string, string>
     {
@@ -87,6 +88,8 @@ public static class IQueryableDynamicFilterExtensions
 
         int index = filters.IndexOf(filter);
         string comparison = _operators[filter.Operator];
+        string[] fields = filter.Field.Split(_mathematicalOperators);
+        char[] mathematicalOperators = filter.Field.Where(c => _mathematicalOperators.Contains(c)).ToArray();
         StringBuilder where = new();
 
         if (!string.IsNullOrEmpty(filter.Value))
@@ -96,7 +99,11 @@ public static class IQueryableDynamicFilterExtensions
             else if (comparison is "StartsWith" or "EndsWith" or "Contains")
                 where.Append($"(np({filter.Field}).{comparison}(@{index.ToString()}))");
             else
-                where.Append($"np({filter.Field}) {comparison} @{index.ToString()}");
+            {
+                for (int i = 0; i < fields.Length; i++)
+                    where.Append($"np({fields[i]}) {(mathematicalOperators.Length > i ? mathematicalOperators[i] : "")} ");
+                where.Append($"{comparison} @{index.ToString()}");
+            }
         }
         else if (filter.Operator is "isnull" or "isnotnull")
         {
