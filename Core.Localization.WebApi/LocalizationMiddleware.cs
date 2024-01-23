@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
 using System.Collections.Immutable;
 
-namespace Core.Localization.Resource.WebApi;
+namespace Core.Localization.WebApi;
 
 public class LocalizationMiddleware
 {

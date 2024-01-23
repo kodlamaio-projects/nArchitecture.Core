@@ -7,7 +7,7 @@ public interface ILocalizationService
     /// <summary>
     /// Gets the localized string for the given key by <see cref="AcceptLocales"/>.
     /// </summary>
-    public string GetLocalized(string section, string key);
+    public Task<string> GetLocalizedAsync(string key, string? keySection = null);
 
-    public string GetLocalized(string section, string key, ICollection<string> acceptLocales);
+    public Task<string> GetLocalizedAsync(string key, ICollection<string> acceptLocales, string? keySection = null);
 }

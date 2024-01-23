@@ -1,4 +1,5 @@
 ﻿using Core.Localization.Abstraction;
+using System.Data;
 using YamlDotNet.RepresentationModel;
 
 namespace Core.Localization.Resource.Yaml;
@@ -6,6 +7,7 @@ namespace Core.Localization.Resource.Yaml;
 public class ResourceLocalizationManager : ILocalizationService
 {
     private const string _defaultLocale = "en";
+    private const string _defaultKeySection = "index";
     public ICollection<string>? AcceptLocales { get; set; }
 
     // <locale, <section, <path, content>>>
@@ -23,31 +25,35 @@ public class ResourceLocalizationManager : ILocalizationService
         }
     }
 
-    public string GetLocalized(string section, string key) => GetLocalized(section, key, AcceptLocales);
+    public Task<string> GetLocalizedAsync(string key, string? keySection = null) =>
+        GetLocalizedAsync(key, AcceptLocales ?? throw new NoNullAllowedException(nameof(AcceptLocales)), keySection);
 
-    public string GetLocalized(string section, string key, ICollection<string> acceptLocales)
+    public Task<string> GetLocalizedAsync(string key, ICollection<string> acceptLocales, string? keySection = null)
     {
         string? localization;
         if (acceptLocales is not null)
             foreach (string locale in acceptLocales)
             {
-                localization = getLocalizationFromResource(section, key, locale);
+                localization = getLocalizationFromResource(key, locale, keySection);
                 if (localization is not null)
-                    return localization;
+                    return Task.FromResult(localization);
             }
 
-        localization = getLocalizationFromResource(section, key, _defaultLocale);
+        localization = getLocalizationFromResource(key, _defaultLocale, keySection);
         if (localization is not null)
-            return localization;
+            return Task.FromResult(localization);
 
-        return key;
+        return Task.FromResult(key);
     }
 
-    private string? getLocalizationFromResource(string section, string key, string locale)
+    private string? getLocalizationFromResource(string key, string locale, string? keySection = _defaultKeySection)
     {
+        if (string.IsNullOrWhiteSpace(keySection))
+            keySection = _defaultKeySection;
+
         if (
             _resourceData.TryGetValue(locale, out Dictionary<string, (string path, YamlMappingNode? content)>? cultureNode)
-            && cultureNode.TryGetValue(section, out (string path, YamlMappingNode? content) sectionNode)
+            && (cultureNode.TryGetValue(keySection, out (string path, YamlMappingNode? content) sectionNode))
         )
         {
             if (sectionNode.content is null)

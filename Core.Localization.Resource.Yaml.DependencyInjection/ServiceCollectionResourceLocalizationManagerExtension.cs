@@ -10,10 +10,10 @@ public static class ServiceCollectionResourceLocalizationManagerExtension
     /// Adds <see cref="ResourceLocalizationManager"/> as <see cref="ILocalizationService"/> to <see cref="IServiceCollection"/>.
     /// <list type="bullet">
     ///    <item>
-    ///        <description>Reads all yaml files in the "<see cref="Assembly.GetExecutingAssembly()"/>/Features/{featureName}/Resources/Locales/".</description>
+    ///        <description>Reads all yaml files in the "<see cref="Assembly.GetExecutingAssembly()"/>/Features/{featureName}/Resources/Locales/". Yaml file names must be like {uniqueKeySectionName}.{culture}.yaml.</description>
     ///    </item>
     ///    <item>
-    ///        <description>Yaml file names must be like {featureName}.{culture}.yaml</description>
+    ///        <description>If you don't want separate locale files with sections, create "<see cref="Assembly.GetExecutingAssembly()"/>/Features/Index/Resources/Locales/index.{culture}.yaml".</description>
     ///    </item>
     /// </list>
     /// </summary>

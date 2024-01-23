@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 
-namespace Core.Localization.Resource.WebApi;
+namespace Core.Localization.WebApi;
 
 public static class ApplicationBuilderLocalizationMiddlewareExtensions
 {
