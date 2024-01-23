@@ -30,7 +30,11 @@ public abstract class BaseMockRepository<TRepository, TEntity, TEntityId, TMappi
 
         MockRepository = MockRepositoryHelper.GetRepository<TRepository, TEntity, TEntityId>(fakeData.Data);
         BusinessRules =
-            (TBusinessRules)Activator.CreateInstance(type: typeof(TBusinessRules), MockRepository.Object, new ResourceLocalizationManager(resources: new()) { AcceptLocales = new[] { "en" } })!
-            ?? throw new InvalidOperationException($"Cannot create an instance of {typeof(TBusinessRules).FullName}.");
+            (TBusinessRules)
+                Activator.CreateInstance(
+                    type: typeof(TBusinessRules),
+                    MockRepository.Object,
+                    new ResourceLocalizationManager(resources: new()) { AcceptLocales = new[] { "en" } }
+                )! ?? throw new InvalidOperationException($"Cannot create an instance of {typeof(TBusinessRules).FullName}.");
     }
 }
