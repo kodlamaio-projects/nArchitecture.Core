@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Core.Application.Rules;
+using Core.Localization.Resource.Yaml;
 using Core.Persistence.Repositories;
 using Core.Test.Application.FakeData;
 using Core.Test.Application.Helpers;
@@ -29,7 +30,7 @@ public abstract class BaseMockRepository<TRepository, TEntity, TEntityId, TMappi
 
         MockRepository = MockRepositoryHelper.GetRepository<TRepository, TEntity, TEntityId>(fakeData.Data);
         BusinessRules =
-            (TBusinessRules)Activator.CreateInstance(type: typeof(TBusinessRules), MockRepository.Object)!
+            (TBusinessRules)Activator.CreateInstance(type: typeof(TBusinessRules), MockRepository.Object, new ResourceLocalizationManager(resources: new()) { AcceptLocales = new[] { "en" } })!
             ?? throw new InvalidOperationException($"Cannot create an instance of {typeof(TBusinessRules).FullName}.");
     }
 }
