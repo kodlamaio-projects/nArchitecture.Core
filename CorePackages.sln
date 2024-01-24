@@ -35,6 +35,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Translation.AmazonTran
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.WebAPI", "Core.WebAPI\Core.WebAPI.csproj", "{81C56838-7812-4F44-9776-C06C3E13592A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Persistence.DependencyInjection", "Core.Persistence.DependencyInjection\Core.Persistence.DependencyInjection.csproj", "{42B11859-214F-46BD-BF3E-6B157B267038}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Persistence.WebApi", "Core.Persistence.WebApi\Core.Persistence.WebApi.csproj", "{8922C45F-4E06-4CCC-B032-588A0D5C174D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +109,14 @@ Global
 		{81C56838-7812-4F44-9776-C06C3E13592A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81C56838-7812-4F44-9776-C06C3E13592A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81C56838-7812-4F44-9776-C06C3E13592A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42B11859-214F-46BD-BF3E-6B157B267038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42B11859-214F-46BD-BF3E-6B157B267038}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42B11859-214F-46BD-BF3E-6B157B267038}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42B11859-214F-46BD-BF3E-6B157B267038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8922C45F-4E06-4CCC-B032-588A0D5C174D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8922C45F-4E06-4CCC-B032-588A0D5C174D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8922C45F-4E06-4CCC-B032-588A0D5C174D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8922C45F-4E06-4CCC-B032-588A0D5C174D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
