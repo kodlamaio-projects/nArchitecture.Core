@@ -8,7 +8,8 @@ public static class ApplicationBuilderDbMigrationApplierExtensions
 {
     public static IApplicationBuilder UseDbMigrationApplier(this IApplicationBuilder app)
     {
-        IEnumerable<IDbMigrationApplierService> migrationCreatorServices = app.ApplicationServices.GetServices<IDbMigrationApplierService>();
+        IEnumerable<IDbMigrationApplierService> migrationCreatorServices =
+            app.ApplicationServices.GetServices<IDbMigrationApplierService>();
         foreach (IDbMigrationApplierService service in migrationCreatorServices)
             service.Initialize();
 
