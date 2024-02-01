@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>Kodlamaio.NArchitecture.$(AssemblyName)</PackageId>
@@ -17,7 +16,6 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
-
   <ItemGroup>
     <None Include="..\docs\n-architecture-logo.png">
       <Pack>True</Pack>
@@ -32,21 +30,19 @@
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="11.5.2" />
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
-    <PackageReference Include="MongoDB.Bson" Version="2.19.1" />
-    <PackageReference Include="MongoDB.Driver" Version="2.19.1" />
-    <PackageReference Include="Serilog" Version="2.12.0" />
-    <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="9.0.0" />
+    <PackageReference Include="MongoDB.Bson" Version="2.23.1" />
+    <PackageReference Include="MongoDB.Driver" Version="2.23.1" />
+    <PackageReference Include="Serilog" Version="3.1.1" />
+    <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="9.0.3" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
-    <PackageReference Include="Serilog.Sinks.Graylog" Version="2.3.0" />
+    <PackageReference Include="Serilog.Sinks.Graylog" Version="3.1.1" />
     <PackageReference Include="Serilog.Sinks.RabbitMQ" Version="6.0.0" />
     <PackageReference Include="Serilog.Sinks.MongoDB" Version="5.3.1" />
-    <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="6.3.0" />
+    <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="6.5.1" />
     <PackageReference Include="Serilog.Sinks.PostgreSQL" Version="2.3.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
   </ItemGroup>
-
 </Project>

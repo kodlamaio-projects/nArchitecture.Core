@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>Kodlamaio.NArchitecture.$(AssemblyName)</PackageId>
@@ -17,7 +16,6 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
-
   <ItemGroup>
     <None Include="..\docs\n-architecture-logo.png">
       <Pack>True</Pack>
@@ -32,12 +30,10 @@
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.5" />
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.3.2" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.3.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.1" />
   </ItemGroup>
-
 </Project>

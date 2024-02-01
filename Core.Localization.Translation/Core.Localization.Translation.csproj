@@ -1,14 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Core.Localization.Abstraction\Core.Localization.Abstraction.csproj" />
     <ProjectReference Include="..\Core.Translation.Abstraction\Core.Translation.Abstraction.csproj" />
   </ItemGroup>
-
 </Project>

@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>Kodlamaio.NArchitecture.$(AssemblyName)</PackageId>
@@ -17,7 +16,6 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
-
   <ItemGroup>
     <None Include="..\docs\n-architecture-logo.png">
       <Pack>True</Pack>
@@ -32,17 +30,14 @@
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
-    <PackageReference Include="Moq" Version="4.18.4" />
+    <PackageReference Include="Moq" Version="4.20.70" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.1" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Core.Application\Core.Application.csproj" />
     <ProjectReference Include="..\Core.Localization.Resource.Yaml\Core.Localization.Resource.Yaml.csproj" />
     <ProjectReference Include="..\Core.Persistence\Core.Persistence.csproj" />
   </ItemGroup>
-
 </Project>
