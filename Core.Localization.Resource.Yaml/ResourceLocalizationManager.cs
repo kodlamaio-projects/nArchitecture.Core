@@ -1,5 +1,5 @@
-﻿using Core.Localization.Abstraction;
-using System.Data;
+﻿using System.Data;
+using Core.Localization.Abstraction;
 using YamlDotNet.RepresentationModel;
 
 namespace Core.Localization.Resource.Yaml;

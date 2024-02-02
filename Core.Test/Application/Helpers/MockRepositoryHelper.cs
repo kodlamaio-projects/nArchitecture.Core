@@ -1,8 +1,8 @@
-﻿using Core.Persistence.Paging;
+﻿using System.Linq.Expressions;
+using Core.Persistence.Paging;
 using Core.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore.Query;
 using Moq;
-using System.Linq.Expressions;
 
 namespace Core.Test.Application.Helpers;
 
@@ -34,18 +34,17 @@ public static class MockRepositoryHelper
         where TEntity : Entity<TEntityId>, new()
         where TRepository : class, IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId> =>
         mockRepo
-            .Setup(
-                s =>
-                    s.GetListAsync(
-                        It.IsAny<Expression<Func<TEntity, bool>>>(),
-                        It.IsAny<Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>>(),
-                        It.IsAny<Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>>(),
-                        It.IsAny<int>(),
-                        It.IsAny<int>(),
-                        It.IsAny<bool>(),
-                        It.IsAny<bool>(),
-                        It.IsAny<CancellationToken>()
-                    )
+            .Setup(s =>
+                s.GetListAsync(
+                    It.IsAny<Expression<Func<TEntity, bool>>>(),
+                    It.IsAny<Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>>(),
+                    It.IsAny<Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>>(),
+                    It.IsAny<int>(),
+                    It.IsAny<int>(),
+                    It.IsAny<bool>(),
+                    It.IsAny<bool>(),
+                    It.IsAny<CancellationToken>()
+                )
             )
             .ReturnsAsync(
                 (
@@ -74,15 +73,14 @@ public static class MockRepositoryHelper
         where TEntity : Entity<TEntityId>, new()
         where TRepository : class, IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId> =>
         mockRepo
-            .Setup(
-                s =>
-                    s.GetAsync(
-                        It.IsAny<Expression<Func<TEntity, bool>>>(),
-                        It.IsAny<Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>>(),
-                        It.IsAny<bool>(),
-                        It.IsAny<bool>(),
-                        It.IsAny<CancellationToken>()
-                    )
+            .Setup(s =>
+                s.GetAsync(
+                    It.IsAny<Expression<Func<TEntity, bool>>>(),
+                    It.IsAny<Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>>(),
+                    It.IsAny<bool>(),
+                    It.IsAny<bool>(),
+                    It.IsAny<CancellationToken>()
+                )
             )
             .ReturnsAsync(
                 (
@@ -148,14 +146,8 @@ public static class MockRepositoryHelper
         where TEntity : Entity<TEntityId>, new()
         where TRepository : class, IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId> =>
         mockRepo
-            .Setup(
-                s =>
-                    s.AnyAsync(
-                        It.IsAny<Expression<Func<TEntity, bool>>>(),
-                        It.IsAny<bool>(),
-                        It.IsAny<bool>(),
-                        It.IsAny<CancellationToken>()
-                    )
+            .Setup(s =>
+                s.AnyAsync(It.IsAny<Expression<Func<TEntity, bool>>>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<CancellationToken>())
             )
             .ReturnsAsync(
                 (Expression<Func<TEntity, bool>> expression, bool withDeleted, bool enableTracking, CancellationToken cancellationToken) =>

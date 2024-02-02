@@ -19,8 +19,8 @@ public class MsSqlLogger : LoggerServiceBase
 
         ColumnOptions columnOptions = new();
 
-        global::Serilog.Core.Logger serilogConfig = new LoggerConfiguration().WriteTo
-            .MSSqlServer(logConfiguration.ConnectionString, sinkOptions, columnOptions: columnOptions)
+        global::Serilog.Core.Logger serilogConfig = new LoggerConfiguration()
+            .WriteTo.MSSqlServer(logConfiguration.ConnectionString, sinkOptions, columnOptions: columnOptions)
             .CreateLogger();
 
         Logger = serilogConfig;

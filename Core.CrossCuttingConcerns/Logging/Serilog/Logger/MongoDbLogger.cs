@@ -14,8 +14,8 @@ public class MongoDbLogger : LoggerServiceBase
             configuration.GetSection(configurationSection).Get<MongoDbConfiguration>()
             ?? throw new NullReferenceException($"\"{configurationSection}\" section cannot found in configuration.");
 
-        Logger = new LoggerConfiguration().WriteTo
-            .MongoDBBson(cfg =>
+        Logger = new LoggerConfiguration()
+            .WriteTo.MongoDBBson(cfg =>
             {
                 MongoClient client = new(logConfiguration.ConnectionString);
                 IMongoDatabase? mongoDbInstance = client.GetDatabase(logConfiguration.Collection);

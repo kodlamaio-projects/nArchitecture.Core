@@ -1,5 +1,5 @@
-﻿using MediatR;
-using System.Transactions;
+﻿using System.Transactions;
+using MediatR;
 
 namespace Core.Application.Pipelines.Transaction;
 

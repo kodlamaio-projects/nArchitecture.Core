@@ -1,6 +1,6 @@
-﻿using Core.Localization.Abstraction;
+﻿using System.Data;
+using Core.Localization.Abstraction;
 using Core.Translation.Abstraction;
-using System.Data;
 
 namespace Core.Localization.Translation;
 

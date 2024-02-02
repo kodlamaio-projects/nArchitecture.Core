@@ -29,8 +29,8 @@ public class RabbitMQLogger : LoggerServiceBase
             };
         rabbitMQConfiguration.Hostnames.ForEach(config.Hostnames.Add);
 
-        Logger = new LoggerConfiguration().WriteTo
-            .RabbitMQ(
+        Logger = new LoggerConfiguration()
+            .WriteTo.RabbitMQ(
                 (clientConfiguration, sinkConfiguration) =>
                 {
                     clientConfiguration.From(config);

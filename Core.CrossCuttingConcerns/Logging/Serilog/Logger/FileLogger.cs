@@ -19,8 +19,8 @@ public class FileLogger : LoggerServiceBase
 
         string logFilePath = string.Format(format: "{0}{1}", arg0: Directory.GetCurrentDirectory() + logConfig.FolderPath, arg1: ".txt");
 
-        Logger = new LoggerConfiguration().WriteTo
-            .File(
+        Logger = new LoggerConfiguration()
+            .WriteTo.File(
                 logFilePath,
                 rollingInterval: RollingInterval.Day,
                 retainedFileCountLimit: null,

@@ -1,11 +1,11 @@
-﻿using Core.Persistence.Dynamic;
+﻿using System.Collections;
+using System.Linq.Expressions;
+using System.Reflection;
+using Core.Persistence.Dynamic;
 using Core.Persistence.Paging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Query;
-using System.Collections;
-using System.Linq.Expressions;
-using System.Reflection;
 
 namespace Core.Persistence.Repositories;
 
@@ -334,11 +334,10 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
             Context
                 .Entry(entity)
                 .Metadata.GetForeignKeys()
-                .All(
-                    x =>
-                        x.DependentToPrincipal?.IsCollection == true
-                        || x.PrincipalToDependent?.IsCollection == true
-                        || x.DependentToPrincipal?.ForeignKey.DeclaringEntityType.ClrType == entity.GetType()
+                .All(x =>
+                    x.DependentToPrincipal?.IsCollection == true
+                    || x.PrincipalToDependent?.IsCollection == true
+                    || x.DependentToPrincipal?.ForeignKey.DeclaringEntityType.ClrType == entity.GetType()
                 ) == false;
         if (hasEntityHaveOneToOneRelation)
             throw new InvalidOperationException(

@@ -25,8 +25,8 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
             throw new AuthorizationException("You are not authenticated.");
 
         bool isNotMatchedAUserRoleClaimWithRequestRoles = userRoleClaims
-            .FirstOrDefault(
-                userRoleClaim => userRoleClaim == GeneralOperationClaims.Admin || request.Roles.Any(role => role == userRoleClaim)
+            .FirstOrDefault(userRoleClaim =>
+                userRoleClaim == GeneralOperationClaims.Admin || request.Roles.Any(role => role == userRoleClaim)
             )
             .IsNullOrEmpty();
         if (isNotMatchedAUserRoleClaimWithRequestRoles)

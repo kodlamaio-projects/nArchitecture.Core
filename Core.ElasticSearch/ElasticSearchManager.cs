@@ -73,8 +73,8 @@ public class ElasticSearchManager : IElasticSearch
         Type type = typeof(T);
 
         ElasticClient elasticClient = GetElasticClient(parameters.IndexName);
-        ISearchResponse<T>? searchResponse = await elasticClient.SearchAsync<T>(
-            s => s.Index(Indices.Index(parameters.IndexName)).From(parameters.From).Size(parameters.Size)
+        ISearchResponse<T>? searchResponse = await elasticClient.SearchAsync<T>(s =>
+            s.Index(Indices.Index(parameters.IndexName)).From(parameters.From).Size(parameters.Size)
         );
 
         var list = searchResponse.Hits.Select(x => new ElasticSearchGetModel<T> { ElasticId = x.Id, Item = x.Source }).ToList();
@@ -86,8 +86,8 @@ public class ElasticSearchManager : IElasticSearch
         where T : class
     {
         ElasticClient elasticClient = GetElasticClient(fieldParameters.IndexName);
-        ISearchResponse<T>? searchResponse = await elasticClient.SearchAsync<T>(
-            s => s.Index(fieldParameters.IndexName).From(fieldParameters.From).Size(fieldParameters.Size)
+        ISearchResponse<T>? searchResponse = await elasticClient.SearchAsync<T>(s =>
+            s.Index(fieldParameters.IndexName).From(fieldParameters.From).Size(fieldParameters.Size)
         );
 
         var list = searchResponse.Hits.Select(x => new ElasticSearchGetModel<T> { ElasticId = x.Id, Item = x.Source }).ToList();
@@ -99,32 +99,29 @@ public class ElasticSearchManager : IElasticSearch
         where T : class
     {
         ElasticClient elasticClient = GetElasticClient(queryParameters.IndexName);
-        ISearchResponse<T>? searchResponse = await elasticClient.SearchAsync<T>(
-            s =>
-                s.Index(queryParameters.IndexName)
-                    .From(queryParameters.From)
-                    .Size(queryParameters.Size)
-                    .MatchAll()
-                    .Query(
-                        a =>
-                            a.SimpleQueryString(
-                                c =>
-                                    c.Name(queryParameters.QueryName)
-                                        .Boost(1.1)
-                                        .Fields(queryParameters.Fields)
-                                        .Query(queryParameters.Query)
-                                        .Analyzer("standard")
-                                        .DefaultOperator(Operator.Or)
-                                        .Flags(SimpleQueryStringFlags.And | SimpleQueryStringFlags.Near)
-                                        .Lenient()
-                                        .AnalyzeWildcard(false)
-                                        .MinimumShouldMatch("30%")
-                                        .FuzzyPrefixLength(0)
-                                        .FuzzyMaxExpansions(50)
-                                        .FuzzyTranspositions()
-                                        .AutoGenerateSynonymsPhraseQuery(false)
-                            )
+        ISearchResponse<T>? searchResponse = await elasticClient.SearchAsync<T>(s =>
+            s.Index(queryParameters.IndexName)
+                .From(queryParameters.From)
+                .Size(queryParameters.Size)
+                .MatchAll()
+                .Query(a =>
+                    a.SimpleQueryString(c =>
+                        c.Name(queryParameters.QueryName)
+                            .Boost(1.1)
+                            .Fields(queryParameters.Fields)
+                            .Query(queryParameters.Query)
+                            .Analyzer("standard")
+                            .DefaultOperator(Operator.Or)
+                            .Flags(SimpleQueryStringFlags.And | SimpleQueryStringFlags.Near)
+                            .Lenient()
+                            .AnalyzeWildcard(false)
+                            .MinimumShouldMatch("30%")
+                            .FuzzyPrefixLength(0)
+                            .FuzzyMaxExpansions(50)
+                            .FuzzyTranspositions()
+                            .AutoGenerateSynonymsPhraseQuery(false)
                     )
+                )
         );
 
         var list = searchResponse.Hits.Select(x => new ElasticSearchGetModel<T> { ElasticId = x.Id, Item = x.Source }).ToList();
