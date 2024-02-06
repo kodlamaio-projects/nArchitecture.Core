@@ -20,7 +20,10 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
         Context = context;
     }
 
-    public IQueryable<TEntity> Query() => Context.Set<TEntity>();
+    public IQueryable<TEntity> Query()
+    {
+        return Context.Set<TEntity>();
+    }
 
     public async Task<TEntity> AddAsync(TEntity entity)
     {
@@ -330,15 +333,14 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
 
     protected void CheckHasEntityHaveOneToOneRelation(TEntity entity)
     {
-        bool hasEntityHaveOneToOneRelation =
-            Context
-                .Entry(entity)
-                .Metadata.GetForeignKeys()
-                .All(x =>
-                    x.DependentToPrincipal?.IsCollection == true
-                    || x.PrincipalToDependent?.IsCollection == true
-                    || x.DependentToPrincipal?.ForeignKey.DeclaringEntityType.ClrType == entity.GetType()
-                ) == false;
+        bool hasEntityHaveOneToOneRelation = Context
+            .Entry(entity)
+            .Metadata.GetForeignKeys()
+            .All(x =>
+                x.DependentToPrincipal?.IsCollection == true
+                || x.PrincipalToDependent?.IsCollection == true
+                || x.DependentToPrincipal?.ForeignKey.DeclaringEntityType.ClrType == entity.GetType()
+            );
         if (hasEntityHaveOneToOneRelation)
             throw new InvalidOperationException(
                 "Entity has one-to-one relationship. Soft Delete causes problems if you try to create entry again by same foreign key."

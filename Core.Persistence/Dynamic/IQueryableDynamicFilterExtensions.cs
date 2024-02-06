@@ -65,7 +65,7 @@ public static class IQueryableDynamicFilterExtensions
 
     public static IList<Filter> GetAllFilters(Filter filter)
     {
-        List<Filter> filters = new();
+        List<Filter> filters = [];
         GetFilters(filter, filters);
         return filters;
     }

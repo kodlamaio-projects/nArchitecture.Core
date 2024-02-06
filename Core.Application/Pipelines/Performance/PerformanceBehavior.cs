@@ -31,7 +31,7 @@ public class PerformanceBehavior<TRequest, TResponse> : IPipelineBehavior<TReque
         {
             if (_stopwatch.Elapsed.TotalSeconds > request.Interval)
             {
-                string message = $"Performance -> {requestName} {_stopwatch.Elapsed.TotalSeconds.ToString()} s";
+                string message = $"Performance -> {requestName} {_stopwatch.Elapsed.TotalSeconds} s";
 
                 Debug.WriteLine(message);
                 _logger.LogInformation(message);

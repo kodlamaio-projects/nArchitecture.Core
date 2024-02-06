@@ -32,7 +32,8 @@ public static class MockRepositoryHelper
 
     private static void SetupGetListAsync<TRepository, TEntity, TEntityId>(Mock<TRepository> mockRepo, List<TEntity> entityList)
         where TEntity : Entity<TEntityId>, new()
-        where TRepository : class, IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId> =>
+        where TRepository : class, IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId>
+    {
         mockRepo
             .Setup(s =>
                 s.GetListAsync(
@@ -68,10 +69,12 @@ public static class MockRepositoryHelper
                     return paginateList;
                 }
             );
+    }
 
     private static void SetupGetAsync<TRepository, TEntity, TEntityId>(Mock<TRepository> mockRepo, List<TEntity> entityList)
         where TEntity : Entity<TEntityId>, new()
-        where TRepository : class, IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId> =>
+        where TRepository : class, IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId>
+    {
         mockRepo
             .Setup(s =>
                 s.GetAsync(
@@ -97,10 +100,12 @@ public static class MockRepositoryHelper
                     return result;
                 }
             );
+    }
 
     private static void SetupAddAsync<TRepository, TEntity, TEntityId>(Mock<TRepository> mockRepo, List<TEntity> entityList)
         where TEntity : Entity<TEntityId>, new()
-        where TRepository : class, IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId> =>
+        where TRepository : class, IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId>
+    {
         mockRepo
             .Setup(r => r.AddAsync(It.IsAny<TEntity>()))
             .ReturnsAsync(
@@ -110,10 +115,12 @@ public static class MockRepositoryHelper
                     return entity;
                 }
             );
+    }
 
     private static void SetupUpdateAsync<TRepository, TEntity, TEntityId2>(Mock<TRepository> mockRepo, List<TEntity> entityList)
         where TEntity : Entity<TEntityId2>, new()
-        where TRepository : class, IAsyncRepository<TEntity, TEntityId2>, IRepository<TEntity, TEntityId2> =>
+        where TRepository : class, IAsyncRepository<TEntity, TEntityId2>, IRepository<TEntity, TEntityId2>
+    {
         mockRepo
             .Setup(r => r.UpdateAsync(It.IsAny<TEntity>()))!
             .ReturnsAsync(
@@ -125,10 +132,12 @@ public static class MockRepositoryHelper
                     return result;
                 }
             );
+    }
 
     private static void SetupDeleteAsync<TRepository, TEntity, TEntityId>(Mock<TRepository> mockRepo, List<TEntity> entityList)
         where TEntity : Entity<TEntityId>, new()
-        where TRepository : class, IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId> =>
+        where TRepository : class, IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId>
+    {
         mockRepo
             .Setup(r => r.DeleteAsync(It.IsAny<TEntity>(), It.IsAny<bool>()))
             .ReturnsAsync(
@@ -141,10 +150,12 @@ public static class MockRepositoryHelper
                     return entity;
                 }
             );
+    }
 
     public static void SetupAnyAsync<TRepository, TEntity, TEntityId>(Mock<TRepository> mockRepo, List<TEntity> entityList)
         where TEntity : Entity<TEntityId>, new()
-        where TRepository : class, IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId> =>
+        where TRepository : class, IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId>
+    {
         mockRepo
             .Setup(s =>
                 s.AnyAsync(It.IsAny<Expression<Func<TEntity, bool>>>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<CancellationToken>())
@@ -157,4 +168,5 @@ public static class MockRepositoryHelper
                     return entityList.Any(expression.Compile());
                 }
             );
+    }
 }

@@ -43,11 +43,7 @@ public class ExceptionMiddleware
 
     private Task LogException(HttpContext context, Exception exception)
     {
-        List<LogParameter> logParameters =
-            new()
-            {
-                new LogParameter { Type = context.GetType().Name, Value = exception.ToString() }
-            };
+        List<LogParameter> logParameters = [new LogParameter { Type = context.GetType().Name, Value = exception.ToString() }];
 
         LogDetail logDetail =
             new()

@@ -18,7 +18,7 @@ public class Mail
         Subject = string.Empty;
         TextBody = string.Empty;
         HtmlBody = string.Empty;
-        ToList = new List<MailboxAddress>();
+        ToList = [];
     }
 
     public Mail(string subject, string textBody, string htmlBody, List<MailboxAddress> toList)

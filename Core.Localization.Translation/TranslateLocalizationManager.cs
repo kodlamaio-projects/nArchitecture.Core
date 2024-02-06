@@ -16,8 +16,10 @@ public class TranslateLocalizationManager : ILocalizationService
         _translationService = translationService;
     }
 
-    public Task<string> GetLocalizedAsync(string key, string? keySection = null) =>
-        GetLocalizedAsync(key, AcceptLocales ?? throw new NoNullAllowedException(nameof(AcceptLocales)));
+    public Task<string> GetLocalizedAsync(string key, string? keySection = null)
+    {
+        return GetLocalizedAsync(key, AcceptLocales ?? throw new NoNullAllowedException(nameof(AcceptLocales)));
+    }
 
     public async Task<string> GetLocalizedAsync(string key, ICollection<string> acceptLocales, string? keySection = null)
     {

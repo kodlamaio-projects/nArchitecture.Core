@@ -12,6 +12,6 @@ public class RabbitMQConfiguration
 
     public RabbitMQConfiguration()
     {
-        Hostnames = new List<string>();
+        Hostnames = [];
     }
 }

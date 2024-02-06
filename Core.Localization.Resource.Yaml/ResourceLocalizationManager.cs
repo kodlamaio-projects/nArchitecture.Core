@@ -11,7 +11,7 @@ public class ResourceLocalizationManager : ILocalizationService
     public ICollection<string>? AcceptLocales { get; set; }
 
     // <locale, <section, <path, content>>>
-    private readonly Dictionary<string, Dictionary<string, (string path, YamlMappingNode? content)>> _resourceData = new();
+    private readonly Dictionary<string, Dictionary<string, (string path, YamlMappingNode? content)>> _resourceData = [];
 
     public ResourceLocalizationManager(Dictionary<string, Dictionary<string, string>> resources)
     {
@@ -25,8 +25,10 @@ public class ResourceLocalizationManager : ILocalizationService
         }
     }
 
-    public Task<string> GetLocalizedAsync(string key, string? keySection = null) =>
-        GetLocalizedAsync(key, AcceptLocales ?? throw new NoNullAllowedException(nameof(AcceptLocales)), keySection);
+    public Task<string> GetLocalizedAsync(string key, string? keySection = null)
+    {
+        return GetLocalizedAsync(key, AcceptLocales ?? throw new NoNullAllowedException(nameof(AcceptLocales)), keySection);
+    }
 
     public Task<string> GetLocalizedAsync(string key, ICollection<string> acceptLocales, string? keySection = null)
     {
@@ -53,13 +55,13 @@ public class ResourceLocalizationManager : ILocalizationService
 
         if (
             _resourceData.TryGetValue(locale, out Dictionary<string, (string path, YamlMappingNode? content)>? cultureNode)
-            && (cultureNode.TryGetValue(keySection, out (string path, YamlMappingNode? content) sectionNode))
+            && cultureNode.TryGetValue(keySection, out (string path, YamlMappingNode? content) sectionNode)
         )
         {
             if (sectionNode.content is null)
                 lazyLoadResource(sectionNode.path, out sectionNode.content);
 
-            if (sectionNode.content!.Children.TryGetValue(new YamlScalarNode(key), out var cultureValueNode))
+            if (sectionNode.content!.Children.TryGetValue(new YamlScalarNode(key), out YamlNode? cultureValueNode))
                 return cultureValueNode.ToString();
         }
 
@@ -69,7 +71,7 @@ public class ResourceLocalizationManager : ILocalizationService
     private void lazyLoadResource(string path, out YamlMappingNode? content)
     {
         using StreamReader reader = new(path);
-        YamlStream yamlStream = new();
+        YamlStream yamlStream = [];
         yamlStream.Load(reader);
         content = (YamlMappingNode)yamlStream.Documents[0].RootNode;
     }

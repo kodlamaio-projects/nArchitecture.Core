@@ -34,7 +34,7 @@ public abstract class BaseMockRepository<TRepository, TEntity, TEntityId, TMappi
                 Activator.CreateInstance(
                     type: typeof(TBusinessRules),
                     MockRepository.Object,
-                    new ResourceLocalizationManager(resources: new()) { AcceptLocales = new[] { "en" } }
+                    new ResourceLocalizationManager(resources: []) { AcceptLocales = new[] { "en" } }
                 )! ?? throw new InvalidOperationException($"Cannot create an instance of {typeof(TBusinessRules).FullName}.");
     }
 }

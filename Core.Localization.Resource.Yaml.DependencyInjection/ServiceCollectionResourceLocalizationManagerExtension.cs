@@ -22,7 +22,7 @@ public static class ServiceCollectionResourceLocalizationManagerExtension
         services.AddScoped<ILocalizationService, ResourceLocalizationManager>(_ =>
         {
             // <locale, <featureName, resourceDir>>
-            Dictionary<string, Dictionary<string, string>> resources = new();
+            Dictionary<string, Dictionary<string, string>> resources = [];
 
             string[] featureDirs = Directory.GetDirectories(
                 Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!, "Features")
@@ -43,7 +43,7 @@ public static class ServiceCollectionResourceLocalizationManagerExtension
                         if (File.Exists(localeFile))
                         {
                             if (!resources.ContainsKey(localeCulture))
-                                resources.Add(localeCulture, new Dictionary<string, string>());
+                                resources.Add(localeCulture, []);
                             resources[localeCulture].Add(featureName, localeFile);
                         }
                     }

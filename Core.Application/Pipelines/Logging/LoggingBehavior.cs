@@ -20,11 +20,7 @@ public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
 
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
-        List<LogParameter> logParameters =
-            new()
-            {
-                new LogParameter { Type = request.GetType().Name, Value = request }
-            };
+        List<LogParameter> logParameters = [new LogParameter { Type = request.GetType().Name, Value = request }];
 
         LogDetail logDetail =
             new()

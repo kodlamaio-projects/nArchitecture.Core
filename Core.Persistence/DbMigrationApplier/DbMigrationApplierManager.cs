@@ -12,5 +12,8 @@ public class DbMigrationApplierManager<TDbContext> : IDbMigrationApplierService<
         _context = context;
     }
 
-    public void Initialize() => _context.Database.EnsureDbApplied();
+    public void Initialize()
+    {
+        _context.Database.EnsureDbApplied();
+    }
 }
