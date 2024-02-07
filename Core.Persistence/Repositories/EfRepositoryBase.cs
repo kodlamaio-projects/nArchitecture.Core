@@ -333,10 +333,10 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
 
     protected void CheckHasEntityHaveOneToOneRelation(TEntity entity)
     {
-        bool hasEntityHaveOneToOneRelation = Context
-            .Entry(entity)
-            .Metadata.GetForeignKeys()
-            .All(x =>
+        IEnumerable<IForeignKey> foreignKeys = Context.Entry(entity).Metadata.GetForeignKeys();
+        bool hasEntityHaveOneToOneRelation =
+            foreignKeys.Any()
+            && foreignKeys.All(x =>
                 x.DependentToPrincipal?.IsCollection == true
                 || x.PrincipalToDependent?.IsCollection == true
                 || x.DependentToPrincipal?.ForeignKey.DeclaringEntityType.ClrType == entity.GetType()
