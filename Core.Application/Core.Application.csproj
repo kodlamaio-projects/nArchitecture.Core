@@ -1,20 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <PackageId>Kodlamaio.NArchitecture.$(AssemblyName)</PackageId>
-    <Title>NArchitecture $(AssemblyName)</Title>
-    <Authors>Engin Demiroğ, ahmet-cetinkaya, Halit Enes Kalaycı, Kodlamaio Contributors</Authors>
-    <Company>Kodlamaio</Company>
-    <Product>NArchitecture</Product>
-    <Description>Core package for application layer in NArchitecture project.</Description>
-    <PackageIcon>n-architecture-logo.png</PackageIcon>
-    <RepositoryUrl>https://github.com/kodlamaio-projects/nArchitecture.Core</RepositoryUrl>
-    <PackageTags>Core, CleanArchitecture, Application, CQRS</PackageTags>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<PackageId>Kodlamaio.NArchitecture.$(AssemblyName)</PackageId>
+	<Version>0.1.1</Version>
+	<Title>NArchitecture $(AssemblyName)</Title>
+	<Description>Core package for security in NArchitecture project.</Description>
+	<Product>NArchitecture</Product>
+	<Authors>Kodlama.io, Contributors</Authors>
+	<Company>Kodlama.io</Company>
+	<PackageTags>Core, Security, JWT, JsonWebToken, RefleshToken, Hashing, Encryption, Authenticator, Mail, OTP</PackageTags>
+	<PackageIcon>docs/images/n-architecture-logo.png</PackageIcon>
+	<RepositoryUrl>https://github.com/kodlamaio-projects/nArchitecture.Core</RepositoryUrl>
+	<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.9.0" />
