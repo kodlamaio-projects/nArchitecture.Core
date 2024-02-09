@@ -2,21 +2,27 @@
 
 namespace Core.Security.Entities;
 
-public class UserOperationClaim : Entity<int>
+public class UserOperationClaim<TUserId, TOperationClaimId> : Entity<TUserId>
 {
-    public int UserId { get; set; }
-    public int OperationClaimId { get; set; }
+    public TUserId UserId { get; set; }
+    public TOperationClaimId OperationClaimId { get; set; }
 
-    public virtual User User { get; set; } = null!;
-    public virtual OperationClaim OperationClaim { get; set; } = null!;
+    public virtual User<TUserId, TOperationClaimId> User { get; set; } = default!;
+    public virtual OperationClaim<TOperationClaimId, TUserId> OperationClaim { get; set; } = default!;
 
-    public UserOperationClaim(int userId, int operationClaimId)
+    public UserOperationClaim()
+    {
+        UserId = default!;
+        OperationClaimId = default!;
+    }
+
+    public UserOperationClaim(TUserId userId, TOperationClaimId operationClaimId)
     {
         UserId = userId;
         OperationClaimId = operationClaimId;
     }
 
-    public UserOperationClaim(int id, int userId, int operationClaimId)
+    public UserOperationClaim(TUserId id, TUserId userId, TOperationClaimId operationClaimId)
         : base(id)
     {
         UserId = userId;

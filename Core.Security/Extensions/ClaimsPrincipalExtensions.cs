@@ -1,22 +1,23 @@
-﻿using System.Security.Claims;
+﻿using System.Collections.Immutable;
+using System.Security.Claims;
 
 namespace Core.Security.Extensions;
 
 public static class ClaimsPrincipalExtensions
 {
-    public static List<string>? Claims(this ClaimsPrincipal claimsPrincipal, string claimType)
+    public static ICollection<string>? Claims(this ClaimsPrincipal claimsPrincipal, string claimType)
     {
-        var result = claimsPrincipal?.FindAll(claimType)?.Select(x => x.Value).ToList();
-        return result;
+        return claimsPrincipal?.FindAll(claimType)?.Select(x => x.Value).ToImmutableArray();
     }
 
-    public static List<string>? ClaimRoles(this ClaimsPrincipal claimsPrincipal)
+    public static ICollection<string>? ClaimRoles(this ClaimsPrincipal claimsPrincipal)
     {
         return claimsPrincipal?.Claims(ClaimTypes.Role);
     }
 
     public static int GetUserId(this ClaimsPrincipal claimsPrincipal)
     {
-        return Convert.ToInt32(claimsPrincipal?.Claims(ClaimTypes.NameIdentifier)?.FirstOrDefault());
+        string? result = claimsPrincipal?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        return Convert.ToInt32(result);
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿using System.Collections.Immutable;
+using System.Data;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using Core.Security.Encryption;
@@ -9,7 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Core.Security.JWT;
 
-public class JwtHelper : ITokenHelper
+public class JwtHelper<TUserId, TOperationClaimId> : ITokenHelper<TUserId, TOperationClaimId>
 {
     public IConfiguration Configuration { get; }
     private readonly TokenOptions _tokenOptions;
@@ -21,10 +23,10 @@ public class JwtHelper : ITokenHelper
         const string configurationSection = "TokenOptions";
         _tokenOptions =
             Configuration.GetSection(configurationSection).Get<TokenOptions>()
-            ?? throw new NullReferenceException($"\"{configurationSection}\" section cannot found in configuration.");
+            ?? throw new NoNullAllowedException($"\"{configurationSection}\" section cannot found in configuration.");
     }
 
-    public AccessToken CreateToken(User user, IList<OperationClaim> operationClaims)
+    public AccessToken CreateToken(User<TUserId, TOperationClaimId> user, IList<OperationClaim<TOperationClaimId, TUserId>> operationClaims)
     {
         _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
         SecurityKey securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
@@ -33,17 +35,17 @@ public class JwtHelper : ITokenHelper
         JwtSecurityTokenHandler jwtSecurityTokenHandler = new();
         string? token = jwtSecurityTokenHandler.WriteToken(jwt);
 
-        return new AccessToken { Token = token, Expiration = _accessTokenExpiration };
+        return new AccessToken { Token = token, ExpirationDate = _accessTokenExpiration };
     }
 
-    public RefreshToken CreateRefreshToken(User user, string ipAddress)
+    public RefreshToken<TUserId, TOperationClaimId> CreateRefreshToken(User<TUserId, TOperationClaimId> user, string ipAddress)
     {
-        RefreshToken refreshToken =
+        RefreshToken<TUserId, TOperationClaimId> refreshToken =
             new()
             {
                 UserId = user.Id,
-                Token = RandomRefreshToken(),
-                Expires = DateTime.UtcNow.AddDays(7),
+                Token = randomRefreshToken(),
+                ExpiresDate = DateTime.UtcNow.AddDays(7),
                 CreatedByIp = ipAddress
             };
 
@@ -52,9 +54,9 @@ public class JwtHelper : ITokenHelper
 
     public JwtSecurityToken CreateJwtSecurityToken(
         TokenOptions tokenOptions,
-        User user,
+        User<TUserId, TOperationClaimId> user,
         SigningCredentials signingCredentials,
-        IList<OperationClaim> operationClaims
+        IList<OperationClaim<TOperationClaimId, TUserId>> operationClaims
     )
     {
         JwtSecurityToken jwt =
@@ -69,17 +71,19 @@ public class JwtHelper : ITokenHelper
         return jwt;
     }
 
-    private IEnumerable<Claim> SetClaims(User user, IList<OperationClaim> operationClaims)
+    protected virtual IEnumerable<Claim> SetClaims(
+        User<TUserId, TOperationClaimId> user,
+        IList<OperationClaim<TOperationClaimId, TUserId>> operationClaims
+    )
     {
         List<Claim> claims = [];
-        claims.AddNameIdentifier(user.Id.ToString());
+        claims.AddNameIdentifier(user!.Id!.ToString()!);
         claims.AddEmail(user.Email);
-        claims.AddName($"{user.FirstName} {user.LastName}");
         claims.AddRoles(operationClaims.Select(c => c.Name).ToArray());
-        return claims;
+        return claims.ToImmutableList();
     }
 
-    private string RandomRefreshToken()
+    private string randomRefreshToken()
     {
         byte[] numberByte = new byte[32];
         using var random = RandomNumberGenerator.Create();
