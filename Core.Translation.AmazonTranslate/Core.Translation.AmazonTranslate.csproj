@@ -1,9 +1,36 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+	<TargetFramework>net8.0</TargetFramework>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<Nullable>enable</Nullable>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<PackageId>Kodlamaio.NArchitecture.$(AssemblyName)</PackageId>
+	<Version>0.1.0</Version>
+	<Title>NArchitecture $(AssemblyName)</Title>
+    <Description>Core package for persistence layer in NArchitecture project.</Description>
+	<Product>NArchitecture</Product>
+	<Authors>Kodlama.io, Contributors</Authors>
+	<Company>Kodlama.io</Company>
+    <PackageTags>Core, Translation, Amazon, Amazon Translate</PackageTags>
+	<PackageIcon>n-architecture-logo.png</PackageIcon>
+	<RepositoryUrl>https://github.com/kodlamaio-projects/nArchitecture.Core</RepositoryUrl>
+	<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\docs\images\n-architecture-logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AWSSDK.Translate" Version="3.7.300.44" />
   </ItemGroup>

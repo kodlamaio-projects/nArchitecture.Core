@@ -12,11 +12,25 @@
 	<Authors>Kodlama.io, Contributors</Authors>
 	<Company>Kodlama.io</Company>
 	<PackageTags>Core, Security, JWT, JsonWebToken, RefleshToken, Hashing, Encryption, Authenticator, Mail, OTP</PackageTags>
-	<PackageIcon>docs/images/n-architecture-logo.png</PackageIcon>
+	<PackageIcon>n-architecture-logo.png</PackageIcon>
 	<RepositoryUrl>https://github.com/kodlamaio-projects/nArchitecture.Core</RepositoryUrl>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\docs\images\n-architecture-logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.9.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
@@ -27,24 +41,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj" />
     <ProjectReference Include="..\Core.Security\Core.Security.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Responses\" />
-    <Folder Include="Pipelines\Caching\" />
-    <Folder Include="Pipelines\Authorization\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Include="..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Include="..\docs\n-architecture-logo.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
   </ItemGroup>
 </Project>

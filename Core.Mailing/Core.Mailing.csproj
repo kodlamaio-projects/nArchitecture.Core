@@ -1,23 +1,24 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <PackageId>Kodlamaio.NArchitecture.$(AssemblyName)</PackageId>
-    <Title>NArchitecture $(AssemblyName)</Title>
-    <Authors>Engin Demiroğ, ahmet-cetinkaya, Halit Enes Kalaycı, Kodlamaio Contributors</Authors>
-    <Company>Kodlamaio</Company>
-    <Product>NArchitecture</Product>
-    <Description>Core package for mailing in NArchitecture project.</Description>
-    <PackageIcon>n-architecture-logo.png</PackageIcon>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/kodlamaio-projects/nArchitecture.Core</RepositoryUrl>
-    <PackageTags>Core, Mail, Mailing, SMTP</PackageTags>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<PackageId>Kodlamaio.NArchitecture.$(AssemblyName)</PackageId>
+	<Version>0.1.0</Version>
+	<Title>NArchitecture $(AssemblyName)</Title>
+	<Description>Core package for localization in NArchitecture project.</Description>
+	<Product>NArchitecture</Product>
+	<Authors>Kodlama.io, Contributors</Authors>
+	<Company>Kodlama.io</Company>
+	<PackageTags>Core, EMail, Mail, SMTP</PackageTags>
+	<PackageIcon>n-architecture-logo.png</PackageIcon>
+	<RepositoryUrl>https://github.com/kodlamaio-projects/nArchitecture.Core</RepositoryUrl>
+	<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="..\docs\n-architecture-logo.png">
+    <None Include="..\docs\images\n-architecture-logo.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
