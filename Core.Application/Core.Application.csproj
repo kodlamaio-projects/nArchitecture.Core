@@ -3,15 +3,16 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<RootNamespace>NArchitecture.$(AssemblyName)</RootNamespace>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	<PackageId>Kodlamaio.NArchitecture.$(AssemblyName)</PackageId>
-	<Version>0.1.1</Version>
+	<PackageId>NArchitecture.$(AssemblyName)</PackageId>
+	<Version>1.0.0</Version>
 	<Title>NArchitecture $(AssemblyName)</Title>
-	<Description>Core package for security in NArchitecture project.</Description>
+	<Description>The NArchitecture Core package provides core classes for the application layer in both clean and union architectures. It includes support for CQRS, MediatR, Pipelines, request models, response models and essential security features.</Description>
 	<Product>NArchitecture</Product>
 	<Authors>Kodlama.io, Contributors</Authors>
 	<Company>Kodlama.io</Company>
-	<PackageTags>Core, Security, JWT, JsonWebToken, RefleshToken, Hashing, Encryption, Authenticator, Mail, OTP</PackageTags>
+    <PackageTags>CQRS, MediatR, Clean Architecture, Union Architecture, Core, NArchitecture</PackageTags>
 	<PackageIcon>n-architecture-logo.png</PackageIcon>
 	<RepositoryUrl>https://github.com/kodlamaio-projects/nArchitecture.Core</RepositoryUrl>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -39,7 +40,9 @@
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj" />
+    <ProjectReference Include="..\Core.CrossCuttingConcerns.Logging.Abstraction\Core.CrossCuttingConcerns.Logging.Abstraction.csproj" />
+    <ProjectReference Include="..\Core.CrossCuttingConcerns.Logging\Core.CrossCuttingConcerns.Logging.csproj" />
+    <ProjectReference Include="..\Core.CrossCuttingConcerns.Exception\Core.CrossCuttingConcerns.Exception.csproj" />
     <ProjectReference Include="..\Core.Security\Core.Security.csproj" />
   </ItemGroup>
 </Project>

@@ -4,7 +4,7 @@ using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 
-namespace Core.Application.Pipelines.Caching;
+namespace NArchitecture.Core.Application.Pipelines.Caching;
 
 public class CacheRemovingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>, ICacheRemoverRequest
@@ -26,7 +26,6 @@ public class CacheRemovingBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
         TResponse response = await next();
 
         if (request.CacheGroupKey != null)
-        {
             for (int i = 0; i < request.CacheGroupKey.Count(); i++)
             {
                 byte[]? cachedGroup = await _cache.GetAsync(request.CacheGroupKey[i], cancellationToken);
@@ -45,7 +44,6 @@ public class CacheRemovingBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
                     _logger.LogInformation($"Removed Cache -> {request.CacheGroupKey}SlidingExpiration");
                 }
             }
-        }
 
         if (request.CacheKey != null)
         {

@@ -1,8 +1,8 @@
 ﻿using System.Data;
-using Core.Localization.Abstraction;
-using Core.Translation.Abstraction;
+using NArchitecture.Core.Localization.Abstraction;
+using NArchitecture.Core.Translation.Abstraction;
 
-namespace Core.Localization.Translation;
+namespace NArchitecture.Core.Localization.Translation;
 
 public class TranslateLocalizationManager : ILocalizationService
 {

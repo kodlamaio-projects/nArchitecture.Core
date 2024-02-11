@@ -1,20 +1,20 @@
 ﻿using System.Text.Json;
-using Core.CrossCuttingConcerns.Logging;
-using Core.CrossCuttingConcerns.Logging.Serilog;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using NArchitecture.Core.CrossCuttingConcerns.Logging;
+using NArchitecture.Core.CrossCuttingConcerns.Logging.Abstraction;
 
-namespace Core.Application.Pipelines.Logging;
+namespace NArchitecture.Core.Application.Pipelines.Logging;
 
 public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>, ILoggableRequest
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly LoggerServiceBase _loggerServiceBase;
+    private readonly ILogger _logger;
 
-    public LoggingBehavior(LoggerServiceBase loggerServiceBase, IHttpContextAccessor httpContextAccessor)
+    public LoggingBehavior(ILogger logger, IHttpContextAccessor httpContextAccessor)
     {
-        _loggerServiceBase = loggerServiceBase;
+        _logger = logger;
         _httpContextAccessor = httpContextAccessor;
     }
 
@@ -30,7 +30,7 @@ public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
                 User = _httpContextAccessor.HttpContext.User.Identity?.Name ?? "?"
             };
 
-        _loggerServiceBase.Info(JsonSerializer.Serialize(logDetail));
+        _logger.Information(JsonSerializer.Serialize(logDetail));
         return await next();
     }
 }

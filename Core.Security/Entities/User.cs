@@ -1,7 +1,7 @@
-﻿using Core.Persistence.Repositories;
-using Core.Security.Enums;
+﻿using NArchitecture.Core.Persistence.Repositories;
+using NArchitecture.Core.Security.Enums;
 
-namespace Core.Security.Entities;
+namespace NArchitecture.Core.Security.Entities;
 
 public class User<TId, TOperationClaimId> : Entity<TId>
 {

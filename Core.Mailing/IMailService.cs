@@ -1,4 +1,4 @@
-﻿namespace Core.Mailing;
+﻿namespace NArchitecture.Core.Mailing;
 
 public interface IMailService
 {

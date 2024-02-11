@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using Core.Application.Rules;
-using Core.Localization.Resource.Yaml;
-using Core.Persistence.Repositories;
-using Core.Test.Application.FakeData;
-using Core.Test.Application.Helpers;
 using Moq;
+using NArchitecture.Core.Application.Rules;
+using NArchitecture.Core.Localization.Resource.Yaml;
+using NArchitecture.Core.Persistence.Repositories;
+using NArchitecture.Core.Test.Application.FakeData;
+using NArchitecture.Core.Test.Application.Helpers;
 
-namespace Core.Test.Application.Repositories;
+namespace NArchitecture.Core.Test.Application.Repositories;
 
 public abstract class BaseMockRepository<TRepository, TEntity, TEntityId, TMappingProfile, TBusinessRules, TFakeData>
     where TEntity : Entity<TEntityId>, new()

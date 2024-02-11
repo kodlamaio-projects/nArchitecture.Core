@@ -1,7 +1,7 @@
-﻿using Core.ElasticSearch.Models;
+﻿using NArchitecture.Core.ElasticSearch.Models;
 using Nest;
 
-namespace Core.ElasticSearch;
+namespace NArchitecture.Core.ElasticSearch;
 
 public interface IElasticSearch
 {

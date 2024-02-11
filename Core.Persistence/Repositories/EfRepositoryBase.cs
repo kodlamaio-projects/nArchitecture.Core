@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Linq.Expressions;
 using System.Reflection;
-using Core.Persistence.Dynamic;
-using Core.Persistence.Paging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Query;
+using NArchitecture.Core.Persistence.Dynamic;
+using NArchitecture.Core.Persistence.Paging;
 
-namespace Core.Persistence.Repositories;
+namespace NArchitecture.Core.Persistence.Repositories;
 
 public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId>
     where TEntity : Entity<TEntityId>
@@ -287,9 +287,7 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
             await setEntityAsSoftDeletedAsync(entity);
         }
         else
-        {
             Context.Remove(entity);
-        }
     }
 
     protected async Task SetEntityAsDeletedAsync(IEnumerable<TEntity> entities, bool permanent)
@@ -306,9 +304,7 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
             setEntityAsSoftDeleted(entity);
         }
         else
-        {
             Context.Remove(entity);
-        }
     }
 
     protected void SetEntityAsDeleted(IEnumerable<TEntity> entities, bool permanent)

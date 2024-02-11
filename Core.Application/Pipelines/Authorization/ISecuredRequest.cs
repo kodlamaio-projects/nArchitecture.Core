@@ -1,4 +1,4 @@
-﻿namespace Core.Application.Pipelines.Authorization;
+﻿namespace NArchitecture.Core.Application.Pipelines.Authorization;
 
 public interface ISecuredRequest
 {

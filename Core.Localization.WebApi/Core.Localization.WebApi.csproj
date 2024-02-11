@@ -1,21 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	<PackageId>Kodlamaio.NArchitecture.$(AssemblyName)</PackageId>
-	<Version>0.1.0</Version>
-	<Title>NArchitecture $(AssemblyName)</Title>
-	<Description>Core package for localization in NArchitecture project.</Description>
-	<Product>NArchitecture</Product>
-	<Authors>Kodlama.io, Contributors</Authors>
-	<Company>Kodlama.io</Company>
-	<PackageTags>Core, Localization, Web API</PackageTags>
-	<PackageIcon>n-architecture-logo.png</PackageIcon>
-	<RepositoryUrl>https://github.com/kodlamaio-projects/nArchitecture.Core</RepositoryUrl>
-	<PackageLicenseFile>LICENSE</PackageLicenseFile>
-	<PackageReadmeFile>README.md</PackageReadmeFile>
+    <RootNamespace>NArchitecture.$(AssemblyName)</RootNamespace>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>NArchitecture.$(AssemblyName)</PackageId>
+    <Version>1.0.0</Version>
+    <Title>NArchitecture $(AssemblyName)</Title>
+    <Description>The NArchitecture Core.Localization.WebApi package provides core classes and extensions for integrating localization into ASP.NET Web API projects. It includes support for attribute-based localization, resource-based localization, culture-specific responses, and essential utilities for localization management in Web API applications.</Description>
+    <Product>NArchitecture</Product>
+    <Authors>Kodlama.io, Contributors</Authors>
+    <Company>Kodlama.io</Company>
+    <PackageTags>Clean Architecture, Union Architecture, Core, NArchitecture, Localization, Web API, ASP.NET, Attribute-based Localization, Resource-based Localization, Internationalization</PackageTags>
+    <PackageIcon>n-architecture-logo.png</PackageIcon>
+    <RepositoryUrl>https://github.com/kodlamaio-projects/nArchitecture.Core</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\docs\images\n-architecture-logo.png">

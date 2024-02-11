@@ -1,6 +1,6 @@
 ﻿using Nest;
 
-namespace Core.ElasticSearch.Models;
+namespace NArchitecture.Core.ElasticSearch.Models;
 
 public class ElasticSearchModel
 {

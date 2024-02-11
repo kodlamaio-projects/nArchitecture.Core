@@ -1,10 +1,10 @@
 ﻿using System.Linq.Expressions;
-using Core.Persistence.Paging;
-using Core.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore.Query;
 using Moq;
+using NArchitecture.Core.Persistence.Paging;
+using NArchitecture.Core.Persistence.Repositories;
 
-namespace Core.Test.Application.Helpers;
+namespace NArchitecture.Core.Test.Application.Helpers;
 
 public static class MockRepositoryHelper
 {

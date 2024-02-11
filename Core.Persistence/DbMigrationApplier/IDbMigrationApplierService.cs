@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Core.Persistence.DbMigrationApplier;
+namespace NArchitecture.Core.Persistence.DbMigrationApplier;
 
 public interface IDbMigrationApplierService
 {

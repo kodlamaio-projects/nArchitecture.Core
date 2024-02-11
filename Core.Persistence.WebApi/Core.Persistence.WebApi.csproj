@@ -1,21 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-	<TargetFramework>net8.0</TargetFramework>
-	<ImplicitUsings>enable</ImplicitUsings>
-	<Nullable>enable</Nullable>
-	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	<PackageId>Kodlamaio.NArchitecture.$(AssemblyName)</PackageId>
-	<Version>0.1.0</Version>
-	<Title>NArchitecture $(AssemblyName)</Title>
-    <Description>Core package for persistence layer in NArchitecture project.</Description>
-	<Product>NArchitecture</Product>
-	<Authors>Kodlama.io, Contributors</Authors>
-	<Company>Kodlama.io</Company>
-    <PackageTags>Core, EntityFrameworkCore, Repository, Entity, CRUD, Paging, DynamicQuery, SoftDelete</PackageTags>
-	<PackageIcon>n-architecture-logo.png</PackageIcon>
-	<RepositoryUrl>https://github.com/kodlamaio-projects/nArchitecture.Core</RepositoryUrl>
-	<PackageLicenseFile>LICENSE</PackageLicenseFile>
-	<PackageReadmeFile>README.md</PackageReadmeFile>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>NArchitecture.$(AssemblyName)</RootNamespace>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>NArchitecture.$(AssemblyName)</PackageId>
+    <Version>1.0.0</Version>
+    <Title>NArchitecture $(AssemblyName)</Title>
+    <Description>The NArchitecture Core.Persistence.WebApi package provides core classes and extensions for integrating data access and persistence services into ASP.NET Web API projects. It includes support for configuring and registering repositories, unit of work pattern, database migration applier, Web API tools, and essential utilities for data access and persistence management using various data storage technologies such as relational databases, NoSQL databases, and file systems in Web API applications.</Description>
+    <Product>NArchitecture</Product>
+    <Authors>Kodlama.io, Contributors</Authors>
+    <Company>Kodlama.io</Company>
+    <PackageTags>Clean Architecture, Union Architecture, Core, NArchitecture, Persistence, Data Access, Web API, ASP.NET, Repository Pattern, Unit of Work, Database, ORM, NoSQL, Relational, File System, Migration, Tools</PackageTags>
+    <PackageIcon>n-architecture-logo.png</PackageIcon>
+    <RepositoryUrl>https://github.com/kodlamaio-projects/nArchitecture.Core</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\docs\images\n-architecture-logo.png">

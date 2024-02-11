@@ -1,9 +1,9 @@
 ﻿using System.Collections.Immutable;
-using Core.Localization.Abstraction;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
+using NArchitecture.Core.Localization.Abstraction;
 
-namespace Core.Localization.WebApi;
+namespace NArchitecture.Core.Localization.WebApi;
 
 public class LocalizationMiddleware
 {

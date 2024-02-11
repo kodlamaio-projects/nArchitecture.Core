@@ -1,4 +1,4 @@
-﻿namespace Core.Security.JWT;
+﻿namespace NArchitecture.Core.Security.JWT;
 
 public class AccessToken
 {

@@ -1,9 +1,9 @@
-﻿using Core.CrossCuttingConcerns.Exceptions.Types;
-using FluentValidation;
+﻿using FluentValidation;
 using MediatR;
-using ValidationException = Core.CrossCuttingConcerns.Exceptions.Types.ValidationException;
+using NArchitecture.Core.CrossCuttingConcerns.Exception.Types;
+using ValidationException = NArchitecture.Core.CrossCuttingConcerns.Exception.Types.ValidationException;
 
-namespace Core.Application.Pipelines.Validation;
+namespace NArchitecture.Core.Application.Pipelines.Validation;
 
 public class RequestValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>

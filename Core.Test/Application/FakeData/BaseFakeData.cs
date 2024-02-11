@@ -1,6 +1,6 @@
-﻿using Core.Persistence.Repositories;
+﻿using NArchitecture.Core.Persistence.Repositories;
 
-namespace Core.Test.Application.FakeData;
+namespace NArchitecture.Core.Test.Application.FakeData;
 
 public abstract class BaseFakeData<TEntity, TEntityId>
     where TEntity : Entity<TEntityId>, new()

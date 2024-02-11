@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Core.Persistence.Paging;
+namespace NArchitecture.Core.Persistence.Paging;
 
 public static class IQueryablePaginateExtensions
 {

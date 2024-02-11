@@ -1,7 +1,7 @@
 ﻿using System.Linq.Dynamic.Core;
 using System.Text;
 
-namespace Core.Persistence.Dynamic;
+namespace NArchitecture.Core.Persistence.Dynamic;
 
 public static class IQueryableDynamicFilterExtensions
 {
@@ -90,18 +90,14 @@ public static class IQueryableDynamicFilterExtensions
         StringBuilder where = new();
 
         if (!string.IsNullOrEmpty(filter.Value))
-        {
             if (filter.Operator == "doesnotcontain")
                 where.Append($"(!np({filter.Field}).{comparison}(@{index.ToString()}))");
             else if (comparison is "StartsWith" or "EndsWith" or "Contains")
                 where.Append($"(np({filter.Field}).{comparison}(@{index.ToString()}))");
             else
                 where.Append($"np({filter.Field}) {comparison} @{index.ToString()}");
-        }
         else if (filter.Operator is "isnull" or "isnotnull")
-        {
             where.Append($"np({filter.Field}) {comparison}");
-        }
 
         if (filter.Logic is not null && filter.Filters is not null && filter.Filters.Any())
         {

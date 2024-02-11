@@ -1,6 +1,6 @@
-﻿using Core.Persistence.Repositories;
+﻿using NArchitecture.Core.Persistence.Repositories;
 
-namespace Core.Security.Entities;
+namespace NArchitecture.Core.Security.Entities;
 
 public class EmailAuthenticator<TUserId, TOperationClaimId> : Entity<TUserId>
 {

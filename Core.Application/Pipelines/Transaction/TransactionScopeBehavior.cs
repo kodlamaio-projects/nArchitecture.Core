@@ -1,7 +1,7 @@
 ﻿using System.Transactions;
 using MediatR;
 
-namespace Core.Application.Pipelines.Transaction;
+namespace NArchitecture.Core.Application.Pipelines.Transaction;
 
 public class TransactionScopeBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>, ITransactionalRequest

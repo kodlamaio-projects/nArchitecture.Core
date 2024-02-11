@@ -1,6 +1,6 @@
 ﻿using MimeKit;
 
-namespace Core.Mailing;
+namespace NArchitecture.Core.Mailing;
 
 public class Mail
 {

@@ -1,6 +1,6 @@
 ﻿using Amazon;
 
-namespace Core.Translation.AmazonTranslate;
+namespace NArchitecture.Core.Translation.AmazonTranslate;
 
 public class AmazonTranslateConfiguration
 {

@@ -1,4 +1,4 @@
-﻿namespace Core.Security.OtpAuthenticator;
+﻿namespace NArchitecture.Core.Security.OtpAuthenticator;
 
 public interface IOtpAuthenticatorHelper
 {

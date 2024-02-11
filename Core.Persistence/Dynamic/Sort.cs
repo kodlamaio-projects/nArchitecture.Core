@@ -1,4 +1,4 @@
-﻿namespace Core.Persistence.Dynamic;
+﻿namespace NArchitecture.Core.Persistence.Dynamic;
 
 public class Sort
 {

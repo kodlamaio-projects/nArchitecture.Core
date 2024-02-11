@@ -1,3 +1,3 @@
-﻿namespace Core.Application.Rules;
+﻿namespace NArchitecture.Core.Application.Rules;
 
 public abstract class BaseBusinessRules { }

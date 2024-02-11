@@ -1,6 +1,7 @@
-﻿using OtpNet;
+﻿using NArchitecture.Core.Security.OtpAuthenticator;
+using OtpNet;
 
-namespace Core.Security.OtpAuthenticator.OtpNet;
+namespace NArchitecture.Core.Security.OtpAuthenticator.OtpNet;
 
 public class OtpNetOtpAuthenticatorHelper : IOtpAuthenticatorHelper
 {

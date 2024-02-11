@@ -5,7 +5,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Core.Application.Pipelines.Caching;
+namespace NArchitecture.Core.Application.Pipelines.Caching;
 
 public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>, ICachableRequest
@@ -35,9 +35,7 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
             _logger.LogInformation($"Fetched from Cache -> {request.CacheKey}");
         }
         else
-        {
             response = await getResponseAndAddToCache(request, next, cancellationToken);
-        }
 
         return response;
     }

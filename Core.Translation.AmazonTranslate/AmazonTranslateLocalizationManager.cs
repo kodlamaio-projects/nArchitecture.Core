@@ -1,8 +1,8 @@
 ﻿using Amazon.Translate;
 using Amazon.Translate.Model;
-using Core.Translation.Abstraction;
+using NArchitecture.Core.Translation.Abstraction;
 
-namespace Core.Translation.AmazonTranslate;
+namespace NArchitecture.Core.Translation.AmazonTranslate;
 
 public class AmazonTranslateLocalizationManager : ITranslationService
 {

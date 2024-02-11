@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace Core.Persistence.DbMigrationApplier;
+namespace NArchitecture.Core.Persistence.DbMigrationApplier;
 
 public static class DatabaseFacadeDbMigrationApplierExtensions
 {

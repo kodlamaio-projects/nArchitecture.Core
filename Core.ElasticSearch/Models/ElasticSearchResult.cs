@@ -1,6 +1,6 @@
-﻿namespace Core.ElasticSearch.Models;
+﻿namespace NArchitecture.Core.ElasticSearch.Models;
 
-public class ElasticSearchResult : IElasticSearchResult //todo: refactor
+public class ElasticSearchResult : IElasticSearchResult
 {
     public bool Success { get; }
     public string? Message { get; }

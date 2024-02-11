@@ -1,6 +1,6 @@
-﻿using Core.Persistence.Paging;
+﻿using NArchitecture.Core.Persistence.Paging;
 
-namespace Core.Application.Responses;
+namespace NArchitecture.Core.Application.Responses;
 
 public class GetListResponse<T> : BasePageableModel
 {

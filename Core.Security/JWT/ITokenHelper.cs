@@ -1,6 +1,6 @@
-﻿using Core.Security.Entities;
+﻿using NArchitecture.Core.Security.Entities;
 
-namespace Core.Security.JWT;
+namespace NArchitecture.Core.Security.JWT;
 
 public interface ITokenHelper<TUserId, TOperationClaimId>
 {
