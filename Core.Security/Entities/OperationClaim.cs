@@ -6,8 +6,6 @@ public class OperationClaim<TId, TUserId> : Entity<TId>
 {
     public string Name { get; set; }
 
-    public virtual ICollection<UserOperationClaim<TUserId, TId>> UserOperationClaims { get; set; } = null!;
-
     public OperationClaim()
     {
         Name = string.Empty;

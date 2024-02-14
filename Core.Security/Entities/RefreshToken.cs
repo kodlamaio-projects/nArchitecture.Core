@@ -13,8 +13,6 @@ public class RefreshToken<TUserId, TOperationClaimId> : Entity<TUserId>
     public string? ReplacedByToken { get; set; }
     public string? ReasonRevoked { get; set; }
 
-    public virtual User<TUserId, TOperationClaimId> User { get; set; } = null!;
-
     public RefreshToken()
     {
         UserId = default!;

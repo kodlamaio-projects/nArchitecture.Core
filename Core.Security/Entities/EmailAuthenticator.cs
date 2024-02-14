@@ -8,8 +8,6 @@ public class EmailAuthenticator<TUserId, TOperationClaimId> : Entity<TUserId>
     public string? ActivationKey { get; set; }
     public bool IsVerified { get; set; }
 
-    public virtual User<TUserId, TOperationClaimId> User { get; set; } = null!;
-
     public EmailAuthenticator()
     {
         UserId = default!;

@@ -8,8 +8,6 @@ public class OtpAuthenticator<TUserId, TOperationClaimId> : Entity<TUserId>
     public byte[] SecretKey { get; set; }
     public bool IsVerified { get; set; }
 
-    public virtual User<TUserId, TOperationClaimId> User { get; set; } = null!;
-
     public OtpAuthenticator()
     {
         UserId = default!;

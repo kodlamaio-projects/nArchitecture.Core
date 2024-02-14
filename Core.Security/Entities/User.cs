@@ -10,11 +10,6 @@ public class User<TId, TOperationClaimId> : Entity<TId>
     public byte[] PasswordHash { get; set; }
     public AuthenticatorType AuthenticatorType { get; set; }
 
-    public virtual ICollection<UserOperationClaim<TId, TOperationClaimId>> UserOperationClaims { get; set; } = null!;
-    public virtual ICollection<RefreshToken<TId, TOperationClaimId>> RefreshTokens { get; set; } = null!;
-    public virtual ICollection<EmailAuthenticator<TId, TOperationClaimId>> EmailAuthenticators { get; set; } = null!;
-    public virtual ICollection<OtpAuthenticator<TId, TOperationClaimId>> OtpAuthenticators { get; set; } = null!;
-
     public User()
     {
         Email = string.Empty;

@@ -7,9 +7,6 @@ public class UserOperationClaim<TUserId, TOperationClaimId> : Entity<TUserId>
     public TUserId UserId { get; set; }
     public TOperationClaimId OperationClaimId { get; set; }
 
-    public virtual User<TUserId, TOperationClaimId> User { get; set; } = default!;
-    public virtual OperationClaim<TOperationClaimId, TUserId> OperationClaim { get; set; } = default!;
-
     public UserOperationClaim()
     {
         UserId = default!;
