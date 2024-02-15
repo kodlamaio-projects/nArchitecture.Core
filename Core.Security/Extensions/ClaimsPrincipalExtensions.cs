@@ -15,9 +15,9 @@ public static class ClaimsPrincipalExtensions
         return claimsPrincipal?.Claims(ClaimTypes.Role);
     }
 
-    public static int GetUserId(this ClaimsPrincipal claimsPrincipal)
+    public static object GetUserId(this ClaimsPrincipal claimsPrincipal)
     {
-        string? result = claimsPrincipal?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        return Convert.ToInt32(result);
+        object result = claimsPrincipal?.FindFirst(ClaimTypes.NameIdentifier)?.Value!;
+        return result;
     }
 }
