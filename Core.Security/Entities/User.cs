@@ -3,7 +3,7 @@ using NArchitecture.Core.Security.Enums;
 
 namespace NArchitecture.Core.Security.Entities;
 
-public class User<TId, TOperationClaimId> : Entity<TId>
+public class User<TId> : Entity<TId>
 {
     public string Email { get; set; }
     public byte[] PasswordSalt { get; set; }

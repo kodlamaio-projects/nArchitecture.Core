@@ -26,7 +26,7 @@ public class JwtHelper<TUserId, TOperationClaimId> : ITokenHelper<TUserId, TOper
             ?? throw new NoNullAllowedException($"\"{configurationSection}\" section cannot found in configuration.");
     }
 
-    public AccessToken CreateToken(User<TUserId, TOperationClaimId> user, IList<OperationClaim<TOperationClaimId, TUserId>> operationClaims)
+    public AccessToken CreateToken(User<TUserId> user, IList<OperationClaim<TOperationClaimId>> operationClaims)
     {
         _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
         SecurityKey securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
@@ -38,9 +38,9 @@ public class JwtHelper<TUserId, TOperationClaimId> : ITokenHelper<TUserId, TOper
         return new AccessToken { Token = token, ExpirationDate = _accessTokenExpiration };
     }
 
-    public RefreshToken<TUserId, TOperationClaimId> CreateRefreshToken(User<TUserId, TOperationClaimId> user, string ipAddress)
+    public RefreshToken<TUserId> CreateRefreshToken(User<TUserId> user, string ipAddress)
     {
-        RefreshToken<TUserId, TOperationClaimId> refreshToken =
+        RefreshToken<TUserId> refreshToken =
             new()
             {
                 UserId = user.Id,
@@ -54,9 +54,9 @@ public class JwtHelper<TUserId, TOperationClaimId> : ITokenHelper<TUserId, TOper
 
     public JwtSecurityToken CreateJwtSecurityToken(
         TokenOptions tokenOptions,
-        User<TUserId, TOperationClaimId> user,
+        User<TUserId> user,
         SigningCredentials signingCredentials,
-        IList<OperationClaim<TOperationClaimId, TUserId>> operationClaims
+        IList<OperationClaim<TOperationClaimId>> operationClaims
     )
     {
         JwtSecurityToken jwt =
@@ -72,8 +72,8 @@ public class JwtHelper<TUserId, TOperationClaimId> : ITokenHelper<TUserId, TOper
     }
 
     protected virtual IEnumerable<Claim> SetClaims(
-        User<TUserId, TOperationClaimId> user,
-        IList<OperationClaim<TOperationClaimId, TUserId>> operationClaims
+        User<TUserId> user,
+        IList<OperationClaim<TOperationClaimId>> operationClaims
     )
     {
         List<Claim> claims = [];

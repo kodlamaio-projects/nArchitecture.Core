@@ -2,7 +2,7 @@
 
 namespace NArchitecture.Core.Security.Entities;
 
-public class EmailAuthenticator<TUserId, TOperationClaimId> : Entity<TUserId>
+public class EmailAuthenticator<TUserId> : Entity<TUserId>
 {
     public TUserId UserId { get; set; }
     public string? ActivationKey { get; set; }

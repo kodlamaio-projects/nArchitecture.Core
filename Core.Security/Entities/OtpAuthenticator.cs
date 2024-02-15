@@ -2,7 +2,7 @@
 
 namespace NArchitecture.Core.Security.Entities;
 
-public class OtpAuthenticator<TUserId, TOperationClaimId> : Entity<TUserId>
+public class OtpAuthenticator<TUserId> : Entity<TUserId>
 {
     public TUserId UserId { get; set; }
     public byte[] SecretKey { get; set; }

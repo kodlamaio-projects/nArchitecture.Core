@@ -2,7 +2,7 @@
 
 namespace NArchitecture.Core.Security.Entities;
 
-public class RefreshToken<TUserId, TOperationClaimId> : Entity<TUserId>
+public class RefreshToken<TUserId> : Entity<TUserId>
 {
     public TUserId UserId { get; set; }
     public string Token { get; set; }

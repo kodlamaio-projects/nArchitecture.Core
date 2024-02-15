@@ -2,7 +2,7 @@
 
 namespace NArchitecture.Core.Security.Entities;
 
-public class OperationClaim<TId, TUserId> : Entity<TId>
+public class OperationClaim<TId> : Entity<TId>
 {
     public string Name { get; set; }
 
