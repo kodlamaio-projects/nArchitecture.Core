@@ -84,7 +84,8 @@ public class MailKitMailService : IMailService
     private AsymmetricKeyParameter readPrivateKeyFromPemEncodedString()
     {
         AsymmetricKeyParameter result;
-        string pemEncodedKey = "-----BEGIN RSA PRIVATE KEY-----\n" + _mailSettings.DkimPrivateKey + "\n-----END RSA PRIVATE KEY-----";
+        string pemEncodedKey =
+            "-----BEGIN RSA PRIVATE KEY-----\n" + _mailSettings.DkimPrivateKey + "\n-----END RSA PRIVATE KEY-----";
         using (StringReader stringReader = new(pemEncodedKey))
         {
             PemReader pemReader = new(stringReader);

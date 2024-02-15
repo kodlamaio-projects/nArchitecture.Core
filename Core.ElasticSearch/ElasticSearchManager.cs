@@ -20,7 +20,8 @@ public class ElasticSearchManager : IElasticSearch
                 new JsonNetSerializer(
                     builtInSerializer,
                     connectionSettings,
-                    jsonSerializerSettingsFactory: () => new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }
+                    jsonSerializerSettingsFactory: () =>
+                        new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }
                 )
         );
     }
@@ -61,7 +62,10 @@ public class ElasticSearchManager : IElasticSearch
     public async Task<IElasticSearchResult> DeleteByElasticIdAsync(ElasticSearchModel model)
     {
         ElasticClient elasticClient = getElasticClient(model.IndexName);
-        DeleteResponse? response = await elasticClient.DeleteAsync<object>(model.ElasticId, selector: x => x.Index(model.IndexName));
+        DeleteResponse? response = await elasticClient.DeleteAsync<object>(
+            model.ElasticId,
+            selector: x => x.Index(model.IndexName)
+        );
         return new ElasticSearchResult(
             response.IsValid,
             message: response.IsValid ? ElasticSearchMessages.Success : response.ServerError.Error.Reason

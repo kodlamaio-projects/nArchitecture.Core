@@ -9,7 +9,13 @@ public class LogDetailWithException : LogDetail
         ExceptionMessage = string.Empty;
     }
 
-    public LogDetailWithException(string fullName, string methodName, string user, List<LogParameter> parameters, string exceptionMessage)
+    public LogDetailWithException(
+        string fullName,
+        string methodName,
+        string user,
+        List<LogParameter> parameters,
+        string exceptionMessage
+    )
         : base(fullName, methodName, user, parameters)
     {
         ExceptionMessage = exceptionMessage;

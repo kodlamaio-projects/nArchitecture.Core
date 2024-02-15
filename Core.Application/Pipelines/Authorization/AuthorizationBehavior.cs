@@ -17,7 +17,11 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+    public async Task<TResponse> Handle(
+        TRequest request,
+        RequestHandlerDelegate<TResponse> next,
+        CancellationToken cancellationToken
+    )
     {
         ICollection<string>? userRoleClaims = _httpContextAccessor.HttpContext.User.ClaimRoles();
 
@@ -25,7 +29,9 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
             throw new AuthorizationException("You are not authenticated.");
 
         bool isNotMatchedAUserRoleClaimWithRequestRoles = userRoleClaims
-            .FirstOrDefault(userRoleClaim => userRoleClaim == GeneralOperationClaims.Admin || request.Roles.Contains(userRoleClaim))
+            .FirstOrDefault(userRoleClaim =>
+                userRoleClaim == GeneralOperationClaims.Admin || request.Roles.Contains(userRoleClaim)
+            )
             .IsNullOrEmpty();
         if (isNotMatchedAUserRoleClaimWithRequestRoles)
             throw new AuthorizationException("You are not authorized.");

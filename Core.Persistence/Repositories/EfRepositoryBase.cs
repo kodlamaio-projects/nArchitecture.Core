@@ -9,7 +9,9 @@ using NArchitecture.Core.Persistence.Paging;
 
 namespace NArchitecture.Core.Persistence.Repositories;
 
-public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId>
+public class EfRepositoryBase<TEntity, TEntityId, TContext>
+    : IAsyncRepository<TEntity, TEntityId>,
+        IRepository<TEntity, TEntityId>
     where TEntity : Entity<TEntityId>
     where TContext : DbContext
 {
@@ -352,7 +354,9 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
         var navigations = Context
             .Entry(entity)
             .Metadata.GetNavigations()
-            .Where(x => x is { IsOnDependent: false, ForeignKey.DeleteBehavior: DeleteBehavior.ClientCascade or DeleteBehavior.Cascade })
+            .Where(x =>
+                x is { IsOnDependent: false, ForeignKey.DeleteBehavior: DeleteBehavior.ClientCascade or DeleteBehavior.Cascade }
+            )
             .ToList();
         foreach (INavigation? navigation in navigations)
         {
@@ -367,7 +371,8 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
                 if (navValue == null)
                 {
                     IQueryable query = Context.Entry(entity).Collection(navigation.PropertyInfo.Name).Query();
-                    navValue = await GetRelationLoaderQuery(query, navigationPropertyType: navigation.PropertyInfo.GetType()).ToListAsync();
+                    navValue = await GetRelationLoaderQuery(query, navigationPropertyType: navigation.PropertyInfo.GetType())
+                        .ToListAsync();
                     if (navValue == null)
                         continue;
                 }
@@ -402,7 +407,9 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
         var navigations = Context
             .Entry(entity)
             .Metadata.GetNavigations()
-            .Where(x => x is { IsOnDependent: false, ForeignKey.DeleteBehavior: DeleteBehavior.ClientCascade or DeleteBehavior.Cascade })
+            .Where(x =>
+                x is { IsOnDependent: false, ForeignKey.DeleteBehavior: DeleteBehavior.ClientCascade or DeleteBehavior.Cascade }
+            )
             .ToList();
         foreach (INavigation? navigation in navigations)
         {
@@ -430,7 +437,8 @@ public class EfRepositoryBase<TEntity, TEntityId, TContext> : IAsyncRepository<T
                 if (navValue == null)
                 {
                     IQueryable query = Context.Entry(entity).Reference(navigation.PropertyInfo.Name).Query();
-                    navValue = GetRelationLoaderQuery(query, navigationPropertyType: navigation.PropertyInfo.GetType()).FirstOrDefault();
+                    navValue = GetRelationLoaderQuery(query, navigationPropertyType: navigation.PropertyInfo.GetType())
+                        .FirstOrDefault();
                     if (navValue == null)
                         continue;
                 }

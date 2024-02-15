@@ -15,14 +15,22 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
     private readonly CacheSettings _cacheSettings;
     private readonly ILogger<CachingBehavior<TRequest, TResponse>> _logger;
 
-    public CachingBehavior(IDistributedCache cache, ILogger<CachingBehavior<TRequest, TResponse>> logger, IConfiguration configuration)
+    public CachingBehavior(
+        IDistributedCache cache,
+        ILogger<CachingBehavior<TRequest, TResponse>> logger,
+        IConfiguration configuration
+    )
     {
         _cache = cache;
         _logger = logger;
         _cacheSettings = configuration.GetSection("CacheSettings").Get<CacheSettings>() ?? throw new InvalidOperationException();
     }
 
-    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+    public async Task<TResponse> Handle(
+        TRequest request,
+        RequestHandlerDelegate<TResponse> next,
+        CancellationToken cancellationToken
+    )
     {
         if (request.BypassCache)
             return await next();
@@ -81,10 +89,17 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
         );
         int? cacheGroupCacheSlidingExpirationValue = null;
         if (cacheGroupCacheSlidingExpirationCache != null)
-            cacheGroupCacheSlidingExpirationValue = Convert.ToInt32(Encoding.Default.GetString(cacheGroupCacheSlidingExpirationCache));
-        if (cacheGroupCacheSlidingExpirationValue == null || slidingExpiration.TotalSeconds > cacheGroupCacheSlidingExpirationValue)
+            cacheGroupCacheSlidingExpirationValue = Convert.ToInt32(
+                Encoding.Default.GetString(cacheGroupCacheSlidingExpirationCache)
+            );
+        if (
+            cacheGroupCacheSlidingExpirationValue == null
+            || slidingExpiration.TotalSeconds > cacheGroupCacheSlidingExpirationValue
+        )
             cacheGroupCacheSlidingExpirationValue = Convert.ToInt32(slidingExpiration.TotalSeconds);
-        byte[] serializeCachedGroupSlidingExpirationData = JsonSerializer.SerializeToUtf8Bytes(cacheGroupCacheSlidingExpirationValue);
+        byte[] serializeCachedGroupSlidingExpirationData = JsonSerializer.SerializeToUtf8Bytes(
+            cacheGroupCacheSlidingExpirationValue
+        );
 
         DistributedCacheEntryOptions cacheOptions =
             new() { SlidingExpiration = TimeSpan.FromSeconds(Convert.ToDouble(cacheGroupCacheSlidingExpirationValue)) };

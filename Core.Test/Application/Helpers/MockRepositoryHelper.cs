@@ -158,10 +158,20 @@ public static class MockRepositoryHelper
     {
         mockRepo
             .Setup(s =>
-                s.AnyAsync(It.IsAny<Expression<Func<TEntity, bool>>>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<CancellationToken>())
+                s.AnyAsync(
+                    It.IsAny<Expression<Func<TEntity, bool>>>(),
+                    It.IsAny<bool>(),
+                    It.IsAny<bool>(),
+                    It.IsAny<CancellationToken>()
+                )
             )
             .ReturnsAsync(
-                (Expression<Func<TEntity, bool>> expression, bool withDeleted, bool enableTracking, CancellationToken cancellationToken) =>
+                (
+                    Expression<Func<TEntity, bool>> expression,
+                    bool withDeleted,
+                    bool enableTracking,
+                    CancellationToken cancellationToken
+                ) =>
                 {
                     if (!withDeleted)
                         entityList = entityList.Where(e => !e.DeletedDate.HasValue).ToList();

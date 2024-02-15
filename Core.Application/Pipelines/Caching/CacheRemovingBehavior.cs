@@ -18,7 +18,11 @@ public class CacheRemovingBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
         _logger = logger;
     }
 
-    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+    public async Task<TResponse> Handle(
+        TRequest request,
+        RequestHandlerDelegate<TResponse> next,
+        CancellationToken cancellationToken
+    )
     {
         if (request.BypassCache)
             return await next();
@@ -31,7 +35,9 @@ public class CacheRemovingBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
                 byte[]? cachedGroup = await _cache.GetAsync(request.CacheGroupKey[i], cancellationToken);
                 if (cachedGroup != null)
                 {
-                    HashSet<string> keysInGroup = JsonSerializer.Deserialize<HashSet<string>>(Encoding.Default.GetString(cachedGroup))!;
+                    HashSet<string> keysInGroup = JsonSerializer.Deserialize<HashSet<string>>(
+                        Encoding.Default.GetString(cachedGroup)
+                    )!;
                     foreach (string key in keysInGroup)
                     {
                         await _cache.RemoveAsync(key, cancellationToken);

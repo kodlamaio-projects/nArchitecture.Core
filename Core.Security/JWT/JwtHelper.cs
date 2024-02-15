@@ -71,10 +71,7 @@ public class JwtHelper<TUserId, TOperationClaimId> : ITokenHelper<TUserId, TOper
         return jwt;
     }
 
-    protected virtual IEnumerable<Claim> SetClaims(
-        User<TUserId> user,
-        IList<OperationClaim<TOperationClaimId>> operationClaims
-    )
+    protected virtual IEnumerable<Claim> SetClaims(User<TUserId> user, IList<OperationClaim<TOperationClaimId>> operationClaims)
     {
         List<Claim> claims = [];
         claims.AddNameIdentifier(user!.Id!.ToString()!);
