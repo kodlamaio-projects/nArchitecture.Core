@@ -5,6 +5,9 @@ namespace NArchitecture.Core.Security.Hashing;
 
 public static class HashingHelper
 {
+    /// <summary>
+    /// Create a password hash and salt via HMACSHA512.
+    /// </summary>
     public static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
     {
         using HMACSHA512 hmac = new();
@@ -13,6 +16,9 @@ public static class HashingHelper
         passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
     }
 
+    /// <summary>
+    /// Verify a password hash and salt via HMACSHA512.
+    /// </summary>
     public static bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
     {
         using HMACSHA512 hmac = new(passwordSalt);

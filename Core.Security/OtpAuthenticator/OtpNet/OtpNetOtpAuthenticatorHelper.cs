@@ -1,5 +1,4 @@
-﻿using NArchitecture.Core.Security.OtpAuthenticator;
-using OtpNet;
+﻿using OtpNet;
 
 namespace NArchitecture.Core.Security.OtpAuthenticator.OtpNet;
 

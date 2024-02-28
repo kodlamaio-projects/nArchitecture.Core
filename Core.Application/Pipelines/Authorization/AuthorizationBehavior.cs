@@ -23,7 +23,7 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
         CancellationToken cancellationToken
     )
     {
-        ICollection<string>? userRoleClaims = _httpContextAccessor.HttpContext.User.ClaimRoles();
+        ICollection<string>? userRoleClaims = _httpContextAccessor.HttpContext.User.GetRoleClaims();
 
         if (userRoleClaims == null)
             throw new AuthorizationException("You are not authenticated.");

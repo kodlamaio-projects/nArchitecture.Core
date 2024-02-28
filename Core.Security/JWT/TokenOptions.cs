@@ -4,8 +4,17 @@ public class TokenOptions
 {
     public string Audience { get; set; }
     public string Issuer { get; set; }
+
+    /// <summary>
+    /// Access token expiration time in minutes.
+    /// </summary>
     public int AccessTokenExpiration { get; set; }
+
     public string SecurityKey { get; set; }
+
+    /// <summary>
+    /// Refresh token time in days.
+    /// </summary>
     public int RefreshTokenTTL { get; set; }
 
     public TokenOptions()
