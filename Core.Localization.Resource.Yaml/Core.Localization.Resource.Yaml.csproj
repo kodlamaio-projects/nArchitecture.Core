@@ -6,7 +6,7 @@
     <RootNamespace>NArchitecture.$(AssemblyName)</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>NArchitecture.$(AssemblyName)</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Title>NArchitecture $(AssemblyName)</Title>
     <Description>The NArchitecture Core.Localization.Resource.Yaml package provides core classes and extensions for using YAML files as resource files for localization in the application layer in both clean and union architectures. It includes support for reading and parsing YAML files, culture-specific translations, and essential utilities for YAML-based localization management.</Description>
     <Product>NArchitecture</Product>
@@ -33,7 +33,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="YamlDotNet" Version="15.1.0" />
+    <PackageReference Include="YamlDotNet" Version="15.1.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core.Localization.Abstraction\Core.Localization.Abstraction.csproj" />
