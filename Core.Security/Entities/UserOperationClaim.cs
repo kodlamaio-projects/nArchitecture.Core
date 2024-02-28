@@ -2,7 +2,7 @@
 
 namespace NArchitecture.Core.Security.Entities;
 
-public class UserOperationClaim<TUserId, TOperationClaimId> : Entity<TUserId>
+public class UserOperationClaim<TId, TUserId, TOperationClaimId> : Entity<TId>
 {
     public TUserId UserId { get; set; }
     public TOperationClaimId OperationClaimId { get; set; }
@@ -19,7 +19,7 @@ public class UserOperationClaim<TUserId, TOperationClaimId> : Entity<TUserId>
         OperationClaimId = operationClaimId;
     }
 
-    public UserOperationClaim(TUserId id, TUserId userId, TOperationClaimId operationClaimId)
+    public UserOperationClaim(TId id, TUserId userId, TOperationClaimId operationClaimId)
         : base(id)
     {
         UserId = userId;

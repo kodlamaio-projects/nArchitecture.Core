@@ -1,16 +1,16 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using NArchitecture.Core.Security.Encryption;
-using NArchitecture.Core.Security.Entities;
-using NArchitecture.Core.Security.Extensions;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using Microsoft.IdentityModel.Tokens;
+using NArchitecture.Core.Security.Encryption;
+using NArchitecture.Core.Security.Entities;
+using NArchitecture.Core.Security.Extensions;
 
 namespace NArchitecture.Core.Security.JWT;
 
-public class JwtHelper<TUserId, TOperationClaimId> : ITokenHelper<TUserId, TOperationClaimId>
+public class JwtHelper<TUserId, TOperationClaimId, TRefreshTokenId> : ITokenHelper<TUserId, TOperationClaimId, TRefreshTokenId>
 {
     private readonly TokenOptions _tokenOptions;
 
@@ -37,9 +37,9 @@ public class JwtHelper<TUserId, TOperationClaimId> : ITokenHelper<TUserId, TOper
         return new AccessToken() { Token = token, ExpirationDate = accessTokenExpiration };
     }
 
-    public RefreshToken<TUserId> CreateRefreshToken(User<TUserId> user, string ipAddress)
+    public RefreshToken<TRefreshTokenId, TUserId> CreateRefreshToken(User<TUserId> user, string ipAddress)
     {
-        return new RefreshToken<TUserId>()
+        return new RefreshToken<TRefreshTokenId, TUserId>()
         {
             UserId = user.Id,
             Token = randomRefreshToken(),
