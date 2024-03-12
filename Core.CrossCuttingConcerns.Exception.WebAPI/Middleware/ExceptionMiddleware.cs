@@ -1,6 +1,7 @@
 ﻿using System.Net.Mime;
 using System.Text.Json;
 using Microsoft.AspNetCore.Http;
+using NArchitecture.Core.CrossCuttingConcerns.Exception.Types;
 using NArchitecture.Core.CrossCuttingConcerns.Exception.WebApi.Handlers;
 using NArchitecture.Core.CrossCuttingConcerns.Logging;
 using NArchitecture.Core.CrossCuttingConcerns.Logging.Abstraction;
@@ -39,7 +40,27 @@ public class ExceptionMiddleware
     {
         response.ContentType = MediaTypeNames.Application.Json;
         _httpExceptionHandler.Response = response;
-        return _httpExceptionHandler.HandleException(exception);
+
+        if (exception is AuthorizationException authorizationException)
+        {
+            return _httpExceptionHandler.HandleAuthorizationException(authorizationException);
+        }
+        else if (exception is ValidationException validationException)
+        {
+            return _httpExceptionHandler.HandleValidationException(validationException);
+        }
+        else if (exception is BusinessException businessException)
+        {
+            return _httpExceptionHandler.HandleBusinessException(businessException);
+        }
+        else if (exception is NotFoundException notFoundException)
+        {
+            return _httpExceptionHandler.HandleNotFoundException(notFoundException);
+        }
+        else
+        {
+            return _httpExceptionHandler.HandleException(exception);
+        }
     }
 
     private Task LogException(HttpContext context, System.Exception exception)
