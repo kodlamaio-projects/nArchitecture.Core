@@ -35,14 +35,15 @@ public class ExceptionMiddleware
         }
     }
 
-    private Task HandleExceptionAsync(HttpResponse response, System.Exception exception)
+    protected virtual Task HandleExceptionAsync(HttpResponse response, dynamic exception)
     {
         response.ContentType = MediaTypeNames.Application.Json;
         _httpExceptionHandler.Response = response;
+
         return _httpExceptionHandler.HandleException(exception);
     }
 
-    private Task LogException(HttpContext context, System.Exception exception)
+    protected virtual Task LogException(HttpContext context, System.Exception exception)
     {
         List<LogParameter> logParameters = [new LogParameter { Type = context.GetType().Name, Value = exception.ToString() }];
 

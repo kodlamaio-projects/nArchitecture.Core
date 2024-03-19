@@ -6,7 +6,7 @@
     <RootNamespace>NArchitecture.$(AssemblyName)</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>NArchitecture.$(AssemblyName)</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Title>NArchitecture $(AssemblyName)</Title>
     <Description>The NArchitecture Core.CrossCuttingConcerns.Exception.WebApi package provides core classes for handling exceptions in ASP.NET Web API projects. It includes support for exception filters, exception handling middleware, and essential utilities for exception management in Web API applications.</Description>
     <Product>NArchitecture</Product>
