@@ -6,7 +6,7 @@
     <RootNamespace>NArchitecture.$(AssemblyName)</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>NArchitecture.$(AssemblyName)</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
     <Title>NArchitecture $(AssemblyName)</Title>
     <Description>The NArchitecture Core.Persistence package provides core interfaces and abstractions for data access and persistence in the application layer in both clean and union architectures. It includes support for defining repositories, unit of work pattern, and essential utilities for data access and persistence management using various data storage technologies such as relational databases, NoSQL databases, and file systems.</Description>
     <Product>NArchitecture</Product>

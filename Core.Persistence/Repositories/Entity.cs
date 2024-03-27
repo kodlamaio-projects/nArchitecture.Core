@@ -1,6 +1,6 @@
 ﻿namespace NArchitecture.Core.Persistence.Repositories;
 
-public class Entity<TId> : IEntityTimestamps
+public abstract class Entity<TId> : IEntity<TId>, IEntityTimestamps
 {
     public TId Id { get; set; }
     public DateTime CreatedDate { get; set; }

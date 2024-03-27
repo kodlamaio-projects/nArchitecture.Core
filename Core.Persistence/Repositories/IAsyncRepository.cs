@@ -40,20 +40,24 @@ public interface IAsyncRepository<TEntity, TEntityId> : IQuery<TEntity>
 
     Task<bool> AnyAsync(
         Expression<Func<TEntity, bool>>? predicate = null,
+        Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
         bool withDeleted = false,
-        bool enableTracking = true,
         CancellationToken cancellationToken = default
     );
 
-    Task<TEntity> AddAsync(TEntity entity);
+    Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default);
 
-    Task<ICollection<TEntity>> AddRangeAsync(ICollection<TEntity> entity);
+    Task<ICollection<TEntity>> AddRangeAsync(ICollection<TEntity> entities, CancellationToken cancellationToken = default);
 
-    Task<TEntity> UpdateAsync(TEntity entity);
+    Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default);
 
-    Task<ICollection<TEntity>> UpdateRangeAsync(ICollection<TEntity> entity);
+    Task<ICollection<TEntity>> UpdateRangeAsync(ICollection<TEntity> entities, CancellationToken cancellationToken = default);
 
-    Task<TEntity> DeleteAsync(TEntity entity, bool permanent = false);
+    Task<TEntity> DeleteAsync(TEntity entity, bool permanent = false, CancellationToken cancellationToken = default);
 
-    Task<ICollection<TEntity>> DeleteRangeAsync(ICollection<TEntity> entity, bool permanent = false);
+    Task<ICollection<TEntity>> DeleteRangeAsync(
+        ICollection<TEntity> entities,
+        bool permanent = false,
+        CancellationToken cancellationToken = default
+    );
 }

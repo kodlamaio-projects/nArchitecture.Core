@@ -6,7 +6,7 @@
     <RootNamespace>NArchitecture.$(AssemblyName)</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>NArchitecture.$(AssemblyName)</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Title>NArchitecture $(AssemblyName)</Title>
     <Description>The NArchitecture Core.Test package provides core classes and extensions for implementing unit tests and integration tests for the application layer in both clean and union architectures. It includes support for writing test cases, mock objects, and other essential utilities for testing components and functionalities in applications.</Description>
     <Product>NArchitecture</Product>

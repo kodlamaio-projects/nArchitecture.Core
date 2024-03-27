@@ -107,7 +107,7 @@ public static class MockRepositoryHelper
         where TRepository : class, IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId>
     {
         mockRepo
-            .Setup(r => r.AddAsync(It.IsAny<TEntity>()))
+            .Setup(r => r.AddAsync(It.IsAny<TEntity>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(
                 (TEntity entity) =>
                 {
@@ -122,7 +122,7 @@ public static class MockRepositoryHelper
         where TRepository : class, IAsyncRepository<TEntity, TEntityId2>, IRepository<TEntity, TEntityId2>
     {
         mockRepo
-            .Setup(r => r.UpdateAsync(It.IsAny<TEntity>()))!
+            .Setup(r => r.UpdateAsync(It.IsAny<TEntity>(), It.IsAny<CancellationToken>()))!
             .ReturnsAsync(
                 (TEntity entity) =>
                 {
@@ -139,9 +139,9 @@ public static class MockRepositoryHelper
         where TRepository : class, IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId>
     {
         mockRepo
-            .Setup(r => r.DeleteAsync(It.IsAny<TEntity>(), It.IsAny<bool>()))
+            .Setup(r => r.DeleteAsync(It.IsAny<TEntity>(), It.IsAny<bool>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(
-                (TEntity entity, bool permanent) =>
+                (TEntity entity, bool permanent, CancellationToken cancellationToken) =>
                 {
                     if (!permanent)
                         entity.DeletedDate = DateTime.UtcNow;
@@ -160,7 +160,7 @@ public static class MockRepositoryHelper
             .Setup(s =>
                 s.AnyAsync(
                     It.IsAny<Expression<Func<TEntity, bool>>>(),
-                    It.IsAny<bool>(),
+                    It.IsAny<Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>?>(),
                     It.IsAny<bool>(),
                     It.IsAny<CancellationToken>()
                 )
