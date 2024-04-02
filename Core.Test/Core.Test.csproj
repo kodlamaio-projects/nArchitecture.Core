@@ -6,7 +6,7 @@
     <RootNamespace>NArchitecture.$(AssemblyName)</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>NArchitecture.$(AssemblyName)</PackageId>
-    <Version>1.0.2</Version>
+    <Version>1.0.4</Version>
     <Title>NArchitecture $(AssemblyName)</Title>
     <Description>The NArchitecture Core.Test package provides core classes and extensions for implementing unit tests and integration tests for the application layer in both clean and union architectures. It includes support for writing test cases, mock objects, and other essential utilities for testing components and functionalities in applications.</Description>
     <Product>NArchitecture</Product>
@@ -35,7 +35,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Moq" Version="4.20.70" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core.Application\Core.Application.csproj" />

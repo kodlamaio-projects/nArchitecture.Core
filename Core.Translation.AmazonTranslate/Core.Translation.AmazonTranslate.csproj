@@ -6,7 +6,7 @@
     <RootNamespace>NArchitecture.$(AssemblyName)</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>NArchitecture.$(AssemblyName)</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Title>NArchitecture $(AssemblyName)</Title>
     <Description>The NArchitecture Core.Translation.AmazonTranslate package provides core classes and extensions for integrating Amazon Translate service as a translation provider in the application layer in both clean and union architectures. It includes support for configuring Amazon Translate clients, translating text, and managing translations using Amazon Translate service in applications.</Description>
     <Product>NArchitecture</Product>
@@ -33,7 +33,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AWSSDK.Translate" Version="3.7.300.53" />
+    <PackageReference Include="AWSSDK.Translate" Version="3.7.300.66" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core.Translation.Abstraction\Core.Translation.Abstraction.csproj" />
