@@ -23,11 +23,10 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
         CancellationToken cancellationToken
     )
     {
-        ICollection<string>? userRoleClaims = _httpContextAccessor.HttpContext.User.GetRoleClaims();
-
-        if (userRoleClaims == null)
+        if (!_httpContextAccessor.HttpContext.User.Claims.Any())
             throw new AuthorizationException("You are not authenticated.");
 
+        ICollection<string>? userRoleClaims = _httpContextAccessor.HttpContext.User.GetRoleClaims() ?? [];
         bool isNotMatchedAUserRoleClaimWithRequestRoles = userRoleClaims
             .FirstOrDefault(userRoleClaim =>
                 userRoleClaim == GeneralOperationClaims.Admin || request.Roles.Contains(userRoleClaim)
