@@ -6,7 +6,7 @@
 	<RootNamespace>NArchitecture.$(AssemblyName)</RootNamespace>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<PackageId>NArchitecture.$(AssemblyName)</PackageId>
-	<Version>1.0.2</Version>
+	<Version>1.0.3</Version>
 	<Title>NArchitecture $(AssemblyName)</Title>
 	<Description>The NArchitecture Core package provides core classes for the application layer in both clean and union architectures. It includes support for CQRS, MediatR, Pipelines, request models, response models and essential security features.</Description>
 	<Product>NArchitecture</Product>

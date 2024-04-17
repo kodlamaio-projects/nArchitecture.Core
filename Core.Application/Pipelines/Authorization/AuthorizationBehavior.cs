@@ -26,14 +26,17 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
         if (!_httpContextAccessor.HttpContext.User.Claims.Any())
             throw new AuthorizationException("You are not authenticated.");
 
-        ICollection<string>? userRoleClaims = _httpContextAccessor.HttpContext.User.GetRoleClaims() ?? [];
-        bool isNotMatchedAUserRoleClaimWithRequestRoles = userRoleClaims
-            .FirstOrDefault(userRoleClaim =>
-                userRoleClaim == GeneralOperationClaims.Admin || request.Roles.Contains(userRoleClaim)
-            )
-            .IsNullOrEmpty();
-        if (isNotMatchedAUserRoleClaimWithRequestRoles)
-            throw new AuthorizationException("You are not authorized.");
+        if (request.Roles.Any())
+        {
+            ICollection<string>? userRoleClaims = _httpContextAccessor.HttpContext.User.GetRoleClaims() ?? [];
+            bool isNotMatchedAUserRoleClaimWithRequestRoles = userRoleClaims
+                .FirstOrDefault(userRoleClaim =>
+                    userRoleClaim == GeneralOperationClaims.Admin || request.Roles.Contains(userRoleClaim)
+                )
+                .IsNullOrEmpty();
+            if (isNotMatchedAUserRoleClaimWithRequestRoles)
+                throw new AuthorizationException("You are not authorized.");
+        }
 
         TResponse response = await next();
         return response;
