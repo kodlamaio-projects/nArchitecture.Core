@@ -1,8 +1,12 @@
-﻿namespace NArchitecture.Core.Application.Dtos;
+﻿using System.Text.Json.Serialization;
+
+namespace NArchitecture.Core.Application.Dtos;
 
 public class UserForRegisterDto : IDto
 {
-    public string Email { get; set; }
+    public required string Email { get; set; }
+
+    [JsonIgnore]
     public string Password { get; set; }
 
     public UserForRegisterDto()
