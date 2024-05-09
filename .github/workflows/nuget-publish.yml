@@ -12,15 +12,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Restore NuGet packages
-        run: dotnet restore
-
       - name: Build and publish NuGet package
         env:
-          NUGET_PUBLISHER_TOKEN: ${{ secrets.NUGET_PUBLISHER_TOKEN }}
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         run: |
-          dotnet build --no-restore
-          nuget push -ApiKey $NUGET_PUBLISHER_TOKEN -Source https://www.nuget.org/api/v2/package -Verbosity Detailed
-
-      - name: Clean up
-        run: rm -rf bin
+          dotnet restore
+          dotnet build --configuration Release
+          dotnet pack --configuration Release --no-build
+          dotnet nuget push **/*.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
+          dotnet clean
