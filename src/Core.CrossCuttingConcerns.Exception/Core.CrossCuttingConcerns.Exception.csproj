@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>NArchitecture.$(AssemblyName)</RootNamespace>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>NArchitecture.$(AssemblyName)</PackageId>
+    <Version>1.0.1</Version>
+    <Title>NArchitecture $(AssemblyName)</Title>
+    <Description>Provide cross-cutting concern components for effectively handling exceptions.</Description>
+    <Product>NArchitecture</Product>
+    <Authors>Kodlama.io, Contributors</Authors>
+    <Company>Kodlama.io</Company>
+    <PackageTags>Clean Architecture, Union Architecture, Core, NArchitecture, Cross Cutting
+      Concerns, Exception Handling</PackageTags>
+    <PackageIcon>n-architecture-logo.png</PackageIcon>
+    <RepositoryUrl>https://github.com/kodlamaio-projects/nArchitecture.Core</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\docs\images\n-architecture-logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include=".\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+</Project>

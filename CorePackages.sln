@@ -3,39 +3,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Application", "Core.Application\Core.Application.csproj", "{0542DF94-63CD-430F-9AF5-AE84D88319BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Application", "src\Core.Application\Core.Application.csproj", "{0542DF94-63CD-430F-9AF5-AE84D88319BC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.CrossCuttingConcerns.Exception", "Core.CrossCuttingConcerns.Exception\Core.CrossCuttingConcerns.Exception.csproj", "{D5B3C51B-75DF-4A33-BCBB-BAF2BF076617}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.CrossCuttingConcerns.Exception", "src\Core.CrossCuttingConcerns.Exception\Core.CrossCuttingConcerns.Exception.csproj", "{D5B3C51B-75DF-4A33-BCBB-BAF2BF076617}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.ElasticSearch", "Core.ElasticSearch\Core.ElasticSearch.csproj", "{1B0EA46B-8C78-4E44-8171-D9F142356CE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.ElasticSearch", "src\Core.ElasticSearch\Core.ElasticSearch.csproj", "{1B0EA46B-8C78-4E44-8171-D9F142356CE8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Mailing", "Core.Mailing\Core.Mailing.csproj", "{B5C9694A-C714-465D-836A-8C77366B4E03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Mailing", "src\Core.Mailing\Core.Mailing.csproj", "{B5C9694A-C714-465D-836A-8C77366B4E03}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Persistence", "Core.Persistence\Core.Persistence.csproj", "{03D3D1A1-1C07-41CA-8B02-DB5394A874A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Persistence", "src\Core.Persistence\Core.Persistence.csproj", "{03D3D1A1-1C07-41CA-8B02-DB5394A874A3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Security", "Core.Security\Core.Security.csproj", "{826DEEBC-A67D-4448-A339-A04E0ED36F52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Security", "src\Core.Security\Core.Security.csproj", "{826DEEBC-A67D-4448-A339-A04E0ED36F52}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Test", "Core.Test\Core.Test.csproj", "{69E314C9-18D8-4713-B4F4-9FFD37FC9756}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Test", "src\Core.Test\Core.Test.csproj", "{69E314C9-18D8-4713-B4F4-9FFD37FC9756}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Localization.Resource.Yaml.DependencyInjection", "Core.Localization.Resource.Yaml.DependencyInjection\Core.Localization.Resource.Yaml.DependencyInjection.csproj", "{17D0496A-7C3D-435D-85E2-80E7363004E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Localization.Resource.Yaml.DependencyInjection", "src\Core.Localization.Resource.Yaml.DependencyInjection\Core.Localization.Resource.Yaml.DependencyInjection.csproj", "{17D0496A-7C3D-435D-85E2-80E7363004E5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Localization.Resource.Yaml", "Core.Localization.Resource.Yaml\Core.Localization.Resource.Yaml.csproj", "{1A9C6A1D-F585-411F-A8D5-361E63EE7E02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Localization.Resource.Yaml", "src\Core.Localization.Resource.Yaml\Core.Localization.Resource.Yaml.csproj", "{1A9C6A1D-F585-411F-A8D5-361E63EE7E02}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Localization.Abstraction", "Core.Localization.Abstraction\Core.Localization.Abstraction.csproj", "{D337AB65-0D90-494C-A372-A238AA7E74E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Localization.Abstraction", "src\Core.Localization.Abstraction\Core.Localization.Abstraction.csproj", "{D337AB65-0D90-494C-A372-A238AA7E74E1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Localization.Translation", "Core.Localization.Translation\Core.Localization.Translation.csproj", "{0C272CE1-12D7-47D8-98FD-4DDBEB6A294C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Localization.Translation", "src\Core.Localization.Translation\Core.Localization.Translation.csproj", "{0C272CE1-12D7-47D8-98FD-4DDBEB6A294C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Localization.WebApi", "Core.Localization.WebApi\Core.Localization.WebApi.csproj", "{A874FBD0-5655-4A29-AD05-3C57A1B6BA31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Localization.WebApi", "src\Core.Localization.WebApi\Core.Localization.WebApi.csproj", "{A874FBD0-5655-4A29-AD05-3C57A1B6BA31}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Translation.Abstraction", "Core.Translation.Abstraction\Core.Translation.Abstraction.csproj", "{B00C777E-A6C5-4ED4-86F1-61408B3D0926}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Translation.Abstraction", "src\Core.Translation.Abstraction\Core.Translation.Abstraction.csproj", "{B00C777E-A6C5-4ED4-86F1-61408B3D0926}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Translation.AmazonTranslate", "Core.Translation.AmazonTranslate\Core.Translation.AmazonTranslate.csproj", "{C4D96ACD-171A-4B37-8736-51366B98B9E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Translation.AmazonTranslate", "src\Core.Translation.AmazonTranslate\Core.Translation.AmazonTranslate.csproj", "{C4D96ACD-171A-4B37-8736-51366B98B9E8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Translation.AmazonTranslate.DependencyInjection", "Core.Translation.AmazonTranslate.DependencyInjection\Core.Translation.AmazonTranslate.DependencyInjection.csproj", "{326AEEBB-7767-4FB2-84FE-12B47C065526}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Translation.AmazonTranslate.DependencyInjection", "src\Core.Translation.AmazonTranslate.DependencyInjection\Core.Translation.AmazonTranslate.DependencyInjection.csproj", "{326AEEBB-7767-4FB2-84FE-12B47C065526}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Persistence.DependencyInjection", "Core.Persistence.DependencyInjection\Core.Persistence.DependencyInjection.csproj", "{42B11859-214F-46BD-BF3E-6B157B267038}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Persistence.WebApi", "Core.Persistence.WebApi\Core.Persistence.WebApi.csproj", "{8922C45F-4E06-4CCC-B032-588A0D5C174D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Persistence.WebApi", "src\Core.Persistence.WebApi\Core.Persistence.WebApi.csproj", "{8922C45F-4E06-4CCC-B032-588A0D5C174D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{349CE34D-A942-422C-943A-DE4BEC1E39B3}"
 	ProjectSection(SolutionItems) = preProject
@@ -52,23 +50,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{0EDE05
 		docs\images\n-architecture-logo.png = docs\images\n-architecture-logo.png
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.CrossCuttingConcerns.Logging", "Core.CrossCuttingConcerns.Logging\Core.CrossCuttingConcerns.Logging.csproj", "{339167F8-A34B-424F-8E93-117B81DB7D1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.CrossCuttingConcerns.Logging", "src\Core.CrossCuttingConcerns.Logging\Core.CrossCuttingConcerns.Logging.csproj", "{339167F8-A34B-424F-8E93-117B81DB7D1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.CrossCuttingConcerns.Logging.Serilog", "Core.CrossCuttingConcerns.Logging.SeriLog\Core.CrossCuttingConcerns.Logging.Serilog.csproj", "{570EB8D5-8D08-4026-BB52-684E7F599422}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.CrossCuttingConcerns.Logging.Serilog", "src\Core.CrossCuttingConcerns.Logging.SeriLog\Core.CrossCuttingConcerns.Logging.Serilog.csproj", "{570EB8D5-8D08-4026-BB52-684E7F599422}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.CrossCuttingConcerns.Exception.WebApi", "Core.CrossCuttingConcerns.Exception.WebAPI\Core.CrossCuttingConcerns.Exception.WebApi.csproj", "{E9F71091-42BA-42FA-B3ED-83042C813780}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.CrossCuttingConcerns.Exception.WebApi", "src\Core.CrossCuttingConcerns.Exception.WebAPI\Core.CrossCuttingConcerns.Exception.WebApi.csproj", "{E9F71091-42BA-42FA-B3ED-83042C813780}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.CrossCuttingConcerns.Logging.Abstraction", "Core.CrossCuttingConcerns.Logging.Abstraction\Core.CrossCuttingConcerns.Logging.Abstraction.csproj", "{4DDE97CF-FC8C-4333-A7AE-80B68E55927F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.CrossCuttingConcerns.Logging.Abstraction", "src\Core.CrossCuttingConcerns.Logging.Abstraction\Core.CrossCuttingConcerns.Logging.Abstraction.csproj", "{4DDE97CF-FC8C-4333-A7AE-80B68E55927F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.CrossCuttingConcerns.Logging.Serilog.File", "Core.CrossCuttingConcerns.Logging.Serilog.File\Core.CrossCuttingConcerns.Logging.Serilog.File.csproj", "{769BF223-862F-4D87-B2A2-6C5148FF2D91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.CrossCuttingConcerns.Logging.Serilog.File", "src\Core.CrossCuttingConcerns.Logging.Serilog.File\Core.CrossCuttingConcerns.Logging.Serilog.File.csproj", "{769BF223-862F-4D87-B2A2-6C5148FF2D91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.CrossCuttingConcerns.Logging.DependencyInjection", "Core.CrossCuttingConcerns.Logging.DependencyInjection\Core.CrossCuttingConcerns.Logging.DependencyInjection.csproj", "{3318A669-D271-41B5-88E4-BEAF5B67DE97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.CrossCuttingConcerns.Logging.DependencyInjection", "src\Core.CrossCuttingConcerns.Logging.DependencyInjection\Core.CrossCuttingConcerns.Logging.DependencyInjection.csproj", "{3318A669-D271-41B5-88E4-BEAF5B67DE97}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Mailing.MailKit", "Core.Mailing.MailKit\Core.Mailing.MailKit.csproj", "{147A9AD4-5D71-47A6-BD1A-B0A7CFE5FEBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Mailing.MailKit", "src\Core.Mailing.MailKit\Core.Mailing.MailKit.csproj", "{147A9AD4-5D71-47A6-BD1A-B0A7CFE5FEBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Security.DependencyInjection", "Core.Security.DependencyInjection\Core.Security.DependencyInjection.csproj", "{8ED08D8F-DAC6-4BD1-9A1F-69704AD8368F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Security.DependencyInjection", "src\Core.Security.DependencyInjection\Core.Security.DependencyInjection.csproj", "{8ED08D8F-DAC6-4BD1-9A1F-69704AD8368F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Security.WebApi.Swagger", "Core.Security.WebApi.Swagger\Core.Security.WebApi.Swagger.csproj", "{5F448267-A147-4C86-9BEA-797AE93B0BBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Security.WebApi.Swagger", "src\Core.Security.WebApi.Swagger\Core.Security.WebApi.Swagger.csproj", "{5F448267-A147-4C86-9BEA-797AE93B0BBA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Persistence.DependencyInjection", "src\Core.Persistence.DependencyInjection\Core.Persistence.DependencyInjection.csproj", "{21482084-82B8-41FA-8477-ED78B3037375}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -136,10 +138,6 @@ Global
 		{326AEEBB-7767-4FB2-84FE-12B47C065526}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{326AEEBB-7767-4FB2-84FE-12B47C065526}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{326AEEBB-7767-4FB2-84FE-12B47C065526}.Release|Any CPU.Build.0 = Release|Any CPU
-		{42B11859-214F-46BD-BF3E-6B157B267038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42B11859-214F-46BD-BF3E-6B157B267038}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42B11859-214F-46BD-BF3E-6B157B267038}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42B11859-214F-46BD-BF3E-6B157B267038}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8922C45F-4E06-4CCC-B032-588A0D5C174D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8922C45F-4E06-4CCC-B032-588A0D5C174D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8922C45F-4E06-4CCC-B032-588A0D5C174D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -180,13 +178,43 @@ Global
 		{5F448267-A147-4C86-9BEA-797AE93B0BBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F448267-A147-4C86-9BEA-797AE93B0BBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F448267-A147-4C86-9BEA-797AE93B0BBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21482084-82B8-41FA-8477-ED78B3037375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21482084-82B8-41FA-8477-ED78B3037375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21482084-82B8-41FA-8477-ED78B3037375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21482084-82B8-41FA-8477-ED78B3037375}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{0542DF94-63CD-430F-9AF5-AE84D88319BC} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{D5B3C51B-75DF-4A33-BCBB-BAF2BF076617} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{1B0EA46B-8C78-4E44-8171-D9F142356CE8} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{B5C9694A-C714-465D-836A-8C77366B4E03} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{03D3D1A1-1C07-41CA-8B02-DB5394A874A3} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{826DEEBC-A67D-4448-A339-A04E0ED36F52} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{69E314C9-18D8-4713-B4F4-9FFD37FC9756} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{17D0496A-7C3D-435D-85E2-80E7363004E5} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{1A9C6A1D-F585-411F-A8D5-361E63EE7E02} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{D337AB65-0D90-494C-A372-A238AA7E74E1} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{0C272CE1-12D7-47D8-98FD-4DDBEB6A294C} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{A874FBD0-5655-4A29-AD05-3C57A1B6BA31} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{B00C777E-A6C5-4ED4-86F1-61408B3D0926} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{C4D96ACD-171A-4B37-8736-51366B98B9E8} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{326AEEBB-7767-4FB2-84FE-12B47C065526} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{8922C45F-4E06-4CCC-B032-588A0D5C174D} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
 		{C476F9D4-0FCC-4D72-A312-C706AF081F4F} = {349CE34D-A942-422C-943A-DE4BEC1E39B3}
 		{0EDE05AB-93AF-4104-9696-5523023AAFF6} = {C476F9D4-0FCC-4D72-A312-C706AF081F4F}
+		{339167F8-A34B-424F-8E93-117B81DB7D1C} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{570EB8D5-8D08-4026-BB52-684E7F599422} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{E9F71091-42BA-42FA-B3ED-83042C813780} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{4DDE97CF-FC8C-4333-A7AE-80B68E55927F} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{769BF223-862F-4D87-B2A2-6C5148FF2D91} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{3318A669-D271-41B5-88E4-BEAF5B67DE97} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{147A9AD4-5D71-47A6-BD1A-B0A7CFE5FEBD} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{8ED08D8F-DAC6-4BD1-9A1F-69704AD8368F} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{5F448267-A147-4C86-9BEA-797AE93B0BBA} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{21482084-82B8-41FA-8477-ED78B3037375} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9E988190-9FBF-4E2E-9B3A-35C418139397}

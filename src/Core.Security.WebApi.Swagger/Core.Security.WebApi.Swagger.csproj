@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>NArchitecture.$(AssemblyName)</RootNamespace>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>NArchitecture.$(AssemblyName)</PackageId>
+    <Version>1.0.1</Version>
+    <Title>NArchitecture $(AssemblyName)</Title>
+    <Description>Provides utilities for integrating security features with ASP.NET Web API projects,
+      focusing on Swagger integration.</Description>
+    <Product>NArchitecture</Product>
+    <Authors>Kodlama.io, Contributors</Authors>
+    <Company>Kodlama.io</Company>
+    <PackageTags>Clean Architecture, Union Architecture, Core, NArchitecture, Security,
+      Authentication, Authorization, Swagger, Web API, Documentation, JWT, Two-Factor
+      Authentication, OTP, Email Handling, Hashing, Encryption</PackageTags>
+    <PackageIcon>n-architecture-logo.png</PackageIcon>
+    <RepositoryUrl>https://github.com/kodlamaio-projects/nArchitecture.Core</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\docs\images\n-architecture-logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include=".\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>NArchitecture.$(AssemblyName)</RootNamespace>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>NArchitecture.$(AssemblyName)</PackageId>
+    <Version>1.0.1</Version>
+    <Title>NArchitecture $(AssemblyName)</Title>
+    <Description>Provide integration with Serilog for file logging.</Description>
+    <Product>NArchitecture</Product>
+    <Authors>Kodlama.io, Contributors</Authors>
+    <Company>Kodlama.io</Company>
+    <PackageTags>Clean Architecture, Union Architecture, Core, NArchitecture, Logging, Cross Cutting
+      Concerns, Serilog, File Logging</PackageTags>
+    <PackageIcon>n-architecture-logo.png</PackageIcon>
+    <RepositoryUrl>https://github.com/kodlamaio-projects/nArchitecture.Core</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\docs\images\n-architecture-logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include=".\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference
+      Include="..\Core.CrossCuttingConcerns.Logging.SeriLog\Core.CrossCuttingConcerns.Logging.Serilog.csproj" />
+    <ProjectReference
+      Include="..\Core.CrossCuttingConcerns.Logging\Core.CrossCuttingConcerns.Logging.csproj" />
+  </ItemGroup>
+
+</Project>

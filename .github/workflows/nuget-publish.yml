@@ -1,0 +1,26 @@
+name: NuGet Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish-nuget:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Restore NuGet packages
+        run: dotnet restore
+
+      - name: Build and publish NuGet package
+        env:
+          NUGET_PUBLISHER_TOKEN: ${{ secrets.NUGET_PUBLISHER_TOKEN }}
+        run: |
+          dotnet build --no-restore
+          nuget push -ApiKey $NUGET_PUBLISHER_TOKEN -Source https://www.nuget.org/api/v2/package -Verbosity Detailed
+
+      - name: Clean up
+        run: rm -rf bin

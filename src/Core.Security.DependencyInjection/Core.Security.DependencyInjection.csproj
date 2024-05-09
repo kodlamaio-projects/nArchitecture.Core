@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>NArchitecture.$(AssemblyName)</RootNamespace>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>NArchitecture.$(AssemblyName)</PackageId>
+    <Version>1.2.1</Version>
+    <Title>NArchitecture $(AssemblyName)</Title>
+    <Description>Provides dependency injection extensions for NArchitecture.Core.Security.</Description>
+    <Product>NArchitecture</Product>
+    <Authors>Kodlama.io, Contributors</Authors>
+    <Company>Kodlama.io</Company>
+    <PackageTags>Clean Architecture, Union Architecture, Core, NArchitecture, Security,
+      Authentication, Authorization, Dependency Injection, JWT, Two-Factor Authentication, OTP,
+      Email Handling, Hashing, Encryption</PackageTags>
+    <PackageIcon>n-architecture-logo.png</PackageIcon>
+    <RepositoryUrl>https://github.com/kodlamaio-projects/nArchitecture.Core</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\docs\images\n-architecture-logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include=".\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Security\Core.Security.csproj" />
+  </ItemGroup>
+</Project>

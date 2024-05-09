@@ -43,18 +43,20 @@ To get a local copy up and running follow these simple steps.
 ### Installation
 
 1. Add submodule to your backend project repository
-   ```sh
+
+   ```bash
    git submodule add https://github.com/kodlamaio-projects/nArchitecture.Core.git src/corePackages
    ```
 
 - Run the following command to update this module
-  ```sh
+
+  ```bash
    git submodule update --remote src/corePackages
    ```
 
 ## 🚀 Usage
 
-1. Check this [nArchitecture.RentACar](https://github.com/kodlamaio-projects/nArchitecture.Core) repository
+1. Check this [NArchitecture.RentACar](https://github.com/kodlamaio-projects/nArchitecture.Core) repository
 
 ### Analysis
 
