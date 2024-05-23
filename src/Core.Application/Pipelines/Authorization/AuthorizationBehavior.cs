@@ -1,44 +1,69 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.IdentityModel.Tokens;
+﻿using System.Security.Authentication;
+using MediatR;
 using NArchitecture.Core.CrossCuttingConcerns.Exception.Types;
 using NArchitecture.Core.Security.Constants;
-using NArchitecture.Core.Security.Extensions;
 
 namespace NArchitecture.Core.Application.Pipelines.Authorization;
 
 public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>, ISecuredRequest
 {
-    private readonly IHttpContextAccessor _httpContextAccessor;
-
-    public AuthorizationBehavior(IHttpContextAccessor httpContextAccessor)
-    {
-        _httpContextAccessor = httpContextAccessor;
-    }
-
-    public async Task<TResponse> Handle(
+    public virtual async Task<TResponse> Handle(
         TRequest request,
         RequestHandlerDelegate<TResponse> next,
         CancellationToken cancellationToken
     )
     {
-        if (!_httpContextAccessor.HttpContext.User.Claims.Any())
-            throw new AuthorizationException("You are not authenticated.");
+        // Is Authenticated
+        if (request.IdentityRoles == null)
+            throwAuthenticationException();
 
-        if (request.Roles.Any())
+        // Is Authorized
+        if (!request.RequiredRoleClaims.IsEmpty)
         {
-            ICollection<string>? userRoleClaims = _httpContextAccessor.HttpContext.User.GetRoleClaims() ?? [];
-            bool isNotMatchedAUserRoleClaimWithRequestRoles = userRoleClaims
-                .FirstOrDefault(userRoleClaim =>
-                    userRoleClaim == GeneralOperationClaims.Admin || request.Roles.Contains(userRoleClaim)
+            if (!request.IdentityRoles!.GetEnumerator().MoveNext())
+                throwAuthorizationException();
+
+            if (
+                !(
+                    request.IdentityRoles!.Contains(GeneralOperationClaims.Admin)
+                    || isHasRequiredRole(request.IdentityRoles, request.RequiredRoleClaims)
                 )
-                .IsNullOrEmpty();
-            if (isNotMatchedAUserRoleClaimWithRequestRoles)
-                throw new AuthorizationException("You are not authorized.");
+            )
+                throwAuthorizationException();
         }
 
-        TResponse response = await next();
-        return response;
+        return await next();
+    }
+
+    private bool isHasRequiredRole(IEnumerable<string> identityRoles, ReadOnlySpan<char> requiredRoleClaims)
+    {
+        bool isMatch = false;
+        foreach (var role in identityRoles)
+            for (int i = 0; i < requiredRoleClaims.Length; ++i)
+            {
+                if (requiredRoleClaims[i] == ',')
+                    continue;
+
+                if (requiredRoleClaims[i] == role[i])
+                    isMatch = true;
+                else
+                {
+                    isMatch = false;
+                    break;
+                }
+            }
+
+        return isMatch;
+    }
+
+    protected virtual void throwAuthenticationException()
+    {
+        throw new AuthenticationException("You are not authenticated.");
+    }
+
+    protected virtual void throwAuthorizationException()
+    {
+        throw new AuthorizationException("You are not authorized.");
     }
 }
