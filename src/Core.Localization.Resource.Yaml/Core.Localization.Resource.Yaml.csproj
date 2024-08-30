@@ -6,7 +6,7 @@
     <RootNamespace>NArchitecture.$(AssemblyName)</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>NArchitecture.$(AssemblyName)</PackageId>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <Title>NArchitecture $(AssemblyName)</Title>
     <Description>Provide YAML-based resource management for localization.</Description>
     <Product>NArchitecture</Product>
@@ -34,10 +34,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="YamlDotNet" Version="15.1.2" />
+    <PackageReference Include="YamlDotNet" Version="16.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference
-      Include="..\Core.Localization.Abstraction\Core.Localization.Abstraction.csproj" />
+    <ProjectReference Include="..\Core.Localization.Abstraction\Core.Localization.Abstraction.csproj" />
   </ItemGroup>
 </Project>

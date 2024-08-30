@@ -6,7 +6,7 @@
     <RootNamespace>NArchitecture.$(AssemblyName)</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>NArchitecture.$(AssemblyName)</PackageId>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <Title>NArchitecture $(AssemblyName)</Title>
     <Description>Provides integration with Amazon Translate for translation services.</Description>
     <Product>NArchitecture</Product>
@@ -35,7 +35,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AWSSDK.Translate" Version="3.7.300.66" />
+    <PackageReference Include="AWSSDK.Translate" Version="3.7.400.12" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core.Translation.Abstraction\Core.Translation.Abstraction.csproj" />
