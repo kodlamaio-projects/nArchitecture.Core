@@ -72,6 +72,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7C1F8BBD-7E3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Persistence.DependencyInjection", "src\Core.Persistence.DependencyInjection\Core.Persistence.DependencyInjection.csproj", "{21482084-82B8-41FA-8477-ED78B3037375}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NArchitecture.Core.CrossCuttingConcerns.Logging.Serilog.MsSql", "NArchitecture.Core.CrossCuttingConcerns.Logging.Serilog.MsSql\NArchitecture.Core.CrossCuttingConcerns.Logging.Serilog.MsSql.csproj", "{AC50A3A8-FDF0-4B1A-AE04-129108590FC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -182,6 +184,10 @@ Global
 		{21482084-82B8-41FA-8477-ED78B3037375}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21482084-82B8-41FA-8477-ED78B3037375}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21482084-82B8-41FA-8477-ED78B3037375}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC50A3A8-FDF0-4B1A-AE04-129108590FC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC50A3A8-FDF0-4B1A-AE04-129108590FC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC50A3A8-FDF0-4B1A-AE04-129108590FC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC50A3A8-FDF0-4B1A-AE04-129108590FC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -215,6 +221,7 @@ Global
 		{8ED08D8F-DAC6-4BD1-9A1F-69704AD8368F} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
 		{5F448267-A147-4C86-9BEA-797AE93B0BBA} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
 		{21482084-82B8-41FA-8477-ED78B3037375} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
+		{AC50A3A8-FDF0-4B1A-AE04-129108590FC4} = {7C1F8BBD-7E3D-44BE-81E6-55EB807C14B9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9E988190-9FBF-4E2E-9B3A-35C418139397}
