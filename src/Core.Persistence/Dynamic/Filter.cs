@@ -6,6 +6,7 @@ public class Filter
     public string Operator { get; set; }
     public string? Value { get; set; }
     public string? Logic { get; set; }
+    public bool CaseSensitive { get; set; } = false;
     public IEnumerable<Filter>? Filters { get; set; }
 
     public Filter()
