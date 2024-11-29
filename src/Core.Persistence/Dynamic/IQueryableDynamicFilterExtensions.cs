@@ -21,7 +21,9 @@ public static class IQueryableDynamicFilterExtensions
         { "startswith", "StartsWith" },
         { "endswith", "EndsWith" },
         { "contains", "Contains" },
-        { "doesnotcontain", "Contains" }
+        { "doesnotcontain", "Contains" },
+        { "in", "In" },
+        { "between", "Between" }
     };
 
     public static IQueryable<T> ToDynamic<T>(this IQueryable<T> query, DynamicQuery dynamicQuery)
@@ -93,7 +95,28 @@ public static class IQueryableDynamicFilterExtensions
             if (filter.Operator == "doesnotcontain")
                 where.Append($"(!np({filter.Field}).{comparison}(@{index.ToString()}))");
             else if (comparison is "StartsWith" or "EndsWith" or "Contains")
-                where.Append($"(np({filter.Field}).{comparison}(@{index.ToString()}))");
+            {
+                if (!filter.CaseSensitive)
+                {
+                    where.Append($"(np({filter.Field}).ToLower().{comparison}(@{index.ToString()}.ToLower()))");
+                }
+                else
+                {
+                    where.Append($"(np({filter.Field}).{comparison}(@{index.ToString()}))");
+                }
+            }
+            else if (filter.Operator == "in")
+            {
+                where.Append($"np({filter.Field}) in ({filter.Value})");
+            }
+            else if (filter.Operator == "between")
+            {
+                var values = filter.Value.Split(',');
+                if (values.Length != 2)
+                    throw new ArgumentException("Invalid Value for 'between' operator");
+
+                where.Append($"(np({filter.Field}) >= {values[0]} and np({filter.Field}) <= {values[1]})");
+            }
             else
                 where.Append($"np({filter.Field}) {comparison} @{index.ToString()}");
         else if (filter.Operator is "isnull" or "isnotnull")
