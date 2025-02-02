@@ -40,19 +40,21 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
     {
         bool isMatch = false;
         foreach (var role in identityRoles)
-            for (int i = 0; i < requiredRoleClaims.Length; ++i)
+        {
+            for (int i = 0, j = 0; i < requiredRoleClaims.Length; ++i)
             {
-                if (requiredRoleClaims[i] == ',')
-                    continue;
-
-                if (requiredRoleClaims[i] == role[i])
+                if (requiredRoleClaims[i] == role[j])
+                {
                     isMatch = true;
+                    if (j + 1 < role.Length) ++j;
+                }
                 else
                 {
                     isMatch = false;
-                    break;
+                    j = 0;
                 }
             }
+        }
 
         return isMatch;
     }
