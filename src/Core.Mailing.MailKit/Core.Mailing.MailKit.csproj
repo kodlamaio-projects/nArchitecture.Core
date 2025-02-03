@@ -6,7 +6,7 @@
     <RootNamespace>NArchitecture.$(AssemblyName)</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>NArchitecture.$(AssemblyName)</PackageId>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <Title>NArchitecture $(AssemblyName)</Title>
     <Description>Provide email sending capabilities using MailKit.</Description>
     <Product>NArchitecture</Product>
@@ -36,7 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MailKit" Version="4.4.0" />
+    <PackageReference Include="MailKit" Version="4.7.1.1" />
   </ItemGroup>
 
   <ItemGroup>

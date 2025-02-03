@@ -6,7 +6,7 @@
     <RootNamespace>NArchitecture.$(AssemblyName)</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>NArchitecture.$(AssemblyName)</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Title>NArchitecture $(AssemblyName)</Title>
     <Description>Provides utilities for integrating security features with ASP.NET Web API projects,
       focusing on Swagger integration.</Description>
@@ -37,7 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.7.3" />
   </ItemGroup>
 
 </Project>
