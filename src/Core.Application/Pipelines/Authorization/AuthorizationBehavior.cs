@@ -33,7 +33,7 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
                 .FirstOrDefault(userRoleClaim =>
                     userRoleClaim == GeneralOperationClaims.Admin || request.Roles.Contains(userRoleClaim)
                 )
-                .IsNullOrEmpty();
+                == null;
             if (isNotMatchedAUserRoleClaimWithRequestRoles)
                 throw new AuthorizationException("You are not authorized.");
         }
