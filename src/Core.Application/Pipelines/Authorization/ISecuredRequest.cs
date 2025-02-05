@@ -2,6 +2,5 @@
 
 public interface ISecuredRequest
 {
-    public IEnumerable<string> IdentityRoles { get; set; }
-    public ReadOnlySpan<char> RequiredRoleClaims { get; }
+    public string[] Roles { get; }
 }
