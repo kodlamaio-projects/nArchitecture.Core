@@ -25,7 +25,7 @@ public class AuthorizationBehaviorTests
 
     public class ValidSecuredRequest : IRequest<int>, ISecuredRequest
     {
-        public IEnumerable<string> IdentityRoles { get; set; } = [];
+        public IEnumerable<string> IdentityRoles { get; set; }
         public ReadOnlySpan<char> RequiredRoleClaims => "".AsSpan();
     }
 
@@ -44,7 +44,7 @@ public class AuthorizationBehaviorTests
 
     public class InvalidSecuredRequest : IRequest<int>, ISecuredRequest
     {
-        public IEnumerable<string> IdentityRoles { get; set; } = [];
+        public IEnumerable<string> IdentityRoles { get; set; }
         public ReadOnlySpan<char> RequiredRoleClaims => "".AsSpan();
     }
 
@@ -69,7 +69,7 @@ public class AuthorizationBehaviorTests
 
     public class SecuredRequestWithRequiredRoleClaims : IRequest<int>, ISecuredRequest
     {
-        public IEnumerable<string> IdentityRoles { get; set; } = [];
+        public IEnumerable<string> IdentityRoles { get; set; }
         public ReadOnlySpan<char> RequiredRoleClaims => "admin".AsSpan();
     }
 
@@ -94,7 +94,7 @@ public class AuthorizationBehaviorTests
 
     public class SecuredRequestWithoutRequiredRoleClaims : IRequest<int>, ISecuredRequest
     {
-        public IEnumerable<string> IdentityRoles { get; set; } = [];
-        public ReadOnlySpan<char> RequiredRoleClaims => "editor,admin".AsSpan();
+        public IEnumerable<string> IdentityRoles { get; set; }
+        public ReadOnlySpan<char> RequiredRoleClaims => "admin".AsSpan();
     }
 }
