@@ -6,7 +6,7 @@
     <RootNamespace>NArchitecture.$(AssemblyName)</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>NArchitecture.$(AssemblyName)</PackageId>
-    <Version>1.1.4</Version>
+    <Version>1.1.5</Version>
     <Title>NArchitecture $(AssemblyName)</Title>
     <Description>Provides persistence utilities for data access using Entity Framework Core.</Description>
     <Product>NArchitecture</Product>

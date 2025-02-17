@@ -28,6 +28,8 @@ public static class IQueryableDynamicFilterExtensions
 
     public static IQueryable<T> ToDynamic<T>(this IQueryable<T> query, DynamicQuery dynamicQuery)
     {
+        // Test
+        Console.WriteLine(dynamicQuery.Filter.Value);
         if (dynamicQuery.Filter is not null)
             query = Filter(query, dynamicQuery.Filter);
         if (dynamicQuery.Sort is not null && dynamicQuery.Sort.Any())
@@ -38,10 +40,33 @@ public static class IQueryableDynamicFilterExtensions
     private static IQueryable<T> Filter<T>(IQueryable<T> queryable, Filter filter)
     {
         IList<Filter> filters = GetAllFilters(filter);
-        string?[] values = filters.Select(f => f.Value).ToArray();
+        var values = new List<object>();
+        foreach (var f in filters)
+        {
+            if (f.Operator == "in")
+            {
+                Console.WriteLine(f.Value);
+                var inValues = f.Value.Split(',').Select(v => v.Trim());
+                values.AddRange(inValues);
+            }
+            else if (f.Operator == "between")
+            {
+                var betweenValues = f.Value.Split(',');
+                if (betweenValues.Length != 2)
+                    throw new ArgumentException("Invalid Value for 'between' operator");
+
+                values.AddRange(betweenValues.Select(v => v.Trim()));
+            }
+            else
+            {
+                values.Add(f.Value);
+            }
+        }
+
         string where = Transform(filter, filters);
+        Console.WriteLine(where);
         if (!string.IsNullOrEmpty(where) && values != null)
-            queryable = queryable.Where(where, values);
+            queryable = queryable.Where(where, values.ToArray());
 
         return queryable;
     }
@@ -107,7 +132,19 @@ public static class IQueryableDynamicFilterExtensions
             }
             else if (filter.Operator == "in")
             {
-                where.Append($"np({filter.Field}) in ({filter.Value})");
+                var valueCount = filter.Value.Split(',').Length;
+                var paramIndexes = Enumerable.Range(index, valueCount)
+                                    .Select(i => $"@{i}")
+                                    .ToArray();
+
+                if (!filter.CaseSensitive)
+                {
+                    where.Append($"np({filter.Field}).ToLower() in ({string.Join(",", paramIndexes)})");
+                }
+                else
+                {
+                    where.Append($"np({filter.Field}) in ({string.Join(",", paramIndexes)})");
+                }
             }
             else if (filter.Operator == "between")
             {
@@ -115,7 +152,10 @@ public static class IQueryableDynamicFilterExtensions
                 if (values.Length != 2)
                     throw new ArgumentException("Invalid Value for 'between' operator");
 
-                where.Append($"(np({filter.Field}) >= {values[0]} and np({filter.Field}) <= {values[1]})");
+                var lowerBound = $"@{index++}";
+                var upperBound = $"@{index++}";
+
+                where.Append($"(np({filter.Field}) >= {lowerBound} and np({filter.Field}) <= {upperBound})");
             }
             else
                 where.Append($"np({filter.Field}) {comparison} @{index.ToString()}");
