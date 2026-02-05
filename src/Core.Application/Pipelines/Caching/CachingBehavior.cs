@@ -39,8 +39,8 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
         byte[]? cachedResponse = await _cache.GetAsync(request.CacheKey, cancellationToken);
         if (cachedResponse != null)
         {
-            response = JsonSerializer.Deserialize<TResponse>(Encoding.Default.GetString(cachedResponse))!;
-            _logger.LogInformation($"Fetched from Cache -> {request.CacheKey}");
+            response = JsonSerializer.Deserialize<TResponse>(Encoding.UTF8.GetString(cachedResponse))!;
+            _logger.LogInformation("Fetched from Cache -> {CacheKey}", request.CacheKey);
         }
         else
             response = await getResponseAndAddToCache(request, next, cancellationToken);
@@ -61,7 +61,7 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
 
         byte[] serializeData = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(response));
         await _cache.SetAsync(request.CacheKey, serializeData, cacheOptions, cancellationToken);
-        _logger.LogInformation($"Added to Cache -> {request.CacheKey}");
+        _logger.LogInformation("Added to Cache -> {CacheKey}", request.CacheKey);
 
         if (request.CacheGroupKey != null)
             await addCacheKeyToGroup(request, slidingExpiration, cancellationToken);
@@ -75,7 +75,7 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
         HashSet<string> cacheKeysInGroup;
         if (cacheGroupCache != null)
         {
-            cacheKeysInGroup = JsonSerializer.Deserialize<HashSet<string>>(Encoding.Default.GetString(cacheGroupCache))!;
+            cacheKeysInGroup = JsonSerializer.Deserialize<HashSet<string>>(Encoding.UTF8.GetString(cacheGroupCache))!;
             if (!cacheKeysInGroup.Contains(request.CacheKey))
                 cacheKeysInGroup.Add(request.CacheKey);
         }
@@ -90,7 +90,7 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
         int? cacheGroupCacheSlidingExpirationValue = null;
         if (cacheGroupCacheSlidingExpirationCache != null)
             cacheGroupCacheSlidingExpirationValue = Convert.ToInt32(
-                Encoding.Default.GetString(cacheGroupCacheSlidingExpirationCache)
+                Encoding.UTF8.GetString(cacheGroupCacheSlidingExpirationCache)
             );
         if (
             cacheGroupCacheSlidingExpirationValue == null
@@ -105,7 +105,7 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
             new() { SlidingExpiration = TimeSpan.FromSeconds(Convert.ToDouble(cacheGroupCacheSlidingExpirationValue)) };
 
         await _cache.SetAsync(key: request.CacheGroupKey!, newCacheGroupCache, cacheOptions, cancellationToken);
-        _logger.LogInformation($"Added to Cache -> {request.CacheGroupKey}");
+        _logger.LogInformation("Added to Cache -> {CacheGroupKey}", request.CacheGroupKey);
 
         await _cache.SetAsync(
             key: $"{request.CacheGroupKey}SlidingExpiration",
@@ -113,6 +113,6 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
             cacheOptions,
             cancellationToken
         );
-        _logger.LogInformation($"Added to Cache -> {request.CacheGroupKey}SlidingExpiration");
+        _logger.LogInformation("Added to Cache -> {SlidingExpirationKey}", $"{request.CacheGroupKey}SlidingExpiration");
     }
 }
