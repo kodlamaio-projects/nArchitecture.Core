@@ -1,6 +1,6 @@
-﻿using System.Diagnostics;
-using MediatR;
+using System.Diagnostics;
 using Microsoft.Extensions.Logging;
+using NArchitecture.Core.Mediator;
 
 namespace NArchitecture.Core.Application.Pipelines.Performance;
 

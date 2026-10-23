@@ -1,0 +1,31 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>NArchitecture.$(MSBuildProjectName)</RootNamespace>
+    <PackageId>NArchitecture.$(MSBuildProjectName)</PackageId>
+    <Title>NArchitecture $(MSBuildProjectName)</Title>
+    <Product>NArchitecture</Product>
+    <Authors>Kodlama.io, Contributors</Authors>
+    <Company>Kodlama.io</Company>
+    <RepositoryUrl>https://github.com/kodlamaio-projects/nArchitecture.Core</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/kodlamaio-projects/nArchitecture.Core</PackageProjectUrl>
+    <PackageIcon>n-architecture-logo.png</PackageIcon>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(IsPackable)' != 'false'">
+    <None Include="$(MSBuildThisFileDirectory)docs\images\n-architecture-logo.png" Pack="true" PackagePath="\" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)LICENSE" Pack="true" PackagePath="\" Visible="false" />
+    <None
+      Include="$(MSBuildProjectDirectory)\README.md"
+      Pack="true"
+      PackagePath="\"
+      Condition="Exists('$(MSBuildProjectDirectory)\README.md')"
+    />
+  </ItemGroup>
+</Project>

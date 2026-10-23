@@ -1,7 +1,7 @@
-using MediatR;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
-using Microsoft.IdentityModel.Tokens;
 using NArchitecture.Core.CrossCuttingConcerns.Exception.Types;
+using NArchitecture.Core.Mediator;
 using NArchitecture.Core.Security.Constants;
 using NArchitecture.Core.Security.Extensions;
 
@@ -23,17 +23,16 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
         CancellationToken cancellationToken
     )
     {
-        if (!_httpContextAccessor.HttpContext.User.Claims.Any())
+        ClaimsPrincipal? user = _httpContextAccessor.HttpContext?.User;
+        if (user is null || !user.Claims.Any())
             throw new AuthorizationException("You are not authenticated.");
 
-        if (request.Roles.Any())
+        if (request.Roles.Length > 0)
         {
-            ICollection<string>? userRoleClaims = _httpContextAccessor.HttpContext.User.GetRoleClaims() ?? [];
-            bool isNotMatchedAUserRoleClaimWithRequestRoles = userRoleClaims
-                .FirstOrDefault(userRoleClaim =>
-                    userRoleClaim == GeneralOperationClaims.Admin || request.Roles.Contains(userRoleClaim)
-                )
-                == null;
+            ICollection<string> userRoleClaims = user.GetRoleClaims() ?? [];
+            bool isNotMatchedAUserRoleClaimWithRequestRoles = !userRoleClaims.Any(userRoleClaim =>
+                userRoleClaim == GeneralOperationClaims.Admin || request.Roles.Contains(userRoleClaim)
+            );
             if (isNotMatchedAUserRoleClaimWithRequestRoles)
                 throw new AuthorizationException("You are not authorized.");
         }

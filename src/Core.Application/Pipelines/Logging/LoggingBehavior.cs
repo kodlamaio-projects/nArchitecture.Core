@@ -1,8 +1,8 @@
 ﻿using System.Text.Json;
-using MediatR;
 using Microsoft.AspNetCore.Http;
 using NArchitecture.Core.CrossCuttingConcerns.Logging;
 using NArchitecture.Core.CrossCuttingConcerns.Logging.Abstraction;
+using NArchitecture.Core.Mediator;
 
 namespace NArchitecture.Core.Application.Pipelines.Logging;
 
@@ -26,13 +26,12 @@ public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
     {
         List<LogParameter> logParameters = [new LogParameter { Type = request.GetType().Name, Value = request }];
 
-        LogDetail logDetail =
-            new()
-            {
-                MethodName = next.Method.Name,
-                Parameters = logParameters,
-                User = _httpContextAccessor.HttpContext.User.Identity?.Name ?? "?"
-            };
+        LogDetail logDetail = new()
+        {
+            MethodName = typeof(TRequest).Name,
+            Parameters = logParameters,
+            User = _httpContextAccessor.HttpContext?.User.Identity?.Name ?? "?",
+        };
 
         _logger.Information(JsonSerializer.Serialize(logDetail));
         return await next();

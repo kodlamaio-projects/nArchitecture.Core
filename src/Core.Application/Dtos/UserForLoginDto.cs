@@ -6,10 +6,10 @@ public class UserForLoginDto : IDto
 {
     public required string Email { get; set; }
 
-    [JsonIgnore]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWriting)]
     public string Password { get; set; }
 
-    [JsonIgnore]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWriting)]
     public string? AuthenticatorCode { get; set; }
 
     public UserForLoginDto()
