@@ -1,3 +1,6 @@
+> [!WARNING]
+> **NArchitecture.Core 2.0 is a breaking upgrade** — .NET 10, `NArchitecture.Core.Mediator` instead of MediatR, [Mapperly](https://mapperly.riok.app/) instead of AutoMapper. Before you update past a 1.x version, read the [migration guide](https://github.com/kodlamaio-projects/nArchitecture.Core/blob/main/docs/migration-guide-2.0.md) ([Türkçe](https://github.com/kodlamaio-projects/nArchitecture.Core/blob/main/docs/migration-guide-2.0.tr.md)).
+
 # NArchitecture.Core.Persistence
 
 This library provides persistence utilities for data access using Entity Framework Core in kodlama.io projects. The `NArchitecture.Core.Persistence` package offers common interfaces, base classes, and utilities to simplify database operations with Entity Framework Core. It includes core interfaces and abstractions for data access and persistence in both clean and union architectures, supporting the definition of repositories, unit of work pattern, and essential utilities for data access and persistence management across various data storage technologies such as relational databases, NoSQL databases, and file systems.

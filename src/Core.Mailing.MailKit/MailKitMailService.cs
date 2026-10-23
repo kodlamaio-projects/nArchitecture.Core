@@ -63,14 +63,17 @@ public class MailKitMailService : IMailService
 
         if (_mailSettings.DkimPrivateKey != null && _mailSettings.DkimSelector != null && _mailSettings.DomainName != null)
         {
-            DkimSigner signer =
-                new(key: readPrivateKeyFromPemEncodedString(), _mailSettings.DomainName, _mailSettings.DkimSelector)
-                {
-                    HeaderCanonicalizationAlgorithm = DkimCanonicalizationAlgorithm.Simple,
-                    BodyCanonicalizationAlgorithm = DkimCanonicalizationAlgorithm.Simple,
-                    AgentOrUserIdentifier = $"@{_mailSettings.DomainName}",
-                    QueryMethod = "dns/txt"
-                };
+            DkimSigner signer = new(
+                key: readPrivateKeyFromPemEncodedString(),
+                _mailSettings.DomainName,
+                _mailSettings.DkimSelector
+            )
+            {
+                HeaderCanonicalizationAlgorithm = DkimCanonicalizationAlgorithm.Simple,
+                BodyCanonicalizationAlgorithm = DkimCanonicalizationAlgorithm.Simple,
+                AgentOrUserIdentifier = $"@{_mailSettings.DomainName}",
+                QueryMethod = "dns/txt",
+            };
             HeaderId[] headers = { HeaderId.From, HeaderId.Subject, HeaderId.To };
             signer.Sign(email, headers);
         }

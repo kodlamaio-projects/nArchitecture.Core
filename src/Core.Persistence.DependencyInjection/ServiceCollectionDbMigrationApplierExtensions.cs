@@ -6,19 +6,23 @@ namespace NArchitecture.Core.Persistence.DependencyInjection;
 
 public static class ServiceCollectionDbMigrationApplierExtensions
 {
+    /// <summary>
+    /// Registers <see cref="IDbMigrationApplierService"/> and <see cref="IDbMigrationApplierService{TDbContext}"/>.
+    /// The factory receives the request-scoped <see cref="IServiceProvider"/>; no intermediate container is built.
+    /// </summary>
     public static IServiceCollection AddDbMigrationApplier<TDbContext>(
         this IServiceCollection services,
-        Func<ServiceProvider, TDbContext> contextFactory
+        Func<IServiceProvider, TDbContext> contextFactory
     )
         where TDbContext : DbContext
     {
-        ServiceProvider buildServiceProvider = services.BuildServiceProvider();
+        ArgumentNullException.ThrowIfNull(contextFactory);
 
         _ = services.AddTransient<IDbMigrationApplierService, DbMigrationApplierManager<TDbContext>>(
-            _ => new DbMigrationApplierManager<TDbContext>(contextFactory(buildServiceProvider))
+            sp => new DbMigrationApplierManager<TDbContext>(contextFactory(sp))
         );
         _ = services.AddTransient<IDbMigrationApplierService<TDbContext>, DbMigrationApplierManager<TDbContext>>(
-            _ => new DbMigrationApplierManager<TDbContext>(contextFactory(buildServiceProvider))
+            sp => new DbMigrationApplierManager<TDbContext>(contextFactory(sp))
         );
 
         return services;

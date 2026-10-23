@@ -1,9 +1,8 @@
-﻿using System.Text;
-using System.Text.Json;
-using MediatR;
+﻿using System.Text.Json;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using NArchitecture.Core.Mediator;
 
 namespace NArchitecture.Core.Application.Pipelines.Caching;
 
@@ -23,7 +22,9 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
     {
         _cache = cache;
         _logger = logger;
-        _cacheSettings = configuration.GetSection("CacheSettings").Get<CacheSettings>() ?? throw new InvalidOperationException();
+        _cacheSettings =
+            configuration.GetSection("CacheSettings").Get<CacheSettings>()
+            ?? throw new InvalidOperationException("Configuration section 'CacheSettings' is missing.");
     }
 
     public async Task<TResponse> Handle(
@@ -39,8 +40,8 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
         byte[]? cachedResponse = await _cache.GetAsync(request.CacheKey, cancellationToken);
         if (cachedResponse != null)
         {
-            response = JsonSerializer.Deserialize<TResponse>(Encoding.Default.GetString(cachedResponse))!;
-            _logger.LogInformation($"Fetched from Cache -> {request.CacheKey}");
+            response = JsonSerializer.Deserialize<TResponse>(cachedResponse)!;
+            _logger.LogInformation("Fetched from Cache -> {CacheKey}", request.CacheKey);
         }
         else
             response = await getResponseAndAddToCache(request, next, cancellationToken);
@@ -59,9 +60,9 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
         TimeSpan slidingExpiration = request.SlidingExpiration ?? TimeSpan.FromDays(_cacheSettings.SlidingExpiration);
         DistributedCacheEntryOptions cacheOptions = new() { SlidingExpiration = slidingExpiration };
 
-        byte[] serializeData = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(response));
+        byte[] serializeData = JsonSerializer.SerializeToUtf8Bytes(response);
         await _cache.SetAsync(request.CacheKey, serializeData, cacheOptions, cancellationToken);
-        _logger.LogInformation($"Added to Cache -> {request.CacheKey}");
+        _logger.LogInformation("Added to Cache -> {CacheKey}", request.CacheKey);
 
         if (request.CacheGroupKey != null)
             await addCacheKeyToGroup(request, slidingExpiration, cancellationToken);
@@ -71,27 +72,24 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
 
     private async Task addCacheKeyToGroup(TRequest request, TimeSpan slidingExpiration, CancellationToken cancellationToken)
     {
-        byte[]? cacheGroupCache = await _cache.GetAsync(key: request.CacheGroupKey!, cancellationToken);
+        string cacheGroupKey = request.CacheGroupKey!;
+        string cacheGroupSlidingExpirationKey = $"{cacheGroupKey}SlidingExpiration";
+
+        byte[]? cacheGroupCache = await _cache.GetAsync(cacheGroupKey, cancellationToken);
         HashSet<string> cacheKeysInGroup;
         if (cacheGroupCache != null)
         {
-            cacheKeysInGroup = JsonSerializer.Deserialize<HashSet<string>>(Encoding.Default.GetString(cacheGroupCache))!;
-            if (!cacheKeysInGroup.Contains(request.CacheKey))
-                cacheKeysInGroup.Add(request.CacheKey);
+            cacheKeysInGroup = JsonSerializer.Deserialize<HashSet<string>>(cacheGroupCache)!;
+            cacheKeysInGroup.Add(request.CacheKey);
         }
         else
-            cacheKeysInGroup = new HashSet<string>(new[] { request.CacheKey });
+            cacheKeysInGroup = [request.CacheKey];
         byte[] newCacheGroupCache = JsonSerializer.SerializeToUtf8Bytes(cacheKeysInGroup);
 
-        byte[]? cacheGroupCacheSlidingExpirationCache = await _cache.GetAsync(
-            key: $"{request.CacheGroupKey}SlidingExpiration",
-            cancellationToken
-        );
+        byte[]? cacheGroupCacheSlidingExpirationCache = await _cache.GetAsync(cacheGroupSlidingExpirationKey, cancellationToken);
         int? cacheGroupCacheSlidingExpirationValue = null;
         if (cacheGroupCacheSlidingExpirationCache != null)
-            cacheGroupCacheSlidingExpirationValue = Convert.ToInt32(
-                Encoding.Default.GetString(cacheGroupCacheSlidingExpirationCache)
-            );
+            cacheGroupCacheSlidingExpirationValue = JsonSerializer.Deserialize<int>(cacheGroupCacheSlidingExpirationCache);
         if (
             cacheGroupCacheSlidingExpirationValue == null
             || slidingExpiration.TotalSeconds > cacheGroupCacheSlidingExpirationValue
@@ -101,18 +99,20 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
             cacheGroupCacheSlidingExpirationValue
         );
 
-        DistributedCacheEntryOptions cacheOptions =
-            new() { SlidingExpiration = TimeSpan.FromSeconds(Convert.ToDouble(cacheGroupCacheSlidingExpirationValue)) };
+        DistributedCacheEntryOptions cacheOptions = new()
+        {
+            SlidingExpiration = TimeSpan.FromSeconds(Convert.ToDouble(cacheGroupCacheSlidingExpirationValue)),
+        };
 
-        await _cache.SetAsync(key: request.CacheGroupKey!, newCacheGroupCache, cacheOptions, cancellationToken);
-        _logger.LogInformation($"Added to Cache -> {request.CacheGroupKey}");
+        await _cache.SetAsync(cacheGroupKey, newCacheGroupCache, cacheOptions, cancellationToken);
+        _logger.LogInformation("Added to Cache -> {CacheGroupKey}", cacheGroupKey);
 
         await _cache.SetAsync(
-            key: $"{request.CacheGroupKey}SlidingExpiration",
+            cacheGroupSlidingExpirationKey,
             serializeCachedGroupSlidingExpirationData,
             cacheOptions,
             cancellationToken
         );
-        _logger.LogInformation($"Added to Cache -> {request.CacheGroupKey}SlidingExpiration");
+        _logger.LogInformation("Added to Cache -> {CacheGroupSlidingExpirationKey}", cacheGroupSlidingExpirationKey);
     }
 }

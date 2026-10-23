@@ -1,19 +1,17 @@
-﻿using Nest;
-
 namespace NArchitecture.Core.ElasticSearch.Models;
 
 public class ElasticSearchModel
 {
-    public Id ElasticId { get; set; }
+    public string ElasticId { get; set; }
     public string IndexName { get; set; }
 
     public ElasticSearchModel()
     {
-        ElasticId = null!;
+        ElasticId = string.Empty;
         IndexName = string.Empty;
     }
 
-    public ElasticSearchModel(Id elasticId, string indexName)
+    public ElasticSearchModel(string elasticId, string indexName)
     {
         ElasticId = elasticId;
         IndexName = indexName;

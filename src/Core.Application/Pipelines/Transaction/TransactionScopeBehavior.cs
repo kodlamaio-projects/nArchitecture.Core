@@ -1,5 +1,5 @@
-﻿using System.Transactions;
-using MediatR;
+using System.Transactions;
+using NArchitecture.Core.Mediator;
 
 namespace NArchitecture.Core.Application.Pipelines.Transaction;
 

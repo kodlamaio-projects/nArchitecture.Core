@@ -1,3 +1,6 @@
+> [!WARNING]
+> **NArchitecture.Core 2.0 is a breaking upgrade** — .NET 10, `NArchitecture.Core.Mediator` instead of MediatR, [Mapperly](https://mapperly.riok.app/) instead of AutoMapper. Before you update past a 1.x version, read the [migration guide](https://github.com/kodlamaio-projects/nArchitecture.Core/blob/main/docs/migration-guide-2.0.md) ([Türkçe](https://github.com/kodlamaio-projects/nArchitecture.Core/blob/main/docs/migration-guide-2.0.tr.md)).
+
 # NArchitecture.Core.CrossCuttingConcerns.Logging.Serilog.File
 
 This library provides integration with Serilog for file logging in kodlama.io projects. The `NArchitecture.Core.CrossCuttingConcerns.Logging.Serilog.File` package offers utilities to effectively configure Serilog for logging to files within applications. It includes core classes and extensions for integrating Serilog file logging into both clean and union architectures, supporting the configuration and registration of Serilog file sinks, log file rolling policies, file format options, and essential utilities for Serilog file logging integration and management.

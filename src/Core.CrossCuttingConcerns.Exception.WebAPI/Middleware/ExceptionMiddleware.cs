@@ -47,13 +47,12 @@ public class ExceptionMiddleware
     {
         List<LogParameter> logParameters = [new LogParameter { Type = context.GetType().Name, Value = exception.ToString() }];
 
-        LogDetail logDetail =
-            new()
-            {
-                MethodName = _next.Method.Name,
-                Parameters = logParameters,
-                User = _contextAccessor.HttpContext?.User.Identity?.Name ?? "?"
-            };
+        LogDetail logDetail = new()
+        {
+            MethodName = _next.Method.Name,
+            Parameters = logParameters,
+            User = _contextAccessor.HttpContext?.User.Identity?.Name ?? "?",
+        };
 
         _loggerService.Information(JsonSerializer.Serialize(logDetail));
         return Task.CompletedTask;

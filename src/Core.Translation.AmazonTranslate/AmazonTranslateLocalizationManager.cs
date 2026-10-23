@@ -15,13 +15,12 @@ public class AmazonTranslateLocalizationManager : ITranslationService
 
     public async Task<string> TranslateAsync(string text, string to, string from = "en")
     {
-        TranslateTextRequest request =
-            new()
-            {
-                SourceLanguageCode = from,
-                TargetLanguageCode = to,
-                Text = text,
-            };
+        TranslateTextRequest request = new()
+        {
+            SourceLanguageCode = from,
+            TargetLanguageCode = to,
+            Text = text,
+        };
 
         TranslateTextResponse response = await _client.TranslateTextAsync(request);
         return response.TranslatedText;

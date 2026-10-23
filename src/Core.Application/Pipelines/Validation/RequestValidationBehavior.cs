@@ -1,6 +1,6 @@
-﻿using FluentValidation;
-using MediatR;
+using FluentValidation;
 using NArchitecture.Core.CrossCuttingConcerns.Exception.Types;
+using NArchitecture.Core.Mediator;
 using ValidationException = NArchitecture.Core.CrossCuttingConcerns.Exception.Types.ValidationException;
 
 namespace NArchitecture.Core.Application.Pipelines.Validation;
