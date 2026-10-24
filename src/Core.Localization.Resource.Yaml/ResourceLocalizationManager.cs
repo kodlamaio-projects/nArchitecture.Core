@@ -48,6 +48,28 @@ public class ResourceLocalizationManager : ILocalizationService
         return Task.FromResult(key);
     }
 
+    public Task<string> GetLocalizedAsync(string key, string? keySection = null, params object[] args)
+    {
+        return GetLocalizedAsync(key, AcceptLocales ?? throw new NoNullAllowedException(nameof(AcceptLocales)), keySection, args);
+    }
+    public Task<string> GetLocalizedAsync(string key, ICollection<string> acceptLocales, string? keySection = null, params object[] args)
+    {
+        string? localization;
+        if (acceptLocales is not null)
+            foreach (string locale in acceptLocales)
+            {
+                localization = getLocalizationFromResource(key, locale, keySection);
+                if (localization is not null)
+                    return Task.FromResult(formatMessage(localization, args));
+            }
+
+        localization = getLocalizationFromResource(key, _defaultLocale, keySection);
+        if (localization is not null)
+            return Task.FromResult(formatMessage(localization, args));
+
+        return Task.FromResult(key);
+    }
+
     private string? getLocalizationFromResource(string key, string locale, string? keySection = _defaultKeySection)
     {
         if (string.IsNullOrWhiteSpace(keySection))
@@ -74,5 +96,9 @@ public class ResourceLocalizationManager : ILocalizationService
         YamlStream yamlStream = [];
         yamlStream.Load(reader);
         content = (YamlMappingNode)yamlStream.Documents[0].RootNode;
+    }
+    private static string formatMessage(string message, params object[] args)
+    {
+        return args is { Length: > 0 } ? string.Format(message, args) : message;
     }
 }

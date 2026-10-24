@@ -39,4 +39,33 @@ public class TranslateLocalizationManager : ILocalizationService
 
         return key;
     }
+
+    public Task<string> GetLocalizedAsync(string key, string? keySection = null, params object[] args)
+    {
+        return GetLocalizedAsync(key, AcceptLocales ?? throw new NoNullAllowedException(nameof(AcceptLocales)), keySection, args);
+    }
+
+    public async Task<string> GetLocalizedAsync(string key, ICollection<string> acceptLocales, string? keySection = null, params object[] args)
+    {
+        string? localization;
+
+        if (acceptLocales is not null)
+            foreach (string locale in acceptLocales)
+            {
+                localization = await _translationService.TranslateAsync(key, locale);
+                if (!string.IsNullOrWhiteSpace(localization))
+                    return formatMessage(localization, args);
+            }
+
+        localization = await _translationService.TranslateAsync(key, _defaultLocale);
+        if (!string.IsNullOrWhiteSpace(localization))
+            return formatMessage(localization, args);
+
+        return key;
+    }
+
+    private static string formatMessage(string message, params object[] args)
+    {
+        return args is { Length: > 0 } ? string.Format(message, args) : message;
+    }
 }

@@ -10,4 +10,11 @@ public interface ILocalizationService
     public Task<string> GetLocalizedAsync(string key, string? keySection = null);
 
     public Task<string> GetLocalizedAsync(string key, ICollection<string> acceptLocales, string? keySection = null);
+
+    /// <summary>
+    /// Gets the localized string for the given key by <see cref="AcceptLocales"/> with formatted arguments.
+    /// </summary>
+    public Task<string> GetLocalizedAsync(string key, string? keySection = null, params object[] args);
+
+    public Task<string> GetLocalizedAsync(string key, ICollection<string> acceptLocales, string? keySection = null, params object[] args);
 }
